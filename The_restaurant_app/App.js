@@ -1,24 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, useState } from 'react-native';
-import { StyleSheet, Text, View, SafeAreaView ,Alert, Button} from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 
 export default function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Hello Jenish</Text>
       <StatusBar style="auto" />
-      <View style={styles.inputView}>
+      <SafeAreaView style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
           placeholder="Email."
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
         />
-      </View>
+      </SafeAreaView>
  
-      <View style={styles.inputView}>
+      <SafeAreaView style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
           placeholder="Password."
@@ -26,7 +35,7 @@ export default function App() {
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-      </View>
+      </SafeAreaView>
  
       <TouchableOpacity>
         <Text style={styles.forgot_button}>Forgot Password?</Text>
@@ -35,7 +44,7 @@ export default function App() {
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
