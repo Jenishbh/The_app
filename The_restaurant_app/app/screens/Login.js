@@ -4,13 +4,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 function Login(props) {
+    //<TextInput style={styles.username}> Username</TextInput>
+    //<TextInput style={styles.username}> Password</TextInput>
     return (
         <SafeAreaView style={styles.background}>
             <Image style={styles.logo} source={require('../assets/Logo1.png')} />
-            <TextInput style={styles.username}> Username</TextInput>
-            <TextInput style={styles.username}> Password</TextInput>
-            
 
+        
         </SafeAreaView>
     );
 }
