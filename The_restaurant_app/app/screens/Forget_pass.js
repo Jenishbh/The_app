@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
-
+import Login from './Login';
 
 export default function Forget_pass(props) {
     
     return (
         <SafeAreaView style={styles.background}>
-          <Image style={styles.logo} source={require('../pics/Logo1.png')} />
+          <Image style={styles.logo} source={require('../assets/Logo1.png')} />
           <Text style={styles.forget_icon}> Forget Password? </Text>
           <Text style={styles.remind}> Enter your email below to rest your password </Text>
           <TextInput style={styles.email}> Email</TextInput>
@@ -21,7 +21,7 @@ export default function Forget_pass(props) {
           </TouchableOpacity>
           
           <TouchableOpacity  style={styles.go_home}>  
-            <Button title='Go Back To Log-in'  onPress={console.log('Home Pressed')} />
+            <Button title='Go Back To Log-in'  onPress={Login} />
           </TouchableOpacity>
         </SafeAreaView>
       );
