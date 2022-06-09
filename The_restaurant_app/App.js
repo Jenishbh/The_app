@@ -13,12 +13,12 @@ import {
 import Login from "./app/screens/Login";
 //import './node_modules/bootstrap/dist/css/bootstrap.min.css';
 //import './App.css';
-//import SignUp from "./app/screens/Registration";
+import SignUp from "./app/screens/Registration";
 
 function App() {
-  return< Login />
+  //return< Login />
   //return "Hello"
-  //return <SignUp />
+  return <SignUp />
   //return (
   //  <div className="App">
   //    <h3>Build Sign Up & Login UI Template in React</h3>
