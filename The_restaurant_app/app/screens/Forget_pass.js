@@ -21,7 +21,7 @@ function Forget_pass({navigation}) {
           </TouchableOpacity>
           
           <TouchableOpacity  style={styles.go_home}>  
-            <Button title='Go Back To Log-in'  onPress={() => navigation.goback()} />
+            <Button title='Go Back To Log-in'  onPress={() => navigation.navigate('Login')} />
           </TouchableOpacity>
         </SafeAreaView>
       );

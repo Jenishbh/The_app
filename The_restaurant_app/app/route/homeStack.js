@@ -13,7 +13,7 @@ const Stack= createStackNavigator();
 const forogtNavigator = () => (
     
     <Stack.Navigator>
-        <Stack.Screen name="Login"  component={Login} />
+        
         <Stack.Screen name = "Forgot" component={Forget_pass} />
           
     </Stack.Navigator>
@@ -21,23 +21,21 @@ const forogtNavigator = () => (
     
 )
 
-const homeNavigator = ()=>(
+const HomeNavigator = ()=>(
     <Stack.Navigator>
     
-    <Stack.Screen name = "Forgot" component={Forget_pass} />
-    <Stack.Screen name="Login"  component={Login} />
+    <Stack.Screen name = "Login" component={Login} />
+    
       
 </Stack.Navigator>
 )
 
 const AuthNavigator = ()=>(
     <Stack.Navigator>
-        <Stack.Screen name="Login"  component={Login} />
-        <Stack.Screen name="Forgot" component={Forget_pass} />
+        <Stack.Screen name="Login"  component={HomeNavigator} />
+        <Stack.Screen name="Forgot" component={forogtNavigator} />
         
-    
-    
-    
+
       
 </Stack.Navigator>
 )
