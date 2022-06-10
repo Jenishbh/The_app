@@ -2,7 +2,7 @@ import React from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
 import Login from './Login';
 
-export default function Forget_pass(props) {
+function Forget_pass({navigation}) {
     
     return (
         <SafeAreaView style={styles.background}>
@@ -21,7 +21,7 @@ export default function Forget_pass(props) {
           </TouchableOpacity>
           
           <TouchableOpacity  style={styles.go_home}>  
-            <Button title='Go Back To Log-in'  onPress={Login} />
+            <Button title='Go Back To Log-in'  onPress={() => navigation.goback()} />
           </TouchableOpacity>
         </SafeAreaView>
       );
@@ -97,3 +97,5 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     }
   });
+
+  export default Forget_pass;
