@@ -88,7 +88,7 @@ function Login() {
             <Text style={styles.line} >________ OR _______</Text>
             <View style={styles.Signup}>
                 
-                <Button title='Create Account' color='#F8B864' onPress={() => navigation.navigate(handleSignup)} />
+                <Button title='Create Account' color='#F8B864' onPress={handleSignup} />
             </View>
         
             
