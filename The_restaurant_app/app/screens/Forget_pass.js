@@ -10,7 +10,7 @@ function Forget_pass() {
   const navigation = useNavigation()
 
 
-  const forgot_pass_handle = ()=> {
+  const forgot_pass_handle = ()=> {    //handle Forget Pass by Firebase
 
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
