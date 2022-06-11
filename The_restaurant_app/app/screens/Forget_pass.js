@@ -1,9 +1,13 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
 import Login from './Login';
+import { useNavigation } from '@react-navigation/native';
 
-function Forget_pass({navigation}) {
-    
+
+
+
+function Forget_pass() {
+  const navigation = useNavigation()
     return (
         <SafeAreaView style={styles.background}>
           <Image style={styles.logo} source={require('../assets/Logo1.png')} />
@@ -21,7 +25,7 @@ function Forget_pass({navigation}) {
           </TouchableOpacity>
           
           <TouchableOpacity  style={styles.go_home}>  
-            <Button title='Go Back To Log-in'  onPress={() => navigation.navigate('Login')} />
+            <Button title='Go Back To Log-in'  onPress={() => navigation.navigate(Login)} />
           </TouchableOpacity>
         </SafeAreaView>
       );

@@ -5,6 +5,7 @@ import Login from "../screens/Login";
 import Forget_pass from "../screens/Forget_pass";
 import SignUp from "../screens/Registration";
 import { SafeAreaView } from 'react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -31,13 +32,18 @@ const HomeNavigator = ()=>(
 )
 
 const AuthNavigator = ()=>(
+    
     <Stack.Navigator>
-        <Stack.Screen name="Login"  component={HomeNavigator} />
-        <Stack.Screen name="Forgot" component={forogtNavigator} />
+        <Stack.Screen name="Login"  component={Login} />
+        <Stack.Screen name="Forgot_pass" component={Forget_pass} />
+        
+        <Stack.Screen name="Signup"  component={SignUp} />
+        
         
 
       
 </Stack.Navigator>
+
 )
 
 export default AuthNavigator;

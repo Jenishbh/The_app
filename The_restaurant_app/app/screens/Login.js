@@ -1,36 +1,93 @@
 
-import React from 'react';
+import React, { useState,useEffect} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity, Pressable} from 'react-native';
 import Forget_pass from './Forget_pass';
 import SignUp from './Registration';
-import { useNavigation } from '@react-navigation/native';
+
+import { auth } from '../database/firebase';
+
+import {getAuth, OnAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth'
 
 
 
 
-
-
-function Login({navigation}) {
+function Login() {
     
-    
 
-    return (
-        <SafeAreaView style={styles.background}>
+   const[email, setEmail]= useState('')    // set Email and password varible for cath user input
+   const[password, setPassword] = useState('')
+   const navigation = useNavigation()      // set navigation to change the screen after user login
+
+    
+   useEffect(() => { 
+    const auth=getAuth();
+                        //function for user to move on to home screen after  login 
+    const unsubscribe = auth.onAuthStateChanged( user => {
+        if (user){
+            navigation.navigate('Home')
+        }
+    })
+
+    return unsubscribe
+    
+   }, [])
+
+   const handleSignup = () =>{  //handle sigup
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log('Signup with: ',user.email);
+        })
+    .catch((error) => 
+    alert(error.message));
+    }
+
+
+   const handleLogin = () =>{    
+    const auth = getAuth();  //Handel Login by firebase
+    
+        signInWithEmailAndPassword(auth, email, password)
+        .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Log in with: ',user.email);
+        })
+        .catch(error => alert(error.message))
+   }
+
+
+    return (   
+        <SafeAreaView style={styles.background}>    
             <Image style={styles.logo} source={require('../assets/Logo1.png')} />
-            <TextInput placeholder='Email' style={styles.username}/>
-            <TextInput placeholder='Password' style={styles.username} secureTextEntry/>
-            <Pressable style={styles.signin} onPress={Forget_pass}>
-                <Text > Forgot Password?</Text>
-            </Pressable>
+            <TextInput
+             placeholder='Email'
+             value={email}
+             onChangeText={text => setEmail(text)}
+             style={styles.username}
+             />
+
+            <TextInput 
+            placeholder='Password'
+            value={password}
+            onChangeText={text => setPassword(text)}
+            style={styles.username}
+             secureTextEntry
+             />
+
+            <TouchableOpacity  style={styles.line}>  
+            <Button title='Forgot Password?'  onPress={() => navigation.navigate(Forget_pass)} />
+            </TouchableOpacity>
             <Pressable  style={styles.signin}>
                 
-                <Button title='Login' color='#F8B864' onPress={console.log('Forget_pass')} />
+                <Button title='Login' color='#F8B864' onPress={handleLogin} />
             </Pressable>
             <Text style={styles.line} >________ OR _______</Text>
-            <TouchableOpacity  style={styles.Signup}>
+            <View style={styles.Signup}>
                 
                 <Button title='Create Account' color='#F8B864' onPress={() => navigation.navigate(Forget_pass)} />
-            </TouchableOpacity>
+            </View>
         
             
 
@@ -50,7 +107,7 @@ const styles = StyleSheet.create({
         height: 107,
         width: 300,        
         
-        top: -190    
+        top: -210    
     },
     username:{
         borderWidth: 1,
@@ -69,7 +126,7 @@ const styles = StyleSheet.create({
         
     },
     line:{
-        top: -150,
+        top: -170,
         color: 'white',
     },
     Signup:{
