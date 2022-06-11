@@ -8,16 +8,39 @@ import { useNavigation } from '@react-navigation/native';
 
 function Forget_pass() {
   const navigation = useNavigation()
+
+
+  const forgot_pass_handle = ()=> {
+
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+    // Password reset email sent!
+    // ..
+    })
+    .catch((error) => alert(error.message));
+
+  }
+
+
+
     return (
         <SafeAreaView style={styles.background}>
           <Image style={styles.logo} source={require('../assets/Logo1.png')} />
           <Text style={styles.forget_icon}> Forget Password? </Text>
           <Text style={styles.remind}> Enter your email below to rest your password </Text>
-          <TextInput style={styles.email}> Email</TextInput>
+
+          <TextInput 
+          placeholder='Email'
+          value={email}
+          style={styles.email}
+          onChangeText={text => setEmail(text)}
+          />
   
           <TouchableOpacity style={styles.submit_button} onPress={console.log('Forgot Press')} />
+          
           <TouchableOpacity  style={styles.submit_button}>  
-            <Button title='SUBMIT' color='orange' onPress={console.log('Button Pressed')} />
+            <Button title='SUBMIT' color='orange' onPress={forgot_pass_handle} />
           </TouchableOpacity>
 
           <TouchableOpacity  style={styles.help}>  
