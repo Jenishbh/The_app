@@ -91,10 +91,6 @@ function Login() {
                 <Button title='Create Account' color='#F8B864' onPress={handleSignup} />
             </View>
         
-            
-
-
-        
         </SafeAreaView>
     );
 }
