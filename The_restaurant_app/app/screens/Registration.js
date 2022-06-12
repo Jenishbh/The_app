@@ -3,6 +3,8 @@ import {View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,Touchable
 import { CheckBox } from 'react-native-elements';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 
+import { getDatabase, ref, set } from "firebase/database";
+
 
 export default class SignUp extends Component {
 
@@ -15,10 +17,10 @@ export default class SignUp extends Component {
   checkBoxChanged(){ 
     this.setState({isChecked : !this.state.isChecked})
   }
-
+  
   render() {
     const[email, setEmail]= useState('')    // set Email and password varible for cath user input
-
+    const [username, setUserName] = useState('')
     const[password, setPassword] = useState('')
     const[phone, setPhone] = useState('')
 
@@ -34,6 +36,15 @@ export default class SignUp extends Component {
       alert(error.message));
       }
 
+      function writeUserData() {
+        const db = getDatabase();
+        set(ref(db, 'users/' + username), {
+          username: username,
+          email: email,
+          //Name : name,
+          Phone: phone
+        });
+      }
 
     return (
       <SafeAreaView style={styles.background}>
@@ -43,6 +54,7 @@ export default class SignUp extends Component {
            style={styles.textInput}
             placeholder="Username"
              placeholderTextColor={'lightgray'}
+             onChangeText={text => setUserName(text)}
              />
 
           <TextInput
@@ -84,7 +96,7 @@ export default class SignUp extends Component {
           />
 
           <TouchableOpacity  style={styles.signup}>
-              <Button title='SignUp' color='#F8B864' onPress={handleSignup} />
+              <Button title='SignUp' color='#F8B864' onPress={handleSignup & writeUserData}  />
           </TouchableOpacity>
       
       </SafeAreaView>
