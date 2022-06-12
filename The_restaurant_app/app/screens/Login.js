@@ -1,10 +1,11 @@
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
+import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity, Pressable} from 'react-native';
 
 import { auth } from '../database/firebase';
 
-import {getAuth, OnAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth'
+import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
+import SignUp from './Registration';
 
 function Login(props) {
     const[email, setEmail]= useState('')    // set Email and password varible for cath user input
@@ -25,17 +26,7 @@ function Login(props) {
 
    }, [])
 
-   const handleSignup = () =>{  //handle sigup
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log('Signup with: ',user.email);
-        })
-    .catch((error) => 
-    alert(error.message));
-    }
+
 
 
    const handleLogin = () =>{    
@@ -58,6 +49,7 @@ function Login(props) {
              value={email}
              onChangeText={text => setEmail(text)}
              style={styles.username}
+             placeholderTextColor={'lightgray'}
              />
 
             <TextInput 
@@ -66,7 +58,10 @@ function Login(props) {
             onChangeText={text => setPassword(text)}
             style={styles.username}
              secureTextEntry
+             placeholderTextColor={'lightgray'}
              />
+
+
             <TouchableOpacity  style={styles.line}>  
             <Button title='Forgot Password?'  onPress={() => navigation.navigate(Forget_pass)} />
             </TouchableOpacity>
@@ -82,32 +77,11 @@ function Login(props) {
 
             <TouchableOpacity  style={styles.Signup}>
                 
-                <Button title='SignUp' color='#F8B864' onPress={handleSignup} />
+                <Button title='SignUp' color='#F8B864' onPress={() => navigation.navigate(SignUp)} />
             </TouchableOpacity>
         
             
 
-
-            <TextInput 
-            placeholder='Password'
-            value={password}
-            onChangeText={text => setPassword(text)}
-            style={styles.username}
-             secureTextEntry
-             />
-
-            <TouchableOpacity  style={styles.line}>  
-            <Button title='Forgot Password?'  onPress={() => navigation.navigate(Forget_pass)} />
-            </TouchableOpacity>
-            <Pressable  style={styles.signin}>
-                
-                <Button title='Login' color='#F8B864' onPress={handleLogin} />
-            </Pressable>
-            <Text style={styles.line} >________ OR _______</Text>
-            <View style={styles.Signup}>
-                
-                <Button title='Create Account' color='#F8B864' onPress={handleSignup} />
-            </View>
         
         </SafeAreaView>
     );
@@ -132,17 +106,17 @@ const styles = StyleSheet.create({
         padding: 8,
         margin: 10,
         width: 300,
-        top: -250,
+        top: -170,
         color: 'white'
         
     },
     signin:{  
-        top: -240,
+        top: -150,
         
         
     },
     line:{
-        top: -230,
+        top: -148,
         color: 'white',
     },
     Signup:{

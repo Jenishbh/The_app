@@ -1,27 +1,78 @@
-import React, { Component} from 'react';
+import React, { Component, useState} from 'react';
 import {View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+
 
 export default class SignUp extends Component {
+
+  
   constructor(props){
     super(props)
     this.state = {isChecked: false}
   }
-
+  
   checkBoxChanged(){ 
     this.setState({isChecked : !this.state.isChecked})
   }
 
   render() {
-    
+    const[email, setEmail]= useState('')    // set Email and password varible for cath user input
+
+    const[password, setPassword] = useState('')
+    const[phone, setPhone] = useState('')
+
+    const handleSignup = () =>{  //handle sigup
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log('Signup with: ',user.email);
+          })
+      .catch((error) => 
+      alert(error.message));
+      }
+
+
     return (
       <SafeAreaView style={styles.background}>
           <Image style={styles.logo} source={require('../assets/Logo1.png')} />
-          <TextInput style={styles.textInput} placeholder="Username" placeholderTextColor={'lightgray'}/>
-          <TextInput style={styles.textInput} placeholder="Email Address" placeholderTextColor={'lightgray'}/>
-          <TextInput style={styles.textInput} placeholder="Phone Number" placeholderTextColor={'lightgray'}/>
-          <TextInput style={styles.textInput} placeholder="Password" placeholderTextColor={'lightgray'}/>
-          <TextInput style={styles.textInput} placeholder="Repeat Password" placeholderTextColor={'lightgray'}/>
+
+          <TextInput
+           style={styles.textInput}
+            placeholder="Username"
+             placeholderTextColor={'lightgray'}
+             />
+
+          <TextInput
+           style={styles.textInput}
+            placeholder="Email Address"
+             placeholderTextColor={'lightgray'}
+             onChangeText={text => setEmail(text)}
+             />
+
+          <TextInput 
+          style={styles.textInput}
+           placeholder="Phone Number"
+            placeholderTextColor={'lightgray'}
+            onChangeText={text => setPhone(text)}
+            />
+
+          <TextInput 
+          style={styles.textInput}
+           placeholder="Password"
+            placeholderTextColor={'lightgray'}
+            secureTextEntry
+            />
+
+          <TextInput 
+          style={styles.textInput}
+           placeholder="Repeat Password"
+            placeholderTextColor={'lightgray'}
+            onChangeText={text => setPassword(text)}
+            secureTextEntry
+            />
 
           <CheckBox
             activeOpacity = {1}
@@ -33,7 +84,7 @@ export default class SignUp extends Component {
           />
 
           <TouchableOpacity  style={styles.signup}>
-              <Button title='SignUp' color='#F8B864' />
+              <Button title='SignUp' color='#F8B864' onPress={handleSignup} />
           </TouchableOpacity>
       
       </SafeAreaView>
