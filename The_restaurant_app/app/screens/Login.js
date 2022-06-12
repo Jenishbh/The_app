@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import React from 'react';
-import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity, Pressable} from 'react-native';
-import Forget_pass from './Forget_pass';
-=======
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
 
 import { auth } from '../database/firebase';
->>>>>>> c397e03cace738083889de24532c78616d409917
 
 import {getAuth, OnAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth'
 
@@ -59,15 +53,6 @@ function Login(props) {
     return (
         <SafeAreaView style={styles.background}>
             <Image style={styles.logo} source={require('../assets/Logo1.png')} />
-<<<<<<< HEAD
-            <TextInput style={styles.username}> Username</TextInput>
-            <TextInput style={styles.username}> Password</TextInput>
-            <TouchableOpacity style={styles.signin} onPress={Forget_pass}>
-                <Text > Forgot Password?</Text>
-            </TouchableOpacity>
-            <TouchableOpacity  style={styles.signin}>
-                <Button title='Signin' color='#F8B864' onPress={console.log('Sign In')} />
-=======
             <TextInput
              placeholder='Email'
              value={email}
@@ -84,7 +69,6 @@ function Login(props) {
              />
             <TouchableOpacity  style={styles.line}>  
             <Button title='Forgot Password?'  onPress={() => navigation.navigate(Forget_pass)} />
->>>>>>> c397e03cace738083889de24532c78616d409917
             </TouchableOpacity>
 
             <Pressable  style={styles.signin}>
@@ -94,12 +78,6 @@ function Login(props) {
 
 
             <Text style={styles.line} >________ OR _______</Text>
-<<<<<<< HEAD
-            <Pressable  style={styles.Signup}>
-                <Button title='SignUp' color='#F8B864' onPress={console.log('Sign Up')} />
-            </Pressable>
-        
-=======
 
 
             <TouchableOpacity  style={styles.Signup}>
@@ -131,7 +109,6 @@ function Login(props) {
                 <Button title='Create Account' color='#F8B864' onPress={handleSignup} />
             </View>
         
->>>>>>> c397e03cace738083889de24532c78616d409917
         </SafeAreaView>
     );
 }
