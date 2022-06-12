@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Login from "./app/screens/Login";
+import Forget_pass from "./app/screens/Forget_pass";
 //import './node_modules/bootstrap/dist/css/bootstrap.min.css';
 //import './App.css';
 import SignUp from "./app/screens/Registration";
