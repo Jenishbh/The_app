@@ -1,9 +1,6 @@
-
 import React from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity, Pressable} from 'react-native';
 import Forget_pass from './Forget_pass';
-
-
 
 
 function Login(props) {
@@ -17,18 +14,12 @@ function Login(props) {
                 <Text > Forgot Password?</Text>
             </TouchableOpacity>
             <TouchableOpacity  style={styles.signin}>
-                
                 <Button title='Signin' color='#F8B864' onPress={console.log('Sign In')} />
             </TouchableOpacity>
             <Text style={styles.line} >________ OR _______</Text>
             <Pressable  style={styles.Signup}>
-                
                 <Button title='SignUp' color='#F8B864' onPress={console.log('Sign Up')} />
             </Pressable>
-        
-            
-
-
         
         </SafeAreaView>
     );

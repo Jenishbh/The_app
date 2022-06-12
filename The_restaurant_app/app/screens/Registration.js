@@ -19,12 +19,12 @@ export default class SignUp extends Component {
           <Image style={styles.logo} source={require('../assets/Logo1.png')} />
           <TextInput style={styles.textInput} placeholder="Username" placeholderTextColor={'lightgray'}/>
           <TextInput style={styles.textInput} placeholder="Email Address" placeholderTextColor={'lightgray'}/>
-          <TextInput style={styles.textInput} placeholder="Repeat Email Address" placeholderTextColor={'lightgray'}/>
+          <TextInput style={styles.textInput} placeholder="Phone Number" placeholderTextColor={'lightgray'}/>
           <TextInput style={styles.textInput} placeholder="Password" placeholderTextColor={'lightgray'}/>
           <TextInput style={styles.textInput} placeholder="Repeat Password" placeholderTextColor={'lightgray'}/>
 
           <CheckBox
-            activeOpacity={1}
+            activeOpacity = {1}
             containerStyle = {styles.checkBox}
             textStyle = {styles.checkBoxTitle}
             checked = {this.state.isChecked}
