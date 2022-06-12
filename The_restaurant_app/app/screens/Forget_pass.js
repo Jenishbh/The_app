@@ -1,19 +1,46 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
 import Login from './Login';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Forget_pass(props) {
-    
+
+
+
+function Forget_pass() {
+  const navigation = useNavigation()
+
+
+  const forgot_pass_handle = ()=> {    //handle Forget Pass by Firebase
+
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+    // Password reset email sent!
+    // ..
+    })
+    .catch((error) => alert(error.message));
+
+  }
+
+
+
     return (
         <SafeAreaView style={styles.background}>
           <Image style={styles.logo} source={require('../assets/Logo1.png')} />
           <Text style={styles.forget_icon}> Forget Password? </Text>
           <Text style={styles.remind}> Enter your email below to rest your password </Text>
-          <TextInput style={styles.email}> Email</TextInput>
+
+          <TextInput 
+          placeholder='Email'
+          value={email}
+          style={styles.email}
+          onChangeText={text => setEmail(text)}
+          />
   
           <TouchableOpacity style={styles.submit_button} onPress={console.log('Forgot Press')} />
+          
           <TouchableOpacity  style={styles.submit_button}>  
-            <Button title='SUBMIT' color='orange' onPress={console.log('Button Pressed')} />
+            <Button title='SUBMIT' color='orange' onPress={forgot_pass_handle} />
           </TouchableOpacity>
 
           <TouchableOpacity  style={styles.help}>  
@@ -21,7 +48,7 @@ export default function Forget_pass(props) {
           </TouchableOpacity>
           
           <TouchableOpacity  style={styles.go_home}>  
-            <Button title='Go Back To Log-in'  onPress={Login} />
+            <Button title='Go Back To Log-in'  onPress={() => navigation.navigate(Login)} />
           </TouchableOpacity>
         </SafeAreaView>
       );
@@ -97,3 +124,5 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     }
   });
+
+  export default Forget_pass;
