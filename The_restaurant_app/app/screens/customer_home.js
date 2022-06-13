@@ -6,7 +6,7 @@ import PrimaryButton from "../components/Button";
 
 
 
-function customer_home (){
+function Customer_home (){
 
 
 
@@ -20,7 +20,7 @@ function customer_home (){
                 <Image style={{
                     width: '80%',
                     resizeMode: 'contain',
-                    top: -80,
+                    top: -10,
                     alignSelf: 'center'
                 }} source={require('../assets/Res.png')} />
             </View>
@@ -28,13 +28,14 @@ function customer_home (){
                 <View>
                 <Text style={{
                     fontSize: 32,
+                    top: 50,
                     fontWeight: 'bold',
                     textAlign: 'center'
                 }}>
-                    Delicious Food
+                    Reservation
                 </Text>
                 <Text 
-                style={{marginTop: 20,
+                style={{marginTop: 80,
                 fontSize: 18,
                 textAlign: 'center',
                 color: 'gray'
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 50,
         justifyContent: 'space-between',
-        paddingBottom:40
+        paddingBottom:100
         
     },
     indicatorContainer:{
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         height:12,
         width:30,
         borderRadius:10,
-        backgroundColor: 'primary',
+        backgroundColor: 'orange',
         marginHorizontal: 5
     },
     indicator:{
@@ -95,4 +96,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default customer_home;
+export default Customer_home;

@@ -17,7 +17,7 @@ const PrimaryButton = ({title, onPress = () => {}}) =>{
 
 const styles = StyleSheet.create({
     btnContainer:{
-        backgroundColor: 'primary',
+        backgroundColor: 'orange',
         height: 60,
         borderRadius: 30,
         justifyContent: 'center',

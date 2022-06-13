@@ -76,7 +76,7 @@ const BottomNavigator =()=>{
 const AuthNavigator = ()=>(
     
     <Stack.Navigator>
-        <Stack.Screen name='Customer_home' component={customer_home} />
+        <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
         <Stack.Screen name="Login"  component={Login} />
         <Stack.Screen name="Forgot_pass" component={Forget_pass} />
         <Stack.Screen name="Signup"  component={SignUp} />
