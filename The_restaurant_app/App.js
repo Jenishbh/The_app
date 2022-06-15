@@ -16,6 +16,7 @@ import Login from "./app/screens/Login";
 //import './node_modules/bootstrap/dist/css/bootstrap.min.css';
 //import './App.css';
 import SignUp from "./app/screens/Registration";
+import BottomNavigator from "./app/route/homeStack";
 //import Manager_home from "./app/screens/Manager_home";
 
 //function App() {

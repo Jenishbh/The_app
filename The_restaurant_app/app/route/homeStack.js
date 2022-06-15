@@ -11,6 +11,7 @@ import { NavigationContainer} from '@react-navigation/native';
 import {tabBarOption} from 'react-native'
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-elements/dist/icons/Icon';
+import customer_main from '../screens/customer_main';
 
 
 
@@ -45,25 +46,31 @@ const BottomNavigator =()=>{
                 elevation:0,
               },
               showLabel:false,
-              activeTintColor:'primary',
+              activeTintColor:'orange',
                 
             
         }}>
-            <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon:(color)=>(
+            <Tab.Screen name="Home" component={customer_main} options={{tabBarIcon:(color)=>(
             <Icon name="home-filed"
             color={color}
             size={28} />
             ),
              }}
               />
-            <Tab.Screen name="menu" component={HomeScreen} options={{tabBarIcon:(color)=>(
+            <Tab.Screen 
+            name="menu" 
+            component={Login} 
+            options={{tabBarIcon:(color)=>(
             <Icon name="home-filed"
             color={color}
             size={28} />
             ),
              }}
               />
-            <Tab.Screen name="Profile" component={HomeScreen} options={{tabBarIcon:(color)=>(
+            <Tab.Screen 
+            name="Profile" 
+            component={Login} 
+            options={{tabBarIcon:(color)=>(
             <Icon name="home-filed"
             color={color}
             size={28} />
@@ -76,10 +83,14 @@ const BottomNavigator =()=>{
 const AuthNavigator = ()=>(
     
     <Stack.Navigator>
+        
+        
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
-        <Stack.Screen name="Login"  component={Login} />
-        <Stack.Screen name="Forgot_pass" component={Forget_pass} />
-        <Stack.Screen name="Signup"  component={SignUp} />
+        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+        <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
+        <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{headerShown: false}}/>
+        <Stack.Screen name='Signup'  component={SignUp} />
+        
         
         
         

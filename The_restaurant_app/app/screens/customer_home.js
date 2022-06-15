@@ -2,11 +2,12 @@ import React from "react";
 import { View,Image, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import PrimaryButton from "../components/Button";
+import customer_main from "./customer_main";
 
 
 
 
-function Customer_home (){
+const Customer_home = ({navigation}) => {
 
 
 
@@ -49,7 +50,7 @@ function Customer_home (){
                     <View style={styles.indicator}/>
                     <View style={styles.indicator}/>  
                 </View>
-                <PrimaryButton onPress={()=> navigation.navigate('Home')}
+                <PrimaryButton onPress={() => navigation.navigate('Customer_main')}
                 title="Get Started"/>
             </View>
             

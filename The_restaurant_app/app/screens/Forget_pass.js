@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
 import Login from './Login';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 function Forget_pass() {
   const navigation = useNavigation()
-
+  const[email, setEmail]= useState('')
 
   const forgot_pass_handle = ()=> {    //handle Forget Pass by Firebase
 

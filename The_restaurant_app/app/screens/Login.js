@@ -5,7 +5,7 @@ import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, Text
 import { auth } from '../database/firebase';
 
 import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
-import SignUp from './Registration';
+
 
 function Login(props) {
     const[email, setEmail]= useState('')    // set Email and password varible for cath user input
@@ -63,7 +63,7 @@ function Login(props) {
 
 
             <TouchableOpacity  style={styles.line}>  
-            <Button title='Forgot Password?'  onPress={() => navigation.navigate(Forget_pass)} />
+            <Button title='Forgot Password?'  onPress={() => navigation.navigate('Forgot_pass')} />
             </TouchableOpacity>
 
             <Pressable  style={styles.signin}>
@@ -77,7 +77,7 @@ function Login(props) {
 
             <TouchableOpacity  style={styles.Signup}>
                 
-                <Button title='SignUp' color='#F8B864' onPress={() => navigation.navigate(SignUp)} />
+                <Button title='SignUp' color='#F8B864' onPress={() => navigation.navigate('SignUp')} />
             </TouchableOpacity>
         
             
