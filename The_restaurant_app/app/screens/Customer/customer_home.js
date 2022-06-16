@@ -1,8 +1,8 @@
 import React from "react";
 import { View,Image, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
-import PrimaryButton from "../components/Button";
-import customer_main from "./customer_main";
+import PrimaryButton from "../../components/Button";
+
 
 
 
@@ -23,7 +23,7 @@ const Customer_home = ({navigation}) => {
                     resizeMode: 'contain',
                     top: -10,
                     alignSelf: 'center'
-                }} source={require('../assets/Res.png')} />
+                }} source={require('../Customer/Res.png')} />
             </View>
             <View style={styles.textcontainer}>
                 <View>

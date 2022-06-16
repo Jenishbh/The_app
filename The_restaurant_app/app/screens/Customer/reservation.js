@@ -1,14 +1,16 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 
-function customer_main() {
+function Reservation() {
   
     return (
       <View>
-        <Text>customer_main</Text>
+        <Text>
+          
+        </Text>
       </View>
     )
   }
 
 
-export default customer_main
+export default Reservation

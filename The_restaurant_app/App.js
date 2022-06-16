@@ -1,23 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+
+import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from "./app/route/homeStack";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  View,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
-import Login from "./app/screens/Login";
-//import './node_modules/bootstrap/dist/css/bootstrap.min.css';
-//import './App.css';
-import SignUp from "./app/screens/Registration";
-import BottomNavigator from "./app/route/homeStack";
-//import Manager_home from "./app/screens/Manager_home";
+
 
 //function App() {
   //return< Login />
