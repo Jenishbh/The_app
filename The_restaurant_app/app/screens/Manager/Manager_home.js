@@ -13,18 +13,7 @@ function Manager_home(){
 
     return(
         <SafeAreaView>
-            <CircularProgress
-                radius={90}
-                value={80}
-                textColor='#222'
-                fontSize={20}
-                valueSuffix={'%'}
-                inActiveStrokeColor={'#2ecc71'}
-                inActiveStrokeOpacity={0.2}
-
-
-            
-            />
+          <Text>Hello</Text>
 
         </SafeAreaView>
 
