@@ -54,9 +54,10 @@ const BottomNavigator =()=>{
             <Icon name='date-range'
             color='orange'
             size={28}
+            
             />
             ),
-             }}
+            headerShown: false}}
               />
             <Tab.Screen 
             name="menu" 
