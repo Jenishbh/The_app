@@ -1,17 +1,17 @@
 import React from 'react'
 import 'react-native-gesture-handler'
 import { createStackNavigator } from "@react-navigation/stack";
-//import { createAppContainer, createStackNavigator } from 'react-navigation';
 import Login from "../screens/Login";
 import Forget_pass from "../screens/Forget_pass";
 import SignUp from "../screens/Registration";
-import customer_home from '../screens/customer_home';
+import customer_home from '../screens/Customer/customer_home';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationContainer} from '@react-navigation/native';
-import {tabBarOption} from 'react-native'
+import {tabBarOption, Image, View} from 'react-native'
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-elements/dist/icons/Icon';
-import customer_main from '../screens/customer_main';
+import Icon from 'react-native-vector-icons/MaterialIcons' ; 
+import Con from 'react-native-vector-icons/Octicons';
+import Reservation from '../screens/Customer/reservation';
 
 
 
@@ -50,20 +50,44 @@ const BottomNavigator =()=>{
                 
             
         }}>
-            <Tab.Screen name="Home" component={customer_main} options={{tabBarIcon:(color)=>(
-            <Icon name="home-filed"
+            <Tab.Screen name="Menu"
+            component={Reservation}
+            options={{tabBarIcon:()=>(
+            <Icon name='restaurant'
+            color='orange'
+            size={28}
+            
+            />
+            ),
+            headerShown: false}}
+              />
+            <Tab.Screen 
+            name="Reservation" 
+            component={Login} 
+            options={{tabBarIcon:(color)=>(
+            <Icon name="date-range"
             color={color}
-            size={28} />
+            size={28} 
+             />
             ),
              }}
               />
             <Tab.Screen 
-            name="menu" 
+            name="Search" 
             component={Login} 
             options={{tabBarIcon:(color)=>(
-            <Icon name="home-filed"
-            color={color}
-            size={28} />
+            <View style={{height: 50, width:60,
+             justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              borderColor: 'orange',
+              borderWidth: 2,
+              borderRadius: 30,
+              top: -25,
+              elevation: 5,
+              }}>
+                 <Icon name="search" color={color} size={28} />
+            </View>
             ),
              }}
               />
@@ -71,7 +95,17 @@ const BottomNavigator =()=>{
             name="Profile" 
             component={Login} 
             options={{tabBarIcon:(color)=>(
-            <Icon name="home-filed"
+            <Icon name="face"
+            color={color}
+            size={28} />
+            ),
+             }}
+              />
+            <Tab.Screen 
+            name="About" 
+            component={Login} 
+            options={{tabBarIcon:(color)=>(
+            <Con name="question"
             color={color}
             size={28} />
             ),
