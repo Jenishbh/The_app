@@ -50,8 +50,10 @@ const BottomNavigator =()=>{
                 
             
         }}>
-            <Tab.Screen name="Reservation" component={Reservation} options={{tabBarIcon:({color})=>(
-            <Icon name='date-range'
+            <Tab.Screen name="Menu"
+            component={Reservation}
+            options={{tabBarIcon:()=>(
+            <Icon name='restaurant'
             color='orange'
             size={28}
             
@@ -60,12 +62,13 @@ const BottomNavigator =()=>{
             headerShown: false}}
               />
             <Tab.Screen 
-            name="menu" 
+            name="Reservation" 
             component={Login} 
             options={{tabBarIcon:(color)=>(
-            <Icon name="restaurant"
+            <Icon name="date-range"
             color={color}
-            size={28} />
+            size={28} 
+             />
             ),
              }}
               />

@@ -8,7 +8,7 @@ const foods = [
     },
     {
       id: '2',
-      name: 'pepperoni Pizza',
+      name: 'Pepperoni Pizza',
       ingredients: 'Pepperoni Pizza',
       price: '7.10',
       image: require('../../assets/food/pepperoni-pizza.jpg'),
@@ -26,6 +26,20 @@ const foods = [
       ingredients: 'Indian Bread',
       price: '9.55',
       image: require('../../assets/food/naan.png'),
+    },
+    {
+      id: '5',
+      name: 'Malai Kofta',
+      ingredients: 'Indian Veg.Curry',
+      price: '9.55',
+      image: require('../../assets/food/malai-kofta.jpg'),
+    },
+    {
+      id: '6',
+      name: 'Samosa',
+      ingredients: 'Starter',
+      price: '9.55',
+      image: require('../../assets/food/entrees.jpg'),
     },
   ];
   

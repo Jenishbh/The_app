@@ -49,7 +49,7 @@ function Login(props) {
              value={email}
              onChangeText={text => setEmail(text)}
              style={styles.username}
-             placeholderTextColor={'lightgray'}
+             placeholderTextColor={'white'}
              />
 
             <TextInput 
@@ -58,7 +58,7 @@ function Login(props) {
             onChangeText={text => setPassword(text)}
             style={styles.username}
              secureTextEntry
-             placeholderTextColor={'lightgray'}
+             placeholderTextColor={'white'}
              />
 
 
@@ -68,7 +68,7 @@ function Login(props) {
 
             <Pressable  style={styles.signin}>
 
-                <Button title='Login' color='#F8B864' onPress={handleLogin} />
+                <Button title='Login'  onPress={handleLogin} />
             </Pressable>
 
 
@@ -77,7 +77,7 @@ function Login(props) {
 
             <TouchableOpacity  style={styles.Signup}>
                 
-                <Button title='SignUp' color='#F8B864' onPress={() => navigation.navigate('SignUp')} />
+                <Button title='SignUp'  onPress={() => navigation.navigate('SignUp')} />
             </TouchableOpacity>
         
             
@@ -88,7 +88,7 @@ function Login(props) {
 }
 const styles = StyleSheet.create({
     background:{
-        backgroundColor: '#191E25',
+        backgroundColor: 'orange',
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center'
@@ -111,23 +111,24 @@ const styles = StyleSheet.create({
         
     },
     signin:{  
-        top: -150,
+        top: -130,
         
         
     },
     line:{
-        top: -148,
+        top: -128,
         color: 'white',
+        
     },
     Signup:{
         borderWidth: 1,
-        borderColor: 'orange',
+        borderColor: 'white',
         borderRadius: 10,
         padding: 8,
         
         width: 300,
         top: -110,
-        color: 'white'
+        
     }
 })
 
