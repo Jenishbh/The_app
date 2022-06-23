@@ -12,6 +12,7 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons' ; 
 import Con from 'react-native-vector-icons/Octicons';
 import Reservation from '../screens/Customer/reservation';
+import Manager_home from '../screens/Manager/Manager_home';
 
 
 
@@ -118,7 +119,7 @@ const AuthNavigator = ()=>(
     
     <Stack.Navigator>
         
-        
+        <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
