@@ -6,23 +6,14 @@ import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 import { getDatabase, ref, set } from "firebase/database";
 
 
-export default class SignUp extends Component {
+export default function SignUp(props){
 
-  
-  constructor(props){
-    super(props)
-    this.state = {isChecked: false}
-  }
-  
-  checkBoxChanged(){ 
-    this.setState({isChecked : !this.state.isChecked})
-  }
-  
-  render() {
     const[email, setEmail]= useState('')    // set Email and password varible for cath user input
     const [username, setUserName] = useState('')
     const[password, setPassword] = useState('')
     const[phone, setPhone] = useState('')
+    const[toggleCheckBox, setToggleCheckBox] = useState(false)
+    const handleClick = () => setToggleCheckBox(!toggleCheckBox)
 
     const handleSignup = () =>{  //handle sigup
       const auth = getAuth();
@@ -34,17 +25,17 @@ export default class SignUp extends Component {
           })
       .catch((error) => 
       alert(error.message));
-      }
+    }
 
-      function writeUserData() {
-        const db = getDatabase();
-        set(ref(db, 'users/' + username), {
-          username: username,
-          email: email,
-          //Name : name,
-          Phone: phone
-        });
-      }
+    function writeUserData() {
+      const db = getDatabase();
+      set(ref(db, 'users/' + username), {
+        username: username,
+        email: email,
+        //Name : name,
+        Phone: phone
+      });
+    }
 
     return (
       <SafeAreaView style={styles.background}>
@@ -90,8 +81,8 @@ export default class SignUp extends Component {
             activeOpacity = {1}
             containerStyle = {styles.checkBox}
             textStyle = {styles.checkBoxTitle}
-            checked = {this.state.isChecked}
-            onPress = {() => this.checkBoxChanged()}
+            checked = {toggleCheckBox}
+            onPress = {() => handleClick()}
             title = 'I accept the Terms of Service.'
           />
 
@@ -102,7 +93,6 @@ export default class SignUp extends Component {
       </SafeAreaView>
       
     );
-  }
 }
 
 const styles = StyleSheet.create({
