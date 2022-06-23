@@ -12,7 +12,7 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons' ; 
 import Con from 'react-native-vector-icons/Octicons';
 import Reservation from '../screens/Customer/reservation';
-import menu from '../screens/Customer/menu';
+
 import Manager_home from '../screens/Manager/Manager_home';
 
 
