@@ -12,6 +12,7 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons' ; 
 import Con from 'react-native-vector-icons/Octicons';
 import Reservation from '../screens/Customer/reservation';
+import menu from '../screens/Customer/menu';
 
 
 
@@ -63,14 +64,14 @@ const BottomNavigator =()=>{
               />
             <Tab.Screen 
             name="Reservation" 
-            component={Login} 
+            component={menu} 
             options={{tabBarIcon:(color)=>(
             <Icon name="date-range"
             color={color}
             size={28} 
              />
             ),
-             }}
+            headerShown: false}}
               />
             <Tab.Screen 
             name="Search" 
@@ -124,6 +125,7 @@ const AuthNavigator = ()=>(
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
         <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{headerShown: false}}/>
         <Stack.Screen name='Signup'  component={SignUp} />
+        
         
         
         
