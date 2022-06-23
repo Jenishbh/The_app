@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { View,Image, Text, StyleSheet, SafeAreaView, TextInput } from "react-native";
 import PrimaryButton from "../../components/Button";
 import CalendarPicker from 'react-native-calendar-picker';
@@ -6,6 +6,8 @@ import CalendarPicker from 'react-native-calendar-picker';
 
 function menu(){
 
+    const [time, setTime] = useState('');
+    const [peopleCount, setpeopleCounr] = useState(0);
     return(
 
         <View 
