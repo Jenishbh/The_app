@@ -17,11 +17,23 @@ function menu(){
                 
 
                 
-                <View >
+                <View style={{height: 400, width:500,justifyContent: 'center', alignContent: 'center' }} >
                 
-                    <Image  source={require('../../assets/reservation.jpg') }
+                    <Image  source={require('./assets/reservation.png') }
                     style={{height: 270, width:500, }} />
 
+                <View style ={{borderRadius: 15,
+                bordercolor: 'white', 
+                shadowColor: '#171717',
+                shadowOffset: {width: -2, height: 4},
+                shadowOpacity: 0.2,
+                shadowRadius: 3,  
+                height: 100, width: 320, 
+                top : -20, backgroundColor: 'white', alignSelf: 100, left: 35,  }}> 
+                
+                
+                <Text></Text>
+                </View>
                 
                    
                 </View>
