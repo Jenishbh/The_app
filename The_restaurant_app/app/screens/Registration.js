@@ -1,10 +1,12 @@
 import React, { Component, useState} from 'react';
-import {View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
+import {Alert, View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+import { useNavigation } from '@react-navigation/native';
 
-import { getDatabase, ref, set } from "firebase/database";
-
+import firebase from 'firebase/compat';
+import { getDatabase, ref, set} from "firebase/database";
+import Login from './Login';
 
 export default function SignUp(props){
 
@@ -13,18 +15,30 @@ export default function SignUp(props){
     const[password, setPassword] = useState('')
     const[phone, setPhone] = useState('')
     const[toggleCheckBox, setToggleCheckBox] = useState(false)
+
+    const navigation = useNavigation()      // set navigation to change the screen after user signup
+
     const handleClick = () => setToggleCheckBox(!toggleCheckBox)
 
-    const handleSignup = () =>{  //handle sigup
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log('Signup with: ',user.email);
-          })
-      .catch((error) => 
-      alert(error.message));
+    const handleSignup = () =>{  
+      //handle sigup
+      if(email === '' && password === '') {
+        Alert.alert('Enter details to signup!')
+      } 
+      else if (toggleCheckBox === false){
+        Alert.alert('Please accept the Terms of Service to signup!')
+      }
+      else {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log('Signup successfully with: ',user.email);
+            })
+        navigation.navigate('Login')
+        .catch((error) => 
+        alert(error.message));
+      }
     }
 
     function writeUserData() {
@@ -32,7 +46,6 @@ export default function SignUp(props){
       set(ref(db, 'users/' + username), {
         username: username,
         email: email,
-        //Name : name,
         Phone: phone
       });
     }
@@ -87,7 +100,7 @@ export default function SignUp(props){
           />
 
           <TouchableOpacity  style={styles.signup}>
-              <Button title='SignUp' color='#F8B864' onPress={handleSignup & writeUserData}  />
+              <Button title='SignUp' color='#F8B864' onPress={handleSignup}  />
           </TouchableOpacity>
       
       </SafeAreaView>
