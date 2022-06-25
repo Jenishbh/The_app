@@ -1,8 +1,8 @@
 import React,{useState, setValue} from 'react';
 import {View, Switch, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
+import {PrimaryButton} from '../../components/Button'
 
-
-export default function Manager_home(props) {
+export default function Manager_home({navigation}) {
   const buttonClickedHandler = () => {
       console.log('You have press the switch!');
   };
@@ -27,7 +27,7 @@ export default function Manager_home(props) {
 
   return (
       <SafeAreaView style={styles.background}>
-        <Image style={styles.logo} source={require('../pics/table-management.png')} />
+        <Image style={styles.logo} source={require('../../assets/table-management.png')} />
         <Text style={styles.check_in}> Checked-In </Text>
           <TouchableOpacity
               onPress={buttonClickedHandler}
@@ -51,7 +51,7 @@ export default function Manager_home(props) {
 
           <View style={styles.container1}>
               <View style={styles.parent1}>
-                  <CButton text={"MENU"} />
+                  <CButton text={'Menu'}   />
                   <CButton text={"REPORTS"} />
             </View>
               

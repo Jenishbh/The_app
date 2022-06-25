@@ -1,6 +1,6 @@
 import React from 'react'
 import 'react-native-gesture-handler'
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";``
 import Login from "../screens/Login";
 import Forget_pass from "../screens/Forget_pass";
 import SignUp from "../screens/Registration";
@@ -12,6 +12,9 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons' ; 
 import Con from 'react-native-vector-icons/Octicons';
 import Reservation from '../screens/Customer/reservation';
+import Menu from '../screens/Customer/menu'
+import Manager_home from '../screens/Manager/Manager_home';
+import DetailsScreen from '../screens/Customer/detailsScreen';
 
 
 
@@ -63,14 +66,14 @@ const BottomNavigator =()=>{
               />
             <Tab.Screen 
             name="Reservation" 
-            component={Login} 
+            component={Menu} 
             options={{tabBarIcon:(color)=>(
             <Icon name="date-range"
             color={color}
             size={28} 
              />
             ),
-             }}
+            headerShown: false}}
               />
             <Tab.Screen 
             name="Search" 
@@ -118,12 +121,16 @@ const AuthNavigator = ()=>(
     
     <Stack.Navigator>
         
-        
+       
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+        <Stack.Screen name='detailsScreen' component={DetailsScreen} options={{headerShown: false}} />
+        <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}} />
+        <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
         <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{headerShown: false}}/>
         <Stack.Screen name='Signup'  component={SignUp} />
+        
         
         
         

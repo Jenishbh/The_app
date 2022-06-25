@@ -71,7 +71,7 @@ function Reservation({navigation}) {
         <TouchableHighlight 
         underlayColor={'white'} 
         activeOpacity={0.9} 
-        onPress={()=> navigation.navigate('DetailsScreen', food)}
+        onPress={()=> navigation.navigate('detailsScreen', food)}
         >
 
         <View style ={style.card}>
