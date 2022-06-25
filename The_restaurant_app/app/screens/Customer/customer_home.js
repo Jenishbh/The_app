@@ -1,7 +1,7 @@
 import React from "react";
 import { View,Image, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
-import PrimaryButton from "../../components/Button";
+import {PrimaryButton} from "../../components/Button";
 
 
 

@@ -19,7 +19,7 @@ function menu(){
                 
                 <View style={{height: 400, width:500,justifyContent: 'center', alignContent: 'center' }} >
                 
-                    <Image  source={require('./assets/reservation.png') }
+                    <Image  source={require('../../assets/reservation.png') }
                     style={{height: 270, width:500, }} />
 
                 <View style ={{borderRadius: 15,

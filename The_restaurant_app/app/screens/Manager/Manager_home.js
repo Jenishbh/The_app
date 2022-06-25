@@ -1,8 +1,8 @@
 import React,{useState, setValue} from 'react';
 import {View, Switch, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
+import {PrimaryButton} from '../../components/Button'
 
-
-export default function Manager_home(props) {
+export default function Manager_home({navigation}) {
   const buttonClickedHandler = () => {
       console.log('You have press the switch!');
   };
@@ -51,7 +51,7 @@ export default function Manager_home(props) {
 
           <View style={styles.container1}>
               <View style={styles.parent1}>
-                  <CButton text={"MENU"} />
+                  <CButton text={'Menu'}   />
                   <CButton text={"REPORTS"} />
             </View>
               
