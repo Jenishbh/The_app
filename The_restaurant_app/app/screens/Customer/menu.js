@@ -1,15 +1,14 @@
 import React, {useState} from "react";
-import { View,Image, Text, StyleSheet, SafeAreaView, TextInput } from "react-native";
-import PrimaryButton from "../../components/Button";
-import CalendarPicker from 'react-native-calendar-picker';
+import { View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView } from "react-native";
+import {PrimaryButton} from "../../components/Button";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-
-function menu(){
+function Menu(){
 
     const [time, setTime] = useState('');
     const [peopleCount, setpeopleCounr] = useState(0);
     return(
-
+        <ScrollView>
         <View 
         style={{flex:1,
             backgroundColor: 'white'}}
@@ -33,50 +32,60 @@ function menu(){
                 
                 
                 <Text></Text>
+                </View>                   
                 </View>
-                
-                   
-                </View>
-                <View>
-                <View style ={{borderRadius: 25, height: 100, width: 20, top : 150, borderColor: 'gray', backfaceVisibility: 'visible' }}/>
 
+                <View style={{marginHorizontal: 20, justifyContent: 'space-between', paddingHorizontal: 5, paddingVertical: 10, }}>
+                <Text style={{fontSize:16, fontWeight:'bold',}}> Details</Text>
+                <Text style={{fontSize:14, color: 'gray', alignSelf:'flex-start', paddingTop: 10}}> Seize the Momemt.Meet Spark,a mini drone that features all of DJI's signature technologies, allowing you to size the moment whenever you feel inspired </Text>
+                 
+                 </View>
+
+                 <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20, flexDirection: 'row', justifyContent:'space-between'}}  >
+
+                    <Text style={{fontWeight: 'bold'}} > Number Of Persons</Text>
+                    <View style={{alignSelf:'baseline'}}>
+                    <Icon name='minus-circle-outline' size={18}  onPress={()=> console.log('press')}/>
                     
-                     
-                </View>
+                    </View>
+                 </View>
 
-                <View>
-                    <TextInput 
-                    style={style.input}
-                    placeholder={' Phone: '}
-                    placeholderTextColor='pink' />
-                   
-                </View>
+                 <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20}}>
 
-                <View >
-                    <TextInput 
-                    style={style.input}
-                    placeholder={' How many people: '}
-                    placeholderTextColor='pink'/>
-                       
-                </View>
+                 <Text style={{fontWeight: 'bold'}} > Pick a Time</Text>
 
-                <View >
-                    <TextInput 
-                    style={style.input}
-                    placeholder={' Date: '}
-                    placeholderTextColor='pink'/>
-                        
-                </View>
+                 </View>
+
+                 <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20}}>
+
+                 <Text style={{fontWeight: 'bold'}} > AddComments</Text>
+
+                 <TextInput style={{height:100, width:350,borderRadius: 15,
+                 backgroundColor: 'white',borderColor:'white',  shadowColor: 'gray', shadowOffset: {height: 4, width:-2}, shadowOpacity: 0.2, shadowRadius: 3
+                 
+                 }} placeholder='Write Comments' />
+
+                 </View>
+
+
+
+
+                
+
+                
+
+               
 
                 <View>
             
 
                 <PrimaryButton  onPress={() => ('confirm_res') }
-                    title='submit'/>
+                    title='Book Now'/>
                 </View>
 
 
         </View>
+        </ScrollView>
     )
 
 
@@ -86,18 +95,8 @@ function menu(){
 }
 
 
-const style = StyleSheet.create({
-
-        input:{
-            flex:1,
-      padding: 5,
-      marginBottom: 10,
-      backgroundColor: 'orange',
-      borderRadius:20,
-        }
-})
 
 
 
 
-export default menu;
+export default Menu;
