@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 
-function Manager_home(){
+function Manager_home({navigation}){
     const buttonClickedHandler = () => {
         console.log('You have press the switch!');
     };
@@ -45,7 +45,7 @@ function Manager_home(){
             
             <View style={styles.container1}>
                 <View style={styles.parent1}>
-                    <CButton text={"MENU"} />
+                    <CButton text={"MENU"} onPress={()=> navigation.navigate('Customer_main')} />
                     <CButton text={"REPORTS"} />
                 </View>
                 <TouchableOpacity onPress={buttonClickedHandler} style={styles.roundButton2}>

@@ -121,12 +121,11 @@ const AuthNavigator = ()=>(
     
     <Stack.Navigator>
         
-       
+        <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
         <Stack.Screen name='detailsScreen' component={DetailsScreen} options={{headerShown: false}} />
         <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}} />
-        <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
         <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{headerShown: false}}/>
         <Stack.Screen name='Signup'  component={SignUp} />

@@ -51,7 +51,7 @@ export default function Manager_home({navigation}) {
 
           <View style={styles.container1}>
               <View style={styles.parent1}>
-                  <CButton text={'Menu'}   />
+                  <CButton text={'Menu'} onPress={()=> navigation.navigate('Customer_main')}  />
                   <CButton text={"REPORTS"} />
             </View>
               

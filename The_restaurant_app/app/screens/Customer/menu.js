@@ -1,12 +1,63 @@
-import React, {useState} from "react";
-import { View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView } from "react-native";
-import {PrimaryButton} from "../../components/Button";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import React,{useState}from "react";
+import { View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import {PrimaryButton} from "./components/Button";
+import Watch from './time';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 function Menu(){
 
-    const [time, setTime] = useState('');
-    const [peopleCount, setpeopleCounr] = useState(0);
+       const [peopleCount, setpeopleCounr] = useState(0);
+        const [selectedCategoryIndex, setselectedCategoryIndex] = useState(0);
+
+        const ListCategories =()=>{
+
+      return(
+
+        <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={style.catagoriesListContainer}
+        >
+
+          {Watch.map((category,index)=>(
+
+            <TouchableOpacity 
+            key={index} 
+            activeOpacity={0.8}
+            onPress={()=> setselectedCategoryIndex(index)} 
+            >
+
+              <View style={{
+                backgroundColor:selectedCategoryIndex == index 
+                ? 'orange' 
+                : '#FEDAC5',
+                ...style.categorryBtn
+                }}>
+
+                  
+
+                  <Text 
+                    style={{fontSize:15,
+                       fontWeight: 'bold',
+                        marginLeft: 10,
+                         color: selectedCategoryIndex == index
+                          ? 'white' 
+                          : 'orange'
+                           }}>
+                    {category.tme}
+                  </Text>
+
+                </View>
+
+            </TouchableOpacity>
+          ))}
+
+        </ScrollView>
+      )
+    }
+
+
     return(
         <ScrollView>
         <View 
@@ -16,10 +67,10 @@ function Menu(){
                 
 
                 
-                <View style={{height: 400, width:500,justifyContent: 'center', alignContent: 'center' }} >
+                <View style={{height: 400, width:500,justifyContent: 'center', alignContent: 'center', }} >
                 
-                    <Image  source={require('../../assets/reservation.png') }
-                    style={{height: 270, width:500, }} />
+                    <Image  source={require('./assets/reservation.png') }
+                    style={{height: 270, width:400, borderBottomLeftRadius:25, borderBottomRightRadius:25, right:4}} />
 
                 <View style ={{borderRadius: 15,
                 bordercolor: 'white', 
@@ -28,32 +79,39 @@ function Menu(){
                 shadowOpacity: 0.2,
                 shadowRadius: 3,  
                 height: 100, width: 320, 
-                top : -20, backgroundColor: 'white', alignSelf: 100, left: 35,  }}> 
+                top : -20, backgroundColor: 'white', left: 35, flexDirection: 'row' , justifyContent: 'space-between'}}> 
                 
                 
-                <Text></Text>
+                <Text style={{fontSize:20, color: 'lightblue',paddingLeft: 20, paddingVertical:10 }}>Family Table</Text>
+                <Text style={{fontSize:17, color: 'orange', paddingRight:10, paddingVertical:15}}> Available</Text>
+                
                 </View>                   
                 </View>
 
-                <View style={{marginHorizontal: 20, justifyContent: 'space-between', paddingHorizontal: 5, paddingVertical: 10, }}>
+                <View style={{marginHorizontal: 10, justifyContent: 'space-between', paddingHorizontal: 1, paddingVertical: 10, }}>
                 <Text style={{fontSize:16, fontWeight:'bold',}}> Details</Text>
-                <Text style={{fontSize:14, color: 'gray', alignSelf:'flex-start', paddingTop: 10}}> Seize the Momemt.Meet Spark,a mini drone that features all of DJI's signature technologies, allowing you to size the moment whenever you feel inspired </Text>
+                <Text style={{fontSize:14, color: 'gray', alignSelf:'flex-start', paddingTop: 10}}> Seize the Momemt. Meet Spark,a mini drone that features all of DJI's signature technologies, allowing you to size the moment whenever you feel inspired </Text>
                  
                  </View>
 
-                 <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20, flexDirection: 'row', justifyContent:'space-between'}}  >
+                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: 20, flexDirection: 'row', justifyContent:'space-between'}}  >
 
                     <Text style={{fontWeight: 'bold'}} > Number Of Persons</Text>
                     <View style={{alignSelf:'baseline'}}>
                     <Icon name='minus-circle-outline' size={18}  onPress={()=> console.log('press')}/>
-                    
+                    </View>
+                    <View > 
+                    <Icon name='plus-circle-outline' size={18}  onPress={()=> console.log('press')}/>
+
                     </View>
                  </View>
 
-                 <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20}}>
+                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: 20}}>
 
                  <Text style={{fontWeight: 'bold'}} > Pick a Time</Text>
-
+                 <View style={{top:20}}>
+                 <ListCategories />
+                 </View >
                  </View>
 
                  <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20}}>
@@ -85,7 +143,7 @@ function Menu(){
 
 
         </View>
-        </ScrollView>
+        </ScrollView >
     )
 
 
@@ -93,6 +151,30 @@ function Menu(){
 
 
 }
+
+const style = StyleSheet.create({
+categorryBtn:{
+    height: 45,
+    width: 100,
+    marginRight: 7,
+    borderRadius: 30,
+    alignItems: 'center',
+    paddingHorizontal: 5,
+    flexDirection: 'row',
+    
+
+   },
+
+   categorryBtnImgCon:{
+    height: 35,
+    width: 35,
+    backgroundColor: 'white',
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignContent: 'center',
+   },
+  
+})
 
 
 
