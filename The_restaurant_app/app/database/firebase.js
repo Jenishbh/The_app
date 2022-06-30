@@ -11,8 +11,8 @@ import {getDatabase} from 'firebase/database'
 const firebaseConfig = {
   apiKey: "AIzaSyAfQd6RrOpUvetDmvVC6WkeGMHWUPvfPRs",
   authDomain: "the-restaurant-50802.firebaseapp.com",
-  projectId: "the-restaurant-50802",
   databaseURL: "https://the-restaurant-50802-default-rtdb.firebaseio.com",
+  projectId: "the-restaurant-50802",
   storageBucket: "the-restaurant-50802.appspot.com",
   messagingSenderId: "1005669049723",
   appId: "1:1005669049723:web:c754c2ab26ef43fccbc9de",

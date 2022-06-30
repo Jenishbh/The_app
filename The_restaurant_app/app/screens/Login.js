@@ -7,10 +7,10 @@ import { auth } from '../database/firebase';
 import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
 
 
-function Login(props) {
+function Login({navigation}) {
     const[email, setEmail]= useState('')    // set Email and password varible for cath user input
    const[password, setPassword] = useState('')
-   const navigation = useNavigation()      // set navigation to change the screen after user login
+        // set navigation to change the screen after user login
 
 
    useEffect(() => { 
@@ -77,7 +77,7 @@ function Login(props) {
 
             <TouchableOpacity  style={styles.Signup}>
                 
-                <Button title='SignUp'  onPress={() => navigation.navigate('SignUp')} />
+                <Button title='SignUp'  onPress={() => navigation.navigate('Signup')} />
             </TouchableOpacity>
         
             
