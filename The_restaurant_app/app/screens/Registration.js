@@ -1,50 +1,91 @@
 import React, { Component, useState} from 'react';
-import {View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
+import {Alert, View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+import {db} from '../database/firebase'
+import { getDatabase, ref, set} from "firebase/database";
+import firebase from 'firebase/compat';
 
-import { getDatabase, ref, set } from "firebase/database";
+export default function SignUp({navigation}){
 
+    const[email, setEmail]= useState()    // set Email and password varible for cath user input
+    const [username, setUserName] = useState()
+    const[password, setPassword] = useState()
+    const[phone, setPhone] = useState()
+    const[toggleCheckBox, setToggleCheckBox] = useState(false)
+    
 
-export default class SignUp extends Component {
+          // set navigation to change the screen after user signup
 
-  
-  constructor(props){
-    super(props)
-    this.state = {isChecked: false}
-  }
-  
-  checkBoxChanged(){ 
-    this.setState({isChecked : !this.state.isChecked})
-  }
-  
-  render() {
-    const[email, setEmail]= useState('')    // set Email and password varible for cath user input
-    const [username, setUserName] = useState('')
-    const[password, setPassword] = useState('')
-    const[phone, setPhone] = useState('')
+    const handleClick = () => setToggleCheckBox(!toggleCheckBox)
 
-    const handleSignup = () =>{  //handle sigup
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log('Signup with: ',user.email);
-          })
-      .catch((error) => 
-      alert(error.message));
+    const handleSignup = () =>{  
+      //handle sigup
+      if(email === '' && password === '') {
+        Alert.alert('Enter details to signup!')
+      } 
+      else if (toggleCheckBox === false){
+        Alert.alert('Please accept the Terms of Service to signup!')
+      }
+      else {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        
+        console.log('Signup successfully with: ',user.email) ;
+       })
+        .catch((error) => 
+        alert(error.message));
+
+        db
+        .collection(username)
+        .add({
+          name: username,
+          phone: phone,
+          email: email
+        })
+
+        navigation.navigate('Login')
       }
 
-      function writeUserData() {
-        const db = getDatabase();
-        set(ref(db, 'users/' + username), {
-          username: username,
-          email: email,
-          //Name : name,
-          Phone: phone
+      
+    }
+    
+    const signUpUser = async ({ name, email, password }) => {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        firebase.auth().currentUser.updateProfile({
+          displayName: name
         });
+    
+        return {};
+      } catch (error) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            return {
+              error: "Email is Already in Use."
+            };
+          case "auth/invalid-email":
+            return {
+              error: "Email id Incorrect."
+            };
+          case "auth/weak-password":
+            return {
+              error: "Password is week!"
+            };
+          case "auth/too-many-requests":
+            return {
+              error: "Give us a moment to process your requests."
+            };
+          default:
+            return {
+              error: "Check your Connection."
+            };
+        }
       }
+    };
+
+    
 
     return (
       <SafeAreaView style={styles.background}>
@@ -54,21 +95,21 @@ export default class SignUp extends Component {
            style={styles.textInput}
             placeholder="Username"
              placeholderTextColor={'lightgray'}
-             onChangeText={text => setUserName(text)}
+             onChangeText={username => setUserName(username)}
              />
 
           <TextInput
            style={styles.textInput}
             placeholder="Email Address"
              placeholderTextColor={'lightgray'}
-             onChangeText={text => setEmail(text)}
+             onChangeText={email => setEmail(email)}
              />
 
           <TextInput 
           style={styles.textInput}
            placeholder="Phone Number"
             placeholderTextColor={'lightgray'}
-            onChangeText={text => setPhone(text)}
+            onChangeText={phone => setPhone(phone)}
             />
 
           <TextInput 
@@ -90,19 +131,20 @@ export default class SignUp extends Component {
             activeOpacity = {1}
             containerStyle = {styles.checkBox}
             textStyle = {styles.checkBoxTitle}
-            checked = {this.state.isChecked}
-            onPress = {() => this.checkBoxChanged()}
+            checked = {toggleCheckBox}
+            onPress = {() => handleClick()}
             title = 'I accept the Terms of Service.'
           />
 
           <TouchableOpacity  style={styles.signup}>
-              <Button title='SignUp' color='#F8B864' onPress={handleSignup & writeUserData}  />
+              <Button title='SignUp' color='#F8B864' onPress={handleSignup}  />
+              
+
           </TouchableOpacity>
       
       </SafeAreaView>
       
     );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -125,12 +167,12 @@ const styles = StyleSheet.create({
       padding: 8,
       margin: 10,
       width: 300,
-      top: -180,
+      top: -140,
       color: 'white'
   },
   checkBox:{
     marginTop: 10,
-    top: -190,
+    top: -150,
     borderWidth: 0 ,
     backgroundColor: 'transparent',
   },
@@ -146,7 +188,7 @@ const styles = StyleSheet.create({
       padding: 8,
       
       width: 300,
-      top: -180,
+      top: -140,
       color: 'white'
   }
 })
