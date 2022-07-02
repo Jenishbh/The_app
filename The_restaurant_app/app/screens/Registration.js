@@ -1,21 +1,18 @@
 import React, { Component, useState} from 'react';
 import {Alert, View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
-import { useNavigation } from '@react-navigation/native';
-
-import firebase from 'firebase/compat';
+import {db} from '../database/firebase'
 import { getDatabase, ref, set} from "firebase/database";
-import firestore from 'firebase/firestore';
-import Login from './Login';
+import firebase from 'firebase/compat';
 
 export default function SignUp({navigation}){
 
-    const[email, setEmail]= useState('')    // set Email and password varible for cath user input
-    const [username, setUserName] = useState('')
-    const[password, setPassword] = useState('')
-    const[phone, setPhone] = useState('')
+    const[email, setEmail]= useState()    // set Email and password varible for cath user input
+    const [username, setUserName] = useState()
+    const[password, setPassword] = useState()
+    const[phone, setPhone] = useState()
     const[toggleCheckBox, setToggleCheckBox] = useState(false)
+    
 
           // set navigation to change the screen after user signup
 
@@ -34,18 +31,19 @@ export default function SignUp({navigation}){
         .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        fire
+        
         console.log('Signup successfully with: ',user.email) ;
        })
-      
-       
-        
         .catch((error) => 
         alert(error.message));
-        
 
-        
-
+        db
+        .collection(username)
+        .add({
+          name: username,
+          phone: phone,
+          email: email
+        })
 
         navigation.navigate('Login')
       }
@@ -87,15 +85,7 @@ export default function SignUp({navigation}){
       }
     };
 
-    const fire=() => {
-      firestore()
-        .collection(email)
-        .add({
-          Email: email,
-          Phone: phone
-        })
-        .then(()=> { console.log('User added!')})
-    }
+    
 
     return (
       <SafeAreaView style={styles.background}>
@@ -105,21 +95,21 @@ export default function SignUp({navigation}){
            style={styles.textInput}
             placeholder="Username"
              placeholderTextColor={'lightgray'}
-             onChangeText={text => setUserName(text)}
+             onChangeText={username => setUserName(username)}
              />
 
           <TextInput
            style={styles.textInput}
             placeholder="Email Address"
              placeholderTextColor={'lightgray'}
-             onChangeText={text => setEmail(text)}
+             onChangeText={email => setEmail(email)}
              />
 
           <TextInput 
           style={styles.textInput}
            placeholder="Phone Number"
             placeholderTextColor={'lightgray'}
-            onChangeText={text => setPhone(text)}
+            onChangeText={phone => setPhone(phone)}
             />
 
           <TextInput 
