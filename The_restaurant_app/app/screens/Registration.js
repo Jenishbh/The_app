@@ -2,7 +2,6 @@ import React, { Component, useState} from 'react';
 import {Alert, View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import {db} from '../database/firebase'
-import { getDatabase, ref, set} from "firebase/database";
 import firebase from 'firebase/compat';
 
 export default function SignUp({navigation}){
