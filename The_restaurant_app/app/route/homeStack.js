@@ -15,6 +15,7 @@ import Reservation from '../screens/Customer/reservation';
 import Menu from '../screens/Customer/menu'
 import Manager_home from '../screens/Manager/Manager_home';
 import DetailsScreen from '../screens/Customer/detailsScreen';
+import OnBording from '../screens/Customer/OnBording';
 
 
 
@@ -121,10 +122,13 @@ const AuthNavigator = ()=>(
     
     <Stack.Navigator>
 
+        <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
+        <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
+        
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
         <Stack.Screen name='Signup'  component={SignUp} />
         <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
-        <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
+       
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
         <Stack.Screen name='detailsScreen' component={DetailsScreen} options={{headerShown: false}} />
         <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}} />

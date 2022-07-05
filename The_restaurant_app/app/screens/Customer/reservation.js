@@ -2,7 +2,8 @@ import React from 'react'
 import { Text, View, SafeAreaView,StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, FlatList, Dimensions, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import categories from '../Menu/Catagories'
-import foods from '../Menu/food';
+import {foods,menu} from '../Menu/food';
+
 
 const {width} = Dimensions.get('screen');
 const cardWidth = width / 2 - 20;
@@ -10,15 +11,25 @@ const cardWidth = width / 2 - 20;
 function Reservation({navigation}) {
 
     const [selectedCategoryIndex, setselectedCategoryIndex] = React.useState(0);
+    const [selectedMenutype, setSelectedMenuType] = React.useState(0);
+    const [menuList, setMenuList] = React.useState([])
+
+    React.useEffect(()=>{
+      handleChangeCategory(selectedCategoryIndex, selectedMenutype)
+    })
 
     const ListCategories =()=>{
+
+      
 
       return(
 
         <ScrollView
+      
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={style.catagoriesListContainer}
+        
         >
 
           {categories.map((category,index)=>(
@@ -26,7 +37,7 @@ function Reservation({navigation}) {
             <TouchableOpacity 
             key={index} 
             activeOpacity={0.8}
-            onPress={()=> setselectedCategoryIndex(index)} 
+            onPress={()=> {setselectedCategoryIndex(index), handleChangeCategory(index, selectedMenutype)}} 
             >
 
               <View style={{
@@ -108,6 +119,18 @@ function Reservation({navigation}) {
 
       );
     }
+
+
+    function handleChangeCategory(CategoryId, menuTypeId){
+
+      //find the menu based on the menuTypeId
+      let selectedMenu = foods.find(a => a.id == menuTypeId)
+
+
+      //set the menu based on categoryId
+      setMenuList(selectedMenu?.catagories.filter(a=> a.categories.includs(CategoryId)))
+
+    }
     return (
 
       <SafeAreaView style={{flex:1,backgroundColor: 'white'}}>
@@ -142,7 +165,7 @@ function Reservation({navigation}) {
 
         />
       </View>
-
+ 
       <View style={{
         marginTop:40,
         flexDirection: 'row',
@@ -156,7 +179,7 @@ function Reservation({navigation}) {
 
           <TextInput 
           style={{flex:1, fontSize:18, color:'gray'}}
-          placeholder='Search for food'
+          placeholder='Search food...'
           />
 
         </View>

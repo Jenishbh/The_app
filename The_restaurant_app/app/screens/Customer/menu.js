@@ -1,7 +1,7 @@
 import React,{useState}from "react";
 import { View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, TouchableOpacity } from "react-native";
-import {PrimaryButton} from "./components/Button";
-import Watch from './time';
+import {PrimaryButton} from "../../components/Button";
+import Watch from '../Menu/Time';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -69,7 +69,7 @@ function Menu(){
                 
                 <View style={{height: 400, width:500,justifyContent: 'center', alignContent: 'center', }} >
                 
-                    <Image  source={require('./assets/reservation.png') }
+                    <Image  source={require('../../assets/reservation.png') }
                     style={{height: 270, width:400, borderBottomLeftRadius:25, borderBottomRightRadius:25, right:4}} />
 
                 <View style ={{borderRadius: 15,
