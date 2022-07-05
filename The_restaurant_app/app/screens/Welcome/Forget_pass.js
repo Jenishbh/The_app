@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
-import Login from './Login';
+import Login from '../Login';
 import { useNavigation } from '@react-navigation/native';
 
 
