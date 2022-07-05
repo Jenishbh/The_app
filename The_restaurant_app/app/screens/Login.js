@@ -18,7 +18,7 @@ function Login(props) {
                         //function for user to move on to home screen after  login 
     const unsubscribe = auth.onAuthStateChanged( user => {
         if (user){
-            navigation.navigate('Customer_main')
+            navigation.replace('Customer_main')
         }
     })
 

@@ -10,10 +10,10 @@ const DetailsScreen = ({navigation, route})=>{
     return(
     <SafeAreaView style={{backgroundColor: 'white'}}>
 
-        <View style={style.header}>
+        <View style={style.header} >
 
-            <Icon name ='arrow-back-ios' size={28} onPress={navigation.goback}/>
-            <Text style={{fontSize: 20, fontWeight: 'bold' }}>Details</Text>
+            <Icon name ='arrow-back-ios' size={28} onPress={navigation.goBack}/>
+            <Text style={{fontSize: 20, fontWeight: 'bold' }} onPress={navigation.goBack}>Details</Text>
         </View>
 
         <ScrollView showsVerticalScrollIndicator ={false}>

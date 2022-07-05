@@ -1,7 +1,7 @@
 import { Text, View,  Image, Animated, SafeAreaView, Dimensions, ImageBackground,TextButton } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react'
 import { PrimaryButton } from '../../components/Button';
-import { TransactionResult } from 'firebase/database';
+
 const {width, height} = Dimensions.get('window');
 
 const onboarding_screens = [
@@ -29,11 +29,8 @@ const onboarding_screens = [
 const OnBording= ({navigation}) =>{
 
     const scrollX = React.useRef (new Animated.Value(0)).current
-    const FlatListRef = React.useRef()
-    const [currentIndex, setcurrentIndex] = React.useState(0)
-    const onViewChengeRef = React.useRef(({viewableItem, changed})=>{
-        setcurrentIndex(viewableItem[0].index)
-    })
+
+    
 
     const Dots=()=>{
 
@@ -101,38 +98,26 @@ const OnBording= ({navigation}) =>{
                 </View>
 
                 {/* Button */}
-                {currentIndex< onboarding_screens.length -1 &&
+                
                 <View 
                 style={{
                     flexDirection: 'row',
                     justifyContent: 'space-around',
                     paddingHorizontal: 24,
-                    marginVertical: 24
+                    marginVertical: 24,
+                    
                 }}>
                     <PrimaryButton 
-                    label='skip'
+                    title="Let's Started"
                     onPress={()=> navigation.replace('Login')}/>
 
-                    <PrimaryButton
-                    label = 'Next'
-                    onPress={()=> {
-                        let index = Math.ceil(Number(scrollX._value/ width))
-
-                        if (index < onboarding_screens.length-1){
-
-                            FlatListRef?.current?.scrollToIndex({
-                                index: index+1,
-                                animated: TransactionResult
-                            })
-
-                        }else{
-                            navigation.replace('Login')
-                        }
-                    }} />
+                   
                     
 
                 </View>
-    }
+    
+
+   
     </View>    )
     }
 
@@ -145,7 +130,7 @@ const OnBording= ({navigation}) =>{
             }}>
 
                 <Animated.FlatList 
-                ref={FlatListRef}
+                
                 horizontal
                 pagingEnabled
                 data={onboarding_screens}
@@ -158,7 +143,7 @@ const OnBording= ({navigation}) =>{
                         }}
                     ]
                 )}
-                onViewableItemsChanged={onViewChengeRef.current}
+                
                 keyExtractor={(item)=>`${item.id}` }
                 renderItem={({item, index}) => {
                     return(
