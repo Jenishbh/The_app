@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
-import Login from '../Login';
+import Login from './Login';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -26,7 +26,7 @@ function Forget_pass() {
 
     return (
         <SafeAreaView style={styles.background}>
-          <Image style={styles.logo} source={require('../assets/Logo1.png')} />
+          <Image style={styles.logo} source={require('../../assets/Logo1.png')} />
           <Text style={styles.forget_icon}> Forget Password? </Text>
           <Text style={styles.remind}> Enter your email below to rest your password </Text>
 

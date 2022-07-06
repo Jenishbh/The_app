@@ -1,9 +1,9 @@
 import React from 'react'
 import 'react-native-gesture-handler'
 import { createStackNavigator } from "@react-navigation/stack";``
-import Login from "../screens/Login";
+import Login from "../screens/Welcome/Login";
 import Forget_pass from "../screens/Welcome/Forget_pass";
-import SignUp from "../screens/Registration";
+import SignUp from "../screens/Welcome/Registration";
 import customer_home from '../screens/Customer/customer_home';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationContainer} from '@react-navigation/native';
@@ -16,6 +16,7 @@ import Menu from '../screens/Customer/menu'
 import Manager_home from '../screens/Manager/Manager_home';
 import DetailsScreen from '../screens/Customer/detailsScreen';
 import OnBording from '../screens/Customer/OnBording';
+import Signin from '../screens/Welcome/Signin';
 
 
 
@@ -122,9 +123,10 @@ const AuthNavigator = ()=>(
     
     <Stack.Navigator>
 
+
+        <Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
-        <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />
-        
+        <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />        
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
         <Stack.Screen name='Signup'  component={SignUp} />
         <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />

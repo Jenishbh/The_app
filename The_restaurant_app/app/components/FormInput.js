@@ -50,7 +50,8 @@ const FormInput=( {
                 paddingHorizontal: 24,
                 marginTop: 8,
                 borderRadius: 24,
-                backgroundColor: 'lightgray'
+                backgroundColor: 'lightgray',
+                
             }}>
 
                 {prependComponent}
@@ -61,7 +62,7 @@ const FormInput=( {
                     ...inputStyle
                 }}
                 placeholder={placeholder}
-                placeholderTextColor={'gray'}
+                placeholderTextColor={'white'}
                 secureTextEntry={securetextEntry}
                 KeyboardType={KeyboardType}
                 autoCompleteType={autoCompleteType}

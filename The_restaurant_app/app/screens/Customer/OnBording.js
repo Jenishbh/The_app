@@ -166,7 +166,7 @@ const OnBording= ({navigation}) =>{
                                     width: '100%'
                                 }}>
                                 <Image source={item.bannerImage}
-                                resizeMethod='contain'
+                                resizeMethod='resize'
                                     style={{
                                         width: width*0.9,
                                         height: width*0.9,

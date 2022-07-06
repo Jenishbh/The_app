@@ -1,4 +1,4 @@
-import { Text, View,Image } from 'react-native'
+import { Text, View,Image,SafeAreaView } from 'react-native'
 import React, { Component } from 'react'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -12,11 +12,11 @@ const AuthLayout =({title, subtitle, titleContainerStyle, childern}) =>{
 
     return(
 
-        <View
+        <SafeAreaView
         style={{
             flex:1,
             paddingVertical: 24,
-            backgroundColor: 'white'
+            backgroundColor: 'orange'
         }} 
         >
             <KeyboardAwareScrollView
@@ -37,8 +37,8 @@ const AuthLayout =({title, subtitle, titleContainerStyle, childern}) =>{
                     source={require('../../assets/third.jpg')}
                     resizeMode='contain'
                     style={{
-                        height: 100,
-                        width:200
+                        height: 200,
+                        width:300
                     }}/>
 
                 </View>
@@ -47,13 +47,13 @@ const AuthLayout =({title, subtitle, titleContainerStyle, childern}) =>{
 
                 <View
                 style={{
-                    marginTop: 24,
+                    marginTop: 14,
                     ...titleContainerStyle
                 }} >
 
                     <Text style={{
                         textAlign: 'center',
-                        fontFamily: "Bold", fontSize: 22, lineHeight: 30
+                         fontSize: 22, lineHeight: 30
                     }}>
                         {title}
                     </Text>
@@ -62,7 +62,7 @@ const AuthLayout =({title, subtitle, titleContainerStyle, childern}) =>{
                         textAlign:'center',
                         color: 'darkgray',
                         marginTop:8,
-                        fontFamily: "Bold", fontSize: 16, lineHeight: 22
+                         fontSize: 16, lineHeight: 22
                     }} >
                         {subtitle}
                     </Text>
@@ -78,7 +78,7 @@ const AuthLayout =({title, subtitle, titleContainerStyle, childern}) =>{
             </KeyboardAwareScrollView>
 
 
-        </View>
+        </SafeAreaView>
     )
 
 

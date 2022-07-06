@@ -1,7 +1,7 @@
 import React, { Component, useState} from 'react';
 import {Alert, View, SafeAreaView, StyleSheet, Button, Image, Text, TextInput,TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import {db} from '../database/firebase'
+import {db} from '../../database/firebase'
 import { getDatabase, ref, set} from "firebase/database";
 import firebase from 'firebase/compat';
 
@@ -89,7 +89,7 @@ export default function SignUp({navigation}){
 
     return (
       <SafeAreaView style={styles.background}>
-          <Image style={styles.logo} source={require('../assets/Logo1.png')} />
+          <Image style={styles.logo} source={require('../../assets/Logo1.png')} />
 
           <TextInput
            style={styles.textInput}

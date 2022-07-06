@@ -2,7 +2,7 @@ import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity, Pressable} from 'react-native';
 
-import { auth } from '../database/firebase';
+
 
 import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
 
@@ -43,7 +43,7 @@ function Login(props) {
 
     return (
         <SafeAreaView style={styles.background}>
-            <Image style={styles.logo} source={require('../assets/Logo1.png')} />
+            <Image style={styles.logo} source={require('../../assets/Logo1.png')} />
             <TextInput
              placeholder='Email'
              value={email}

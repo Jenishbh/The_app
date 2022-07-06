@@ -4,21 +4,41 @@ import { View, StyleSheet, Text, TouchableOpacity} from "react-native";
 
 
 
-const PrimaryButton = ({title, onPress = () => {}}) =>{
+const PrimaryButton = ({title,disabled,btnContainer, onPress = () => {}}) =>{
 
-    return <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-        <View style={styles.bbtnContainer}>
+    return <TouchableOpacity style={{
+        backgroundColor: 'orange',
+        justifyContent: 'center',                
+         alignItems: 'center', 
+         ...btnContainer
+         }}
+          activeOpacity={0.8}  onPress={onPress} disabled={disabled}>
+        <View >
             <Text style={styles.title}>{title} </Text>
         </View>
     </TouchableOpacity>
 
 
 }
-const SecondButton = ({title, onPress = () => {}}) =>{
+const SecondButton = ({title, btnContainer,titlestyle, onPress = () => {}}) =>{
 
-    return <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-        <View style={{...styles.btnContainer, backgroundColor: 'white'}}>
-            <Text style={{...styles.title, color: 'orange' }}>{title} </Text>
+    return <TouchableOpacity style={{ 
+        backgroundColor: 'orange',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+         backgroundColor: 'white',
+        ...btnContainer}}
+         activeOpacity={0.8} onPress={onPress}>
+        <View >
+            <Text style={{
+                color:'white',
+                fontWeight:'bold',
+                fontSize:18,
+                color: 'gray', 
+                fontSize:15,
+                ...titlestyle,
+                 }}>{title} </Text>
         </View>
     </TouchableOpacity>
 
@@ -26,21 +46,8 @@ const SecondButton = ({title, onPress = () => {}}) =>{
 }
 
 const styles = StyleSheet.create({
-    btnContainer:{
-        backgroundColor: 'orange',
-        height: 60,
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bbtnContainer:{
-        backgroundColor: 'orange',
-        height: 60,
-        width: 220,
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+    
+    
     title:{
         color:'white',
         fontWeight:'bold',
