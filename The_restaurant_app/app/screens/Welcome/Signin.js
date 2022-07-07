@@ -6,6 +6,7 @@ import FormInput from '../../components/FormInput'
 import utils from '../../api/utils'
 import Switch from '../../components/Switch'
 import { PrimaryButton, SecondButton } from '../../components/Button'
+import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
 
 
 
@@ -17,6 +18,20 @@ const Signin =({navigation}) => {
   const [saveMe, setSaveMe]= React.useState(false)
   function isEnableSignIn(){ return email != '' && password != '' && emailError == ''}
   const [showPass, setShowPass] = React.useState(false)
+  const handleLogin = () =>{    
+    const auth = getAuth();  //Handel Login by firebase
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Log in with: ',user.email);
+        })
+        .catch(error => alert(error.message))
+   }
+
+
+
+  
     return (
 
       <SafeAreaView
@@ -185,7 +200,7 @@ const Signin =({navigation}) => {
               title='Login'
               
               disabled={isEnableSignIn() ? false : true}
-              
+              onPress={handleLogin}
                /></View>
 
               {/* Sign Up*/}
