@@ -37,7 +37,7 @@ const Signin =({navigation}) => {
       <SafeAreaView
       style={{
           flex:1,
-          paddingVertical: 24,
+          paddingVertical: 12,
           backgroundColor: 'white'
       }} 
       >
@@ -45,21 +45,22 @@ const Signin =({navigation}) => {
           keyboardDismissMode='on-drag'
           contentContainerStyle={{
               flex:1,
-              paddingHorizontal: 24
+              paddingHorizontal: 12
           }}>
 
               {/* App Icon */}
 
               <View 
               style={{
-                  alignItems:'center'
+                  alignItems:'center',
+                  marginTop:-20
               }}>
 
                   <Image 
                   source={require('../../assets/third.jpg')}
                   resizeMode='contain'
                   style={{
-                      height: 200,
+                      height: 250,
                       width:300
                   }}/>
 
@@ -69,7 +70,7 @@ const Signin =({navigation}) => {
 
               <View
               style={{
-                  marginTop: 14,
+                  marginTop: -30,
                   
               }} >
 
@@ -82,7 +83,7 @@ const Signin =({navigation}) => {
 
                   <Text style={{
                       textAlign:'center',
-                      color: 'darkgray',
+                      color: 'gray',
                       marginTop:8,
                        fontSize: 16, lineHeight: 22
                   }} >
@@ -200,6 +201,7 @@ const Signin =({navigation}) => {
               title='Login'
               
               disabled={isEnableSignIn() ? false : true}
+              //check with firebase
               onPress={handleLogin}
                /></View>
 
@@ -211,7 +213,7 @@ const Signin =({navigation}) => {
               }}>
                 
                 <Text style={{
-                  color: 'darkgray',
+                  color: 'gray',
                   fontSize: 16, lineHeight: 22
                 }}>
                   Don't have an account?
@@ -219,7 +221,7 @@ const Signin =({navigation}) => {
                 <SecondButton 
                 title=' Create an acoount'
                 titlestyle={{color:'orange'}}
-                onPress={()=> navigation.navigate('Signup') }/>
+                onPress={()=> navigation.navigate('Signupp') }/>
                 </View>
 
 

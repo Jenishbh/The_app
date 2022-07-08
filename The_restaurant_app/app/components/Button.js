@@ -20,7 +20,7 @@ const PrimaryButton = ({title,disabled,btnContainer, onPress = () => {}}) =>{
 
 
 }
-const SecondButton = ({title, btnContainer,titlestyle, onPress = () => {}}) =>{
+const SecondButton = ({title,disabled, btnContainer,titlestyle, onPress = () => {}}) =>{
 
     return <TouchableOpacity style={{ 
         backgroundColor: 'orange',
@@ -29,7 +29,7 @@ const SecondButton = ({title, btnContainer,titlestyle, onPress = () => {}}) =>{
         alignItems: 'center',
          backgroundColor: 'white',
         ...btnContainer}}
-         activeOpacity={0.8} onPress={onPress}>
+         activeOpacity={0.8} onPress={onPress} disabled={disabled}> 
         <View >
             <Text style={{
                 color:'white',

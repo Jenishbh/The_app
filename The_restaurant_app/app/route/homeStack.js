@@ -3,7 +3,7 @@ import 'react-native-gesture-handler'
 import { createStackNavigator } from "@react-navigation/stack";``
 import Login from "../screens/Welcome/Login";
 import Forget_pass from "../screens/Welcome/Forget_pass";
-import SignUp from "../screens/Welcome/Registration";
+import Registration from "../screens/Welcome/Registration";
 import customer_home from '../screens/Customer/customer_home';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationContainer} from '@react-navigation/native';
@@ -17,6 +17,9 @@ import Manager_home from '../screens/Manager/Manager_home';
 import DetailsScreen from '../screens/Customer/detailsScreen';
 import OnBording from '../screens/Customer/OnBording';
 import Signin from '../screens/Welcome/Signin';
+
+import Signup from '../screens/Welcome/Signup';
+import Otp from '../screens/Welcome/Otp';
 
 
 
@@ -122,13 +125,16 @@ const BottomNavigator =()=>{
 const AuthNavigator = ()=>(
     
     <Stack.Navigator>
-
-
+        <Stack.Screen name='Otp'  component={Otp} options={{headerShown: false}}/>
         <Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
+        <Stack.Screen name='Signupp'  component={Signup} options={{headerShown: false}}/>
+        
+        
+        
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />        
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
-        <Stack.Screen name='Signup'  component={SignUp} />
+        <Stack.Screen name='Signup'  component={Registration} />
         <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
        
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />

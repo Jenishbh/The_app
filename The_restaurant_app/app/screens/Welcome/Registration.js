@@ -5,7 +5,7 @@ import {db} from '../../database/firebase'
 import { getDatabase, ref, set} from "firebase/database";
 import firebase from 'firebase/compat';
 
-export default function SignUp({navigation}){
+export default function Registration({navigation}){
 
     const[email, setEmail]= useState()    // set Email and password varible for cath user input
     const [username, setUserName] = useState()
