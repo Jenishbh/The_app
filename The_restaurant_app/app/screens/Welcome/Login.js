@@ -1,7 +1,7 @@
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity, Pressable} from 'react-native';
-
+import {db} from '../../database/firebase'
 
 
 import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
@@ -38,7 +38,12 @@ function Login(props) {
             console.log('Log in with: ',user.email);
         })
         .catch(error => alert(error.message))
+
+        
+
    }
+
+  
 
 
     return (

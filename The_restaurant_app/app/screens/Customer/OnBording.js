@@ -109,7 +109,12 @@ const OnBording= ({navigation}) =>{
                 }}>
                     <PrimaryButton 
                     title="Let's Started"
-                    onPress={()=> navigation.replace('Login')}/>
+                    btnContainer={{
+                        height:50,
+                        width:280,
+                        borderRadius:40
+                    }}
+                    onPress={()=> navigation.replace('Customer_main')}/>
 
                    
                     

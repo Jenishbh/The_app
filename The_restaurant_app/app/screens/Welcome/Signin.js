@@ -27,6 +27,8 @@ const Signin =({navigation}) => {
             console.log('Log in with: ',user.email);
         })
         .catch(error => alert(error.message))
+
+        navigation.navigate('OnBording')
    }
 
 

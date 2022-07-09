@@ -38,7 +38,7 @@ export default function Registration({navigation}){
         alert(error.message));
 
         db
-        .collection(username)
+        .collection(email)
         .add({
           name: username,
           phone: phone,

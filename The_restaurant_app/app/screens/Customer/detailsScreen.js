@@ -6,6 +6,8 @@ import {SecondButton} from '../../components/Button'
 const DetailsScreen = ({navigation, route})=>{
 
     const item = route.params;
+    
+    
 
     return(
     <SafeAreaView style={{backgroundColor: 'white'}}>
@@ -24,7 +26,7 @@ const DetailsScreen = ({navigation, route})=>{
                 height: 280,
 
             }}>
-                <Image source={item.image} style={{height: 220, width: 220 }}/>
+                <Image source={item.image} style={{height: 220, width: 220,borderRadius:30 }}/>
             </View>
             <View style={style.details}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -37,8 +39,14 @@ const DetailsScreen = ({navigation, route})=>{
                     <Text style={style.detailsText}>
                         {item.details}
                     </Text>
-                    <View style={{marginTop: 40, marginBottom: 40 }}>
-                        <SecondButton title='Pre-Order' />
+                    <View style={{marginTop: 80, marginBottom: 40 }}>
+                        <SecondButton title='Pre-Order'
+                        btnContainer={{
+                            height:50,
+                            width:250,
+                            alignSelf:'center',
+                            
+                        }} />
                     </View>
                 </View>
            

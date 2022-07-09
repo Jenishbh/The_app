@@ -5,7 +5,7 @@ import FormInput from '../../components/FormInput'
 import utils from '../../api/utils'
 import { PrimaryButton, SecondButton } from '../../components/Button'
 import firebase from 'firebase/compat';
-import {db} from '../../database/firebase'
+import {db,auth} from '../../database/firebase'
 
 
 
@@ -19,38 +19,27 @@ const Signup = ({navigation}) =>{
     const [email, setEmail]= React.useState('')
     const [password, setPassword]= React.useState('')  
     const [username, setUsername]= React.useState('')  
+    const [phone, setPhone]= React.useState('')  
     const [showPass, setShowPass]= React.useState('')  
 
     const [emailError, setEmailError]= React.useState('')
     const [usernameError, setusernameError]= React.useState('')
     const [passwordError, setPasswordError]= React.useState('')
+    const [phoneError, setPhoneError]= React.useState('')
 
     function isEnableSignUp(){
         return email != '' && username != '' && password != '' && emailError == '' &&
         passwordError == '' && usernameError == ''
     }
-    const sendVerificationCode = ({ email }) => {
-        // Randomwords is a code generator function that will generate a code of five charactors.
-        const code = RANDOMWORDS(5);
-        // Setting up the expiry for the code, so it will get deleted once the 5 mins has passed so nobuddy can exploit it. 
-        const sessionExpiry = moment().add('5', 'minute');
-        // Storing the code/session to the firstore with an expiry
-        admin.db.collection('sessions').doc(code).set({code,sessionExpiry}).then((e) => {
-        // A custom function to trigger emails
-        sendEmail({ email, message: 'Your otp is ' + code, subject: 'Requested OTP' });
-        // Adding a task to our task scheduler to delete the session from the Firestore.
-        addATask({task: 'deleteSession',data: { id: code },performAt:sessionExpiry._d,}).then((e) => {}).catch(console.log);
-        });
-        };
-        function RANDOMWORDS(length) {
-            let result = '';
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            const charactersLength = characters.length;
-            for (let i = 0; i < length; i += 1) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            return result;
-            }
+    
+      
+        // Handle the button press
+    async function signInWithPhoneNumber() {
+          const confirmation = await auth().signInWithPhoneNumber(phone);
+          setConfirm(confirmation);
+        }
+        
+
     const handleSignup = () =>{  
         //handle sigup
         if(email === '' && password === '') {
@@ -58,15 +47,15 @@ const Signup = ({navigation}) =>{
         } 
         else {
           firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then((userCredential, sendVerificationCode) => {
+          .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          
+          signInWithPhoneNumber;
           console.log('Signup successfully with: ',user.email) ;
          })
           .catch((error) => 
           alert(error.message));
-
+            
           
   
           db
@@ -74,10 +63,11 @@ const Signup = ({navigation}) =>{
           .doc('userdata')
           .set({
             name: username,
-            email: email
+            email: email,
+            phone: phone
           })
   
-          navigation.navigate('Otp')
+          navigation.navigate('Signin')
         }
   
         
@@ -103,7 +93,7 @@ const Signup = ({navigation}) =>{
                 <View 
                 style={{
                     alignItems:'center',
-                    marginTop:-30
+                    marginTop:-50
                 }}>
 
                     <Image 
@@ -120,7 +110,7 @@ const Signup = ({navigation}) =>{
 
                 <View
                 style={{
-                    marginTop: -30,
+                    marginTop: -40,
                     
                 }} >
 
@@ -147,7 +137,7 @@ const Signup = ({navigation}) =>{
                 <View
                 style={{
                     flex:1,
-                    marginTop:24
+                    marginTop:10
                 }} >
 
             <FormInput 
@@ -185,7 +175,7 @@ const Signup = ({navigation}) =>{
                <FormInput
                lable='Usename'
                containerStyle={{
-                marginTop: 12
+                marginTop: 10
                }}
                onChange={(value)=> {
                     setUsername(value)
@@ -210,13 +200,41 @@ const Signup = ({navigation}) =>{
                 </View>
                } 
                />
+               <FormInput
+               lable='Phone'
+               containerStyle={{
+                marginTop: 10
+               }}
+               onChange={(value)=> {
+                    setPhone(value)
+               }}
+               errormsg={phoneError}
+               appendComponent={
+                <View
+                style={{
+                    justifyContent:'center'
+                }} 
+                > 
+                    <Image 
+                    source={phone == '' || 
+                    (phone != '' && phoneError == '') ? 
+                    require('../../assets/correct.png') : require('../../assets/cancle.png')
+                    } style={{
+                        height:20,
+                        width:20,
+                        tintColor: phone=='' ? 'gray' : (phone !='' && phoneError =='')? 'green': 'red',
+                        }}
+                    />
+                </View>
+               } 
+               />
 
                 <FormInput 
                lable='password'
                securetextEntry={!showPass}
                autoCompleteType='password'
                containerStyle={{
-                marginTop: 24,
+                marginTop: 10,
                }}
                onChange={(value) => {
                     utils.validatePassword(value, setPasswordError)

@@ -10,15 +10,15 @@ const cardWidth = width / 2 - 20;
 
 function Menucard({navigation}) {
 
-    const [selectedCategoryId, setselectedCategoryId] = React.useState(1);
-    const [selectedMenutype, setSelectedMenuType] = React.useState(1);
-    const [menuList, setMenuList] = React.useState([])
+  const [selectedCategoryIndex, setselectedCategoryIndex] = React.useState(0);
+  const [selectedMenutype, setSelectedMenuType] = React.useState(0);
+  const [menuList, setMenuList] = React.useState([])
 
-    React.useEffect(()=>{
-      handleChangeCategory(selectedCategoryId, selectedMenutype)
-    }, [])
-    const flatlistRef = React.useRef()
-    const ListCategories =()=>{
+  //React.useEffect(()=>{
+   // handleChangeCategory(selectedCategoryIndex, selectedMenutype)
+  //}, [])
+
+  const ListCategories =()=>{
 
       
 
@@ -35,13 +35,13 @@ function Menucard({navigation}) {
           {categories.map((category,index)=>(
 
             <TouchableOpacity 
-            key={item => `${item.id}`} 
+            key={index}
             activeOpacity={0.8}
-            onPress={()=> {setSelectedMenuType(item.id), handleChangeCategory(selectedCategoryIndex, item.id)}} 
+            onPress={()=> {setselectedCategoryIndex(index)} }
             >
 
               <View style={{
-                backgroundColor:selectedCategoryId == index 
+                backgroundColor:selectedCategoryIndex == index 
                 ? 'orange' 
                 : '#FEDAC5',
                 ...style.categorryBtn
@@ -61,7 +61,7 @@ function Menucard({navigation}) {
                     style={{fontSize:15,
                        fontWeight: 'bold',
                         marginLeft: 10,
-                         color: selectedCategoryId == index
+                         color: selectedCategoryIndex == index
                           ? 'white' 
                           : 'orange'
                            }}>
@@ -121,16 +121,16 @@ function Menucard({navigation}) {
     }
 
 
-    function handleChangeCategory(categoryId, menuTypeId){
+    //function handleChangeCategory(categoryId, menuTypeId){
 
       //find the menu based on the menuTypeId
-      let selectedMenu = menu.find(a => a.id == menuTypeId)
+      //let selectedMenu = menu.find(a => a.id == menuTypeId)
 
 
       //set the menu based on categoryId
-      setMenuList(selectedMenu?.list.filter(a=> a.categories.includs(categoryId)))
+      //setMenuList(selectedMenu?.list.filter(a=> a.categories.includs(categoryId)))
 
-    }
+    //}
 
 
     
@@ -195,27 +195,18 @@ function Menucard({navigation}) {
 
       </View>
 
-      <View 
-      style={{
-        flex:1
-      }}>
+      <View>
 
-      <FlatList 
-      data={menuList}
-      keyExtractor={(item) => `${item.id}`}
-      showsVerticalScrollIndicator={false}
-      renderItem={({item, index })=> {
-
-        return(
-          <Text >
-            {item.name}
-          </Text>
-        )
-
-      }}
-      />
+    <ListCategories />
 
       </View>
+
+      <FlatList 
+      showsVerticalScrollIndicator ={false}
+      numColumns={2}
+      data={foods}
+      renderItem={({item}) => <Card food={item} />}
+      />
 
       
 
