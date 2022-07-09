@@ -59,7 +59,7 @@ const Signup = ({navigation}) =>{
           
   
           db
-          .collection(username)
+          .collection(email)
           .doc('userdata')
           .set({
             name: username,
