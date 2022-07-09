@@ -2,6 +2,7 @@
 import firebase from 'firebase/compat/app';
 import {getAuth, OnAuthStateChanged} from 'firebase/auth'
 import {getDatabase} from 'firebase/database'
+import 'firebase/compat/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,6 +30,7 @@ else {
 }
 const database = getDatabase(app)
 const auth = getAuth(app)
+const db = app.firestore()
 //const analytics = getAnalytics(app);
 
-export{ auth,database };
+export{ auth,database,db };

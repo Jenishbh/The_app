@@ -4,7 +4,8 @@ import React from 'react'
 import FormInput from '../../components/FormInput'
 import utils from '../../api/utils'
 import { PrimaryButton, SecondButton } from '../../components/Button'
-
+import firebase from 'firebase/compat';
+import {db} from '../../database/firebase'
 
 
 
@@ -28,6 +29,60 @@ const Signup = ({navigation}) =>{
         return email != '' && username != '' && password != '' && emailError == '' &&
         passwordError == '' && usernameError == ''
     }
+    const sendVerificationCode = ({ email }) => {
+        // Randomwords is a code generator function that will generate a code of five charactors.
+        const code = RANDOMWORDS(5);
+        // Setting up the expiry for the code, so it will get deleted once the 5 mins has passed so nobuddy can exploit it. 
+        const sessionExpiry = moment().add('5', 'minute');
+        // Storing the code/session to the firstore with an expiry
+        admin.db.collection('sessions').doc(code).set({code,sessionExpiry}).then((e) => {
+        // A custom function to trigger emails
+        sendEmail({ email, message: 'Your otp is ' + code, subject: 'Requested OTP' });
+        // Adding a task to our task scheduler to delete the session from the Firestore.
+        addATask({task: 'deleteSession',data: { id: code },performAt:sessionExpiry._d,}).then((e) => {}).catch(console.log);
+        });
+        };
+        function RANDOMWORDS(length) {
+            let result = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i += 1) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+            }
+    const handleSignup = () =>{  
+        //handle sigup
+        if(email === '' && password === '') {
+          Alert.alert('Enter details to signup!')
+        } 
+        else {
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential, sendVerificationCode) => {
+          // Signed up
+          const user = userCredential.user;
+          
+          console.log('Signup successfully with: ',user.email) ;
+         })
+          .catch((error) => 
+          alert(error.message));
+
+          
+  
+          db
+          .collection(username)
+          .doc('userdata')
+          .set({
+            name: username,
+            email: email
+          })
+  
+          navigation.navigate('Otp')
+        }
+  
+        
+      }
+
     return (
         <SafeAreaView
         style={{
@@ -200,7 +255,7 @@ const Signup = ({navigation}) =>{
                         borderRadius: 12,
                         backgroundColor: isEnableSignUp() ? 'orange' : 'rgba(227, 120, 75, 0.4)'
                     }}
-                    onPress={() => navigation.navigate('Otp')} />
+                    onPress={handleSignup} />
 
                     <View
                     style ={{

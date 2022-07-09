@@ -11,8 +11,8 @@ import {tabBarOption, Image, View} from 'react-native'
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons' ; 
 import Con from 'react-native-vector-icons/Octicons';
-import Reservation from '../screens/Customer/reservation';
-import Menu from '../screens/Customer/menu'
+import Menucard from '../screens/Customer/Menucard';
+import Reservation from '../screens/Customer/Reservation'
 import Manager_home from '../screens/Manager/Manager_home';
 import DetailsScreen from '../screens/Customer/detailsScreen';
 import OnBording from '../screens/Customer/OnBording';
@@ -59,7 +59,7 @@ const BottomNavigator =()=>{
             
         }}>
             <Tab.Screen name="Menu"
-            component={Reservation}
+            component={Menucard}
             options={{tabBarIcon:()=>(
             <Icon name='restaurant'
             color='orange'
@@ -71,7 +71,7 @@ const BottomNavigator =()=>{
               />
             <Tab.Screen 
             name="Reservation" 
-            component={Menu} 
+            component={Reservation} 
             options={{tabBarIcon:(color)=>(
             <Icon name="date-range"
             color={color}
@@ -125,10 +125,11 @@ const BottomNavigator =()=>{
 const AuthNavigator = ()=>(
     
     <Stack.Navigator>
-        <Stack.Screen name='Otp'  component={Otp} options={{headerShown: false}}/>
         <Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
+        <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
+
         <Stack.Screen name='Signupp'  component={Signup} options={{headerShown: false}}/>
-        
+        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
         
         
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
@@ -137,9 +138,9 @@ const AuthNavigator = ()=>(
         <Stack.Screen name='Signup'  component={Registration} />
         <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
        
-        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+        
         <Stack.Screen name='detailsScreen' component={DetailsScreen} options={{headerShown: false}} />
-        <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}} />
+        <Stack.Screen name='Menu' component={Menucard} options={{headerShown: false}} />
         <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{headerShown: false}}/>
         
         
