@@ -1,13 +1,32 @@
-import { Text, View, SafeAreaView, StyleSheet,  Image, ScrollView } from 'react-native'
-import React from 'react'
+import { Text, View, SafeAreaView, StyleSheet,  Image, ScrollView,Alert } from 'react-native'
+import React, {useState} from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {SecondButton} from '../../components/Button'
+import {db} from '../../database/firebase'
+import { getAuth } from "firebase/auth";
+import Icona from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const DetailsScreen = ({navigation, route})=>{
-
+    const [count, setCount] = useState(0);
     const item = route.params;
-    
-    
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const handlebook =() =>{
+
+        db
+        .collection(user.email)
+        .doc('Reservastion')
+        .set({
+            'name of dish' : item.name ,
+          'number of dish' : count,
+          
+        })
+        Alert.alert('Book!!')
+
+        navigation.navigate('Menucard')
+      }
 
     return(
     <SafeAreaView style={{backgroundColor: 'white'}}>
@@ -39,6 +58,18 @@ const DetailsScreen = ({navigation, route})=>{
                     <Text style={style.detailsText}>
                         {item.details}
                     </Text>
+                    <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20, flexDirection: 'row', justifyContent:'space-between'}}  >
+
+                    <Text style={{fontWeight: 'bold', color: 'white'}} > Number </Text>
+                    <View style={{alignSelf:'baseline'}}>
+                    <Icona name='minus-circle-outline' size={18} color='white'  onPress={()=> {setCount(count-1)}}/>
+                    </View>
+                    <Text style={{color: 'white'}} >{count}</Text>
+                    <View > 
+                    <Icona name='plus-circle-outline' size={18} color='white' onPress={()=> {setCount(count+1)}}/>
+
+                    </View>
+                 </View>
                     <View style={{marginTop: 80, marginBottom: 40 }}>
                         <SecondButton title='Pre-Order'
                         btnContainer={{
@@ -46,7 +77,7 @@ const DetailsScreen = ({navigation, route})=>{
                             width:250,
                             alignSelf:'center',
                             
-                        }} />
+                        }} onPress={handlebook}/>
                     </View>
                 </View>
            

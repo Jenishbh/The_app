@@ -130,6 +130,7 @@ const AuthNavigator = ()=>(
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Menu' component={Menucard} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+        
        
         
         <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
