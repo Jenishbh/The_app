@@ -125,15 +125,17 @@ const BottomNavigator =()=>{
 const AuthNavigator = ()=>(
     
     <Stack.Navigator>
+         
         <Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Menu' component={Menucard} options={{headerShown: false}} />
+        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
        
         
         <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
 
         <Stack.Screen name='Signupp'  component={Signup} options={{headerShown: false}}/>
-        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+       
         
         
         

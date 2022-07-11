@@ -12,12 +12,25 @@ function Menucard({navigation}) {
 
   const [selectedCategoryIndex, setselectedCategoryIndex] = React.useState(0);
   const [selectedMenutype, setSelectedMenuType] = React.useState(0);
-  const [menuList, setMenuList] = React.useState([])
-
+  const [Search, setSearch] = React.useState(true)
+  const [Filter, setFilter] = React.useState(foods)
   //React.useEffect(()=>{
    // handleChangeCategory(selectedCategoryIndex, selectedMenutype)
   //}, [])
+  const onSearch = (text) =>{
+    
+    
 
+    
+    const tempList = foods.filter(item=>{
+      const itemData = item.name ? item.name.toUpperCase(): ''.toUpperCase()
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    } )
+    setFilter(tempList)
+    
+  }
+  
   const ListCategories =()=>{
 
       
@@ -183,6 +196,7 @@ function Menucard({navigation}) {
           <TextInput 
           style={{flex:1, fontSize:18, color:'gray'}}
           placeholder='Search food...'
+          onChangeText={(text)=>onSearch(text)}
           />
 
         </View>
@@ -200,13 +214,14 @@ function Menucard({navigation}) {
     <ListCategories />
 
       </View>
-
+      { Search &&
       <FlatList 
       showsVerticalScrollIndicator ={false}
       numColumns={2}
-      data={foods}
+      data={Filter}
       renderItem={({item}) => <Card food={item} />}
       />
+      }
 
       
 
