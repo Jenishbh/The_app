@@ -1,17 +1,34 @@
 import React,{useState}from "react";
-import { View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import {Alert, View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import {PrimaryButton} from "../../components/Button";
 import Watch from '../Menu/Time';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
+import {db} from '../../database/firebase'
+import { getAuth } from "firebase/auth";
 function Reservation({navigation}){
 
-       const [peopleCount, setpeopleCounr] = useState(0);
+        const [count, setCount] = useState(0);
         const [selectedCategoryIndex, setselectedCategoryIndex] = useState(0);
+        const auth = getAuth();
+        const user = auth.currentUser;
+        
+          const handlebook =() =>{
 
+            db
+            .collection(user.email)
+            .doc('Reservastion')
+            .set({
+              'number of people' : count,
+              Time: selectedCategoryIndex
+            })
+            Alert.alert('Book!!')
+  
+            navigation.navigate('Menucard')
+          }
+        
         const ListCategories =()=>{
-
+          
+        
       return(
 
         <ScrollView
@@ -94,19 +111,20 @@ function Reservation({navigation}){
                  
                  </View>
 
-                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: 20, flexDirection: 'row', justifyContent:'space-between'}}  >
+                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20, flexDirection: 'row', justifyContent:'space-between'}}  >
 
                     <Text style={{fontWeight: 'bold'}} > Number Of Persons</Text>
                     <View style={{alignSelf:'baseline'}}>
-                    <Icon name='minus-circle-outline' size={18}  onPress={()=> console.log('press')}/>
+                    <Icon name='minus-circle-outline' size={18}  onPress={()=> {setCount(count-1)}}/>
                     </View>
+                    <Text >{count}</Text>
                     <View > 
-                    <Icon name='plus-circle-outline' size={18}  onPress={()=> console.log('press')}/>
+                    <Icon name='plus-circle-outline' size={18}  onPress={()=> {setCount(count+1)}}/>
 
                     </View>
                  </View>
 
-                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: 20}}>
+                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20}}>
 
                  <Text style={{fontWeight: 'bold'}} > Pick a Time</Text>
                  <View style={{top:20}}>
@@ -134,10 +152,18 @@ function Reservation({navigation}){
 
                
 
-                <View>
+                <View style={{paddingBottom:70}}>
             
 
-                <PrimaryButton  onPress={() => ('confirm_res') }
+                <PrimaryButton
+                btnContainer={{
+                  height:50,
+                  borderRadius:50,
+                  width:200,
+                  alignSelf: 'center',
+                  
+                }}
+                onPress={handlebook}
                     title='Book Now'/>
                 </View>
 
