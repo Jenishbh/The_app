@@ -5,6 +5,7 @@ import {SecondButton} from '../../components/Button'
 import {db} from '../../database/firebase'
 import { getAuth } from "firebase/auth";
 import Icona from 'react-native-vector-icons/MaterialCommunityIcons';
+import { endBefore } from 'firebase/database'
 
 
 const DetailsScreen = ({navigation, route})=>{
@@ -25,7 +26,7 @@ const DetailsScreen = ({navigation, route})=>{
         })
         Alert.alert('Book!!')
 
-        navigation.navigate('Menucard')
+        navigation.navigate('Customer_main')
       }
 
     return(
