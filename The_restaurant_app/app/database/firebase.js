@@ -10,14 +10,14 @@ import 'firebase/compat/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAfQd6RrOpUvetDmvVC6WkeGMHWUPvfPRs",
-  authDomain: "the-restaurant-50802.firebaseapp.com",
-  projectId: "the-restaurant-50802",
-  databaseURL: "https://the-restaurant-50802-default-rtdb.firebaseio.com",
-  storageBucket: "the-restaurant-50802.appspot.com",
-  messagingSenderId: "1005669049723",
-  appId: "1:1005669049723:web:c754c2ab26ef43fccbc9de",
-  measurementId: "G-21BBTQMJGL"
+  apiKey: "xxxxxx",
+  authDomain: "xxxxx",
+  projectId: "xxxxx",
+  databaseURL: "xxxxxx",
+  storageBucket: "xxxxxxx",
+  messagingSenderId: "xxxxxx",
+  appId: "xxxxxxx",
+  measurementId: "xxxxxx"
 };
 
 // Initialize Firebase
