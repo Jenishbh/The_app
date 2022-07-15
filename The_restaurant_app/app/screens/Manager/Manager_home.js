@@ -51,8 +51,22 @@ export default function Manager_home({navigation}) {
 
           <View style={styles.container1}>
               <View style={styles.parent1}>
-                  <CButton text={'Menu'} onPress={()=> navigation.navigate('Customer_main')}  />
-                  <CButton text={"REPORTS"} />
+                  <PrimaryButton title='Menu'
+                  btnContainer={{
+                    height:40,
+                    width:130,
+                    right:40,
+                    borderRadius:20
+                  }} onPress={()=>navigation.navigate('Manger_menu')}
+                  />
+                  <PrimaryButton title='Report'
+                  btnContainer={{
+                    height:40,
+                    width:130,
+                    left:40,
+                    borderRadius:20
+                  }}/>
+                  
             </View>
               
           </View>
@@ -76,7 +90,7 @@ export default function Manager_home({navigation}) {
 
   check_in:{
     color: 'orange',
-    fontFamily:'sans-serif',
+    
     top: 150,
     fontSize: 32,
     alignContent: 'center',
@@ -97,9 +111,8 @@ export default function Manager_home({navigation}) {
   },
 
   number:{
-    margin: 1,
-    width: 300,
-    height: 60,
+    
+    
     color: 'black',
     textAlign: 'center',
     fontSize: 34

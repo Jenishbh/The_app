@@ -20,31 +20,15 @@ import Signin from '../screens/Welcome/Signin';
 
 import Signup from '../screens/Welcome/Signup';
 import Otp from '../screens/Welcome/Otp';
+import Tabnavigator from '../screens/Manager/Tabnavigator';
+import ReservationHome from '../screens/Customer/ReservationHome';
 
 
 
 
 const Stack= createStackNavigator();
 const Tab = createBottomTabNavigator();
-const forogtNavigator = () => (
-    
-    <Stack.Navigator>
-        
-        <Stack.Screen name = "Forgot" component={Forget_pass} />
-          
-    </Stack.Navigator>
-    
-    
-)
 
-const HomeNavigator = ()=>(
-    <Stack.Navigator>
-    
-    <Stack.Screen name = "Login" component={Login} />
-    
-      
-</Stack.Navigator>
-)
 const BottomNavigator =()=>{
     return(
         <Tab.Navigator tabBarOption={{
@@ -126,24 +110,23 @@ const AuthNavigator = ()=>(
     
     <Stack.Navigator>
          
+
+         <Stack.Screen name='ReservationHome' component={ReservationHome} options={{headerShown: false}} />
+         
+         <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
+         <Stack.Screen name='Manger_menu'  component={Tabnavigator} options={{headerShown: false}}/>
         <Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Menu' component={Menucard} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
-        
-       
-        
         <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
-
         <Stack.Screen name='Signupp'  component={Signup} options={{headerShown: false}}/>
-       
-        
-        
-        
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />        
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
+        
         <Stack.Screen name='Signup'  component={Registration} />
-        <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
+        
+        
        
         
         <Stack.Screen name='detailsScreen' component={DetailsScreen} options={{headerShown: false}} />

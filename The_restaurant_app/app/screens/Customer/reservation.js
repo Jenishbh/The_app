@@ -23,7 +23,7 @@ function Reservation({navigation}){
             })
             Alert.alert('Book!!')
   
-            navigation.navigate('Menucard')
+            navigation.navigate('Customer_main')
           }
         
         const ListCategories =()=>{
