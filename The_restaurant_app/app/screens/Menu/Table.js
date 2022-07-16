@@ -8,6 +8,9 @@ const Table = [
       price: '24.30',
       categories: [1],
       image: require('../../assets/table/reservation.jpg'),
+      desO:'Outdoor',
+      desT:'Family',
+      desS:'12'
       
     },
     {
@@ -17,6 +20,9 @@ const Table = [
       price: '12.30',
       categories: [1],
       image: require('../../assets/table/outdoor_small.jpg'),
+      desO:'Indoor',
+      desT:'Regular',
+      desS:'2-3'
     },
     {
       id: 3,
@@ -25,14 +31,20 @@ const Table = [
       price: '26.30',
       categories: [1],
       image: require('../../assets/table/indoor_long_family.jpg'),
+      desO:'Indoor',
+      desT:'Family',
+      desS:'12'
     },
     {
       id: 4,
-      name: 'Small Family indoor Table',
+      name: 'Small Family Indoor Table',
       size: '6',
       price: '24.30',
       categories: [1],
       image: require('../../assets/table/indoor_small_family.jpg'),
+      desO:'Indoor',
+      desT:'Family',
+      desS:'6'
     },
     {
       id: 5,
@@ -41,6 +53,9 @@ const Table = [
       price: '104.30',
       categories: [1],
       image: require('../../assets/table/indoor_long.jpg'),
+      desO:'Indoor',
+      desT:'Large',
+      desS:'15'
     },
     {
       id: 6,

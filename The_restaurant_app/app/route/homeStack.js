@@ -22,6 +22,7 @@ import Signup from '../screens/Welcome/Signup';
 import Otp from '../screens/Welcome/Otp';
 import Tabnavigator from '../screens/Manager/Tabnavigator';
 import ReservationHome from '../screens/Customer/ReservationHome';
+import ReservationDetails from '../screens/Customer/ReservationDetails';
 
 
 
@@ -112,6 +113,7 @@ const AuthNavigator = ()=>(
          
 
          <Stack.Screen name='ReservationHome' component={ReservationHome} options={{headerShown: false}} />
+         <Stack.Screen name='ReservationDetails' component={ReservationDetails} options={{headerShown: false}} />
          
          <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
          <Stack.Screen name='Manger_menu'  component={Tabnavigator} options={{headerShown: false}}/>

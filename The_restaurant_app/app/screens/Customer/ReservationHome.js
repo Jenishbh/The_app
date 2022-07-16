@@ -19,7 +19,7 @@ function ReservationHome({navigation}) {
           <TouchableHighlight 
           underlayColor={'white'} 
           activeOpacity={0.9} 
-          onPress={()=> navigation.navigate('detailsScreen', Table)}
+          onPress={()=> navigation.navigate('ReservationDetails', Table)}
           >
   
           <View style ={style.card}>
