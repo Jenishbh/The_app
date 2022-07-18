@@ -19,17 +19,38 @@ const ReservationDetails=({navigation, route})=>{
         const auth = getAuth();
         const user = auth.currentUser;
 
-        let decrement = () => {
-            React.useState(prevState => ({
-              value: Math.max(prevState.value - 1, 0)
-            }));
-          };
-        function CheckCounter(){
-        if(setCount < 0){
-            setCount(count==0)
-        }else if (setCount > item.size)
-            setCount(count==item.size)
-        }
+        
+        //    {Counter function}
+
+          function Counter(){
+            const [count, setCount] = useState(0);
+            
+              const addCountHandler = () => {
+                if (count === parseInt(item.size))
+                {return;}
+                setCount(count + 1);
+              };
+              const removeCountHandler = () => {
+                if(count === 0){
+                  return;  
+                }
+                setCount(count - 1);
+              };
+            
+              return (
+                <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20, flexDirection: 'row', justifyContent:'space-between'}}  >
+                <Text style={{fontWeight: 'bold'}} > Number Of Persons</Text>
+                    <View style={{alignSelf:'baseline'}}>
+                    <Icon name='minus-circle-outline' size={18}  onPress={removeCountHandler}/>
+                    </View>
+                    <Text >{count}</Text>
+                    <View > 
+                    <Icon name='plus-circle-outline' size={18}  onPress={addCountHandler}/>
+
+                    </View>
+                    </View>
+              );
+            };
         
           const handlebook =() =>{
 
@@ -98,16 +119,9 @@ const ReservationDetails=({navigation, route})=>{
 
 
     const List =()=>{
-          
-        
+                
         return(
-  
-          
-  
-            
-  
-              
-  
+
                 <View style={{flexDirection:'row',justifyContent:'center'}}>
                     <View style={style.categorryBtnn}>
   
@@ -116,8 +130,7 @@ const ReservationDetails=({navigation, route})=>{
                     <Text 
                       style={{fontSize:15,
                          fontWeight: 'bold',
-                         
-                          alignSelf:'center',
+                          marginLeft:10,
                            color:'white' 
                             
                              }}>
@@ -132,7 +145,7 @@ const ReservationDetails=({navigation, route})=>{
                     <Text 
                       style={{fontSize:15,
                          fontWeight: 'bold',
-                          marginLeft: 10,
+                          marginLeft: 8,
                            color:'white' 
                             
                              }}>
@@ -147,7 +160,7 @@ const ReservationDetails=({navigation, route})=>{
                     <Text 
                       style={{fontSize:15,
                          fontWeight: 'bold',
-                          marginRight:20,
+                          marginLeft:20,
                            color:'white' ,
                            
                             
@@ -218,18 +231,10 @@ const ReservationDetails=({navigation, route})=>{
                  
                  </View>
 
-                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20, flexDirection: 'row', justifyContent:'space-between'}}  >
+                 
 
-                    <Text style={{fontWeight: 'bold'}} > Number Of Persons</Text>
-                    <View style={{alignSelf:'baseline'}}>
-                    <Icon name='minus-circle-outline' size={18}  onPress={()=> {setCount(count-1)}}/>
-                    </View>
-                    <Text >{count}</Text>
-                    <View > 
-                    <Icon name='plus-circle-outline' size={18}  onPress={()=> {setCount(count+1)}}/>
-
-                    </View>
-                 </View>
+                    <Counter />
+                 
 
                  <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20}}>
 

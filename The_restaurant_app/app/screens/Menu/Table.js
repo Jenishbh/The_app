@@ -16,7 +16,7 @@ const Table = [
     {
       id: 2,
       name: 'Regular Outdoor Table',
-      size: '2-3',
+      size: '3',
       price: '12.30',
       categories: [1],
       image: require('../../assets/table/outdoor_small.jpg'),
@@ -49,7 +49,7 @@ const Table = [
     {
       id: 5,
       name: 'Corporate Table',
-      size: '10-12',
+      size: '12',
       price: '104.30',
       categories: [1],
       image: require('../../assets/table/indoor_long.jpg'),
