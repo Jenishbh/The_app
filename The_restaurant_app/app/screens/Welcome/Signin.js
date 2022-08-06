@@ -6,7 +6,7 @@ import FormInput from '../../components/FormInput'
 import utils from '../../api/utils'
 import Switch from '../../components/Switch'
 import { PrimaryButton, SecondButton } from '../../components/Button'
-import {getAuth,  signInWithEmailAndPassword} from 'firebase/auth'
+import {getAuth,   signInWithEmailAndPassword,} from 'firebase/auth'
 
 
 
@@ -20,7 +20,8 @@ const Signin =({navigation}) => {
   const [showPass, setShowPass] = React.useState(false)
   const handleLogin = () =>{    
     const auth = getAuth();  //Handel Login by firebase
-
+    
+      
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
             const user = userCredentials.user;

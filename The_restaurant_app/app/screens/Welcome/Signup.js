@@ -59,13 +59,17 @@ const Signup = ({navigation}) =>{
           
   
           db
-          .collection(email)
-          .doc('userdata')
+          .collection('UserData')
+          .doc(email)
           .set({
             name: username,
-            email: email,
-            phone: phone
+            phone: phone,
+            email: email
           })
+        .then(()=>{
+          console.log('User added!')
+        })
+      .catch((error)=> alert(error.message))
   
           navigation.navigate('Signin')
         }

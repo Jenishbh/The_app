@@ -27,6 +27,19 @@ export default function Registration({navigation}){
         Alert.alert('Please accept the Terms of Service to signup!')
       }
       else {
+        db
+        .collection('UserData')
+        .doc(email)
+        .add({
+          name: username,
+          phone: phone,
+          email: email
+        })
+      .then(()=>{
+        console.log('User added!')
+      })
+    .catch((error)=> alert(error.message))
+    
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
         // Signed up
@@ -37,13 +50,9 @@ export default function Registration({navigation}){
         .catch((error) => 
         alert(error.message));
 
-        db
-        .collection(email)
-        .add({
-          name: username,
-          phone: phone,
-          email: email
-        })
+        
+       
+        
 
         navigation.navigate('Login')
       }
