@@ -1,21 +1,50 @@
 import { Dimensions, SafeAreaView, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import ZigzagView from "react-native-zigzag-view"
 import QRCode from 'react-native-qrcode-svg';
 import { PrimaryButton } from '../../components/Button';
+import {db} from '../../database/firebase'
+import { getAuth } from "firebase/auth";
 
 
 
+function Confirm_res ({navigation, route}){
 
-function Confirm_res ({navigation}){
+  const [udata, setudata] = useState('')
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+  
+ 
+  
+  db 
+  .collection('UserData').doc(user.email).get().then(DocumentSnapshot => {
+    if (DocumentSnapshot.exists){
+      const udata = DocumentSnapshot.data()
+      return setudata(udata)
+    }
+    
+  })
 
-
-
-
-
+  const CreateQR=()=>{
+    let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
+    return(
+      <QRCode 
+           value={[{
+            email:user.email,
+            table:udata.Table_Type}]}
+            
+            
+           logo={{uri: base64Logo}}
+           logoSize={30}
+           logoBackgroundColor='transparent'
+           />
+    )
+  }
+  
     const Receipt = () => {
-        let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
+        
         return <ZigzagView
           backgroundColor={'white'}
           surfaceColor="#F7F7F7"
@@ -35,19 +64,19 @@ function Confirm_res ({navigation}){
                 
           </View>
           <Text style={{fontSize:15, textAlign:'center',color:'gray',paddingTop:5}}>NAME</Text>
-          <Text style={{fontSize:18, textAlign:'center',color:'#414449',paddingTop:5}}>Jenish Patel</Text>
+          <Text style={{fontSize:18, textAlign:'center',color:'#414449',paddingTop:5}}>{udata.name}</Text>
           </View>
 
           <View style={{marginVertical:20}}>
 
           <Text style={{fontSize:15, textAlign:'center',color:'gray'}}>PHONE NUMBER</Text>
-          <Text style={{fontSize:18, textAlign:'center',color:'#414449',paddingTop:5}}>+1 925 555 4343</Text>
+          <Text style={{fontSize:18, textAlign:'center',color:'#414449',paddingTop:5}}>{udata.phone}</Text>
 
           </View>
           <View style={{marginVertical:20}}>
 
           <Text style={{fontSize:15, textAlign:'center',color:'gray'}}>EMAIL</Text>
-          <Text style={{fontSize:18, textAlign:'center',color:'#414449',paddingTop:5}}>Testproject2022@gmail.com</Text>
+          <Text style={{fontSize:18, textAlign:'center',color:'#414449',paddingTop:5}}>{user.email}</Text>
 
           </View>
           <View style={{borderBottomColor:'lightgray',borderBottomWidth:0.5,width:250,alignSelf:'center'}}></View>
@@ -57,12 +86,7 @@ function Confirm_res ({navigation}){
           <Text style={{fontSize:30, textAlign:'center',color:'#67C8D5'}}>Scan QR Code</Text>
           <Text style={{fontSize:15, textAlign:'center',color:'#414449', paddingHorizontal:13, paddingTop:10}}>Is available, the waiter can easilt check the user in</Text>
           <View style={{alignSelf:'center',paddingTop:10}} >
-          <QRCode 
-           value="Just some string value"
-           logo={{uri: base64Logo}}
-           logoSize={30}
-           logoBackgroundColor='transparent'
-           />
+            <CreateQR/>
            </View>
           </View>
         </ZigzagView>
