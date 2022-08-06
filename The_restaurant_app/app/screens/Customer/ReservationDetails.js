@@ -1,4 +1,4 @@
-import React,{useState}from "react";
+import React,{useState, useEffect}from "react";
 import {Alert, View,Image, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, TouchableOpacity,Dimensions } from "react-native";
 import {PrimaryButton} from "../../components/Button";
 import Watch from '../Menu/Time';
@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {db} from '../../database/firebase'
 import { getAuth } from "firebase/auth";
 import Table from "../Menu/Table";
-
-
+import firebase from "firebase/compat";
+import { Manager_db } from '../../database/ManagerFirebase'
 
 
 const ReservationDetails=({navigation, route})=>{
@@ -15,15 +15,27 @@ const ReservationDetails=({navigation, route})=>{
 
         const item = route.params;
         const [count, setCount] = useState(0);
+        const [currentDate, setCurrentDate] = useState('');
         const [selectedCategoryIndex, setselectedCategoryIndex] = useState(0);
         const auth = getAuth();
         const user = auth.currentUser;
-
+        useEffect(() => {
+          var date = new Date().getDate(); //Current Date
+          var month = new Date().getMonth() + 1; //Current Month
+          var year = new Date().getFullYear(); //Current Year
+          var hours = new Date().getHours(); //Current Hours
+          var min = new Date().getMinutes(); //Current Minutes
+          var sec = new Date().getSeconds(); //Current Seconds
+          setCurrentDate(
+            date + '/' + month + '/' + year 
+            + ' ' + hours + ':' + min + ':' + sec
+          );
+        }, []);
         
         //    {Counter function}
 
           function Counter(){
-            const [count, setCount] = useState(0);
+            
             
               const addCountHandler = () => {
                 if (count === parseInt(item.size))
@@ -51,19 +63,38 @@ const ReservationDetails=({navigation, route})=>{
                     </View>
               );
             };
-        
+            
           const handlebook =() =>{
-
+            
             db
-            .collection(user.email)
-            .doc('Reservastion')
-            .set({
-              'number of people' : count,
-              Time: selectedCategoryIndex
-            })
-            Alert.alert('Book!!')
+            .collection('Reservation')
+            .doc(user.email)
+            .set(
+              {
+                
+                Date : currentDate,
+                Table_Type: item.name,
+                Number_of_People: count
+                
+            
+              }
+            
+            )
+            .then(()=> console.log('data added'))
+            .catch((error)=>alert(error.message))
+            
+            //Manager_db
+            //.collection('Reservation')
+            //.add(
+            //  {
+            //    'Date' : firebase.firestore.Timestamp.now(),
+            //    'Email' : user.email,
+            //    'Table Type': item.name,
+            //    'Number of People': count
+            //  }
+            //)
   
-            navigation.navigate('Customer_main')
+            navigation.navigate('OrderSubmit', Table)
           }
         
         const ListCategories =()=>{
@@ -236,13 +267,7 @@ const ReservationDetails=({navigation, route})=>{
                     <Counter />
                  
 
-                 <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20}}>
-
-                 <Text style={{fontWeight: 'bold'}} > Pick a Time</Text>
-                 <View style={{top:20}}>
-                 <ListCategories />
-                 </View >
-                 </View>
+                 
 
                  <View style={{marginHorizontal: 20, marginVertical:20, paddingVertical: 20}}>
 
