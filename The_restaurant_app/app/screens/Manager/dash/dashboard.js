@@ -8,7 +8,7 @@ import order from './order';
 
 
 
-function dashboard ({navigation}){
+function Dashboard ({navigation}){
     
     const chartData= [
         { x: 1, y: 2 },
@@ -215,4 +215,4 @@ function dashboard ({navigation}){
 
 
 
-export default dashboard;
+export default Dashboard;
