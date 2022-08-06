@@ -24,9 +24,10 @@ import Tabnavigator from '../screens/Manager/Tabnavigator';
 import ReservationHome from '../screens/Customer/ReservationHome';
 import ReservationDetails from '../screens/Customer/ReservationDetails';
 import Confirm_res from '../screens/Customer/Confirm_res';
-import dashboard from '../screens/Manager/dash/dashboard';
+import Dashboard from '../screens/Manager/dash/dashboard';
 
 import Sales from '../screens/Manager/dash/sales';
+import OrderSubmit from '../screens/Customer/OrderSubmit';
 
 
 const Stack= createStackNavigator();
@@ -57,8 +58,8 @@ const BottomNavigator =()=>{
             headerShown: false}}
               />
             <Tab.Screen 
-            name="Reservation" 
-            component={Reservation} 
+            name="ReservationHome" 
+            component={ReservationHome} 
             options={{tabBarIcon:(color)=>(
             <Icon name="date-range"
             color={color}
@@ -112,7 +113,10 @@ const BottomNavigator =()=>{
 const AuthNavigator = ()=>(
     
     <Stack.Navigator>
-         <Stack.Screen name='Man_Dash' component={dashboard} options={{headerShown: false}} />
+
+<Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
+          <Stack.Screen name='OrderSubmit' component={OrderSubmit} options={{headerShown: false}} />
+         <Stack.Screen name='Man_Dash' component={Dashboard} options={{headerShown: false}} />
          <Stack.Screen name='Sales' component={Sales} options={{headerShown: false}} />
          
          
@@ -124,11 +128,11 @@ const AuthNavigator = ()=>(
          
          <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
          <Stack.Screen name='Manger_menu'  component={Tabnavigator} options={{headerShown: false}}/>
-        <Stack.Screen name='Signin' component={Signin} options={{headerShown: false}} />
-        <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         
-        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+        <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
+        <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
+        
         <Stack.Screen name='Signupp'  component={Signup} options={{headerShown: false}}/>
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />        
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>

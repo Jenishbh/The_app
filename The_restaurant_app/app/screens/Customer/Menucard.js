@@ -10,8 +10,8 @@ const cardWidth = width / 2 - 20;
 
 function Menucard({navigation}) {
 
-  const [selectedCategoryIndex, setselectedCategoryIndex] = React.useState(null);
-  const [selectedMenu, setSelectedMenu] = React.useState(foods);
+  const [selectedCategoryIndex, setselectedCategoryIndex] = React.useState(0);
+  const [selectedMenutype, setSelectedMenuType] = React.useState(0);
   const [Search, setSearch] = React.useState(true)
   const [Filter, setFilter] = React.useState(foods)
   //React.useEffect(()=>{
@@ -33,97 +33,70 @@ function Menucard({navigation}) {
   // Helper function for catagories
 
   function mapfood (){
-    //setSelectedMenuType=foods.categories.filter(a => a.id.includes(id))
+    setSelectedMenuType=foods.categories.filter(a => a.id.includes(id))
 
   }
   
-  function OnSelectCategory (category){
-    let menulist = foods.filter(a=>a.categories.includes(category.id))
+  const ListCategories =()=>{
 
-    setSelectedMenu(menulist)
-    setselectedCategoryIndex(category)
-    if(!selectedCategoryIndex){
-      return foods
-    } return foods.filter((item)=> item.categories === selectedCategoryIndex)
-    
+      
 
-  }
+      return(
 
-  function getCategorynamebyId (id){
-    let category = categories.filter(a=>a.id == id)
+        <ScrollView
+      
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={style.catagoriesListContainer}
+        
+        >
 
-    if(category.length > 0){
-      return category[0].name}
+          {categories.map((category,index)=>(
 
-    return ""
-  }
+            <TouchableOpacity 
+            key={index}
+            activeOpacity={0.8}
+            onPress={()=> {setselectedCategoryIndex(index)} }
+            >
 
+              <View style={{
+                backgroundColor:selectedCategoryIndex == index 
+                ? 'orange' 
+                : '#FEDAC5',
+                ...style.categorryBtn
+                }}>
 
-  function ListCategories (){
+                  <View 
+                  style={style.categorryBtnImgCon}
+                  >
+                    <Image 
+                    source={category.image} 
+                    style={{height:35, width:35, resizeMode: 'cover'
+                    }} />
 
-    const renderItem = ({ item }) => {
-      return (
-          <TouchableOpacity
-              style={{
-                  padding: 12,
-                  paddingBottom: 12 * 2,
-                  backgroundColor: (selectedCategoryIndex?.id == item.id) ? 'orange' : 'white',
-                  borderRadius: 24,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginRight: 12,
-                  ...style.shadow
-              }}
-              onPress={() => OnSelectCategory(item)}
-          >
-              <View
-                  style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: 25,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: (selectedCategoryIndex?.id == item.id) ? 'white' : 'lightGray'
-                  }}
-              >
-                  <Image
-                      source={item.image}
-                      resizeMode="contain"
-                      style={{
-                          width: 30,
-                          height: 30
-                      }}
-                  />
-              </View>
+                  </View>
 
-              <Text
-                  style={{
-                      marginTop: 12,
-                      color: (selectedCategoryIndex?.id == item.id) ? 'white' : 'black',
-                      fontSize:15,
-                       fontWeight: 'bold'
-                  }}
-              >
-                  {item.name}
-              </Text>
-          </TouchableOpacity>
+                  <Text 
+                    style={{fontSize:15,
+                       fontWeight: 'bold',
+                        marginLeft: 10,
+                         color: selectedCategoryIndex == index
+                          ? 'white' 
+                          : 'orange'
+                           }}>
+                    {category.name}
+                  </Text>
+
+                </View>
+
+            </TouchableOpacity>
+          ))}
+
+        </ScrollView>
       )
-  }
-    return(
-      <FlatList
-                    data={categories}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    keyExtractor={item => `${item.id}`}
-                    renderItem={renderItem}
-                    contentContainerStyle={{ paddingVertical: 12 * 2 }}
-                />
-    )
-    
     }
 
     const Card = ({food}) => {
-      
       return(
         <TouchableHighlight 
         underlayColor={'white'} 
@@ -136,14 +109,7 @@ function Menucard({navigation}) {
             <Image source={food.image} style ={{height: 120, width: 120}} />
           </View>
 
-          {food.categories.map((categoryId) => {
-                return(
-                  <View style={{flexDirection:'row', alignSelf: 'center', marginTop:-30, paddingVertical:10}}
-                  key={categoryId}>
-                    <Text > {getCategorynamebyId(categoryId)} </Text>
-                    </View>
-                )
-              })}
+
 
           <View style ={{marginHorizontal : 10}}>
             <Text style={{fontSize:18, fontWeight: 'bold', textAlign: 'center',}}> {food.name}</Text>
@@ -160,7 +126,6 @@ function Menucard({navigation}) {
 
 
               <Text style={{fontSize: 18, fontWeight: 'bold'}}> ${food.price}</Text>
-              
               <View style={style.addtobtn}>
                 <Icon name='add' size={20} color='white'/>
               </View>
@@ -236,7 +201,7 @@ function Menucard({navigation}) {
 
           <TextInput 
           style={{flex:1, fontSize:18, color:'gray'}}
-          placeholder='Search foods...'
+          placeholder='Search food...'
           onChangeText={(text)=>onSearch(text)}
           />
 
@@ -252,12 +217,11 @@ function Menucard({navigation}) {
 
       <View>
 
-    {ListCategories()}
+    <ListCategories />
 
       </View>
       { Search &&
       <FlatList 
-      keyExtractor={item => `${item.id}`}
       showsVerticalScrollIndicator ={false}
       numColumns={2}
       data={Filter}
@@ -316,20 +280,6 @@ function Menucard({navigation}) {
     
 
    },
-   container: {
-    flex: 1,
-    backgroundColor:'lightGray'
-},
-shadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-        width: 0,
-        height: 3,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 1,
-},
 
    categorryBtnImgCon:{
     height: 35,
