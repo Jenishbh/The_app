@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, SafeAreaView, StyleSheet,Button, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
 import Login from './Login';
 import { useNavigation } from '@react-navigation/native';
-
+import {getAuth,   sendPasswordResetEmail,} from 'firebase/auth'
 
 
 
@@ -14,9 +14,8 @@ function Forget_pass() {
 
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
-    .then(() => {
-    // Password reset email sent!
-    // ..
+    .then( ()=> {
+      alert('Please check your email...')
     })
     .catch((error) => alert(error.message));
 
@@ -48,7 +47,7 @@ function Forget_pass() {
           </TouchableOpacity>
           
           <TouchableOpacity  style={styles.go_home}>  
-            <Button title='Go Back To Log-in'  onPress={() => navigation.navigate(Login)} />
+            <Button title='Go Back To Log-in'  onPress={() => navigation.navigate('Signin')} />
           </TouchableOpacity>
         </SafeAreaView>
       );

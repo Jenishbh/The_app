@@ -2,7 +2,7 @@ import { Text, View,  Image, Animated, SafeAreaView, Dimensions, ImageBackground
 import React from 'react'
 import { PrimaryButton } from '../../components/Button';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const onboarding_screens = [
     {

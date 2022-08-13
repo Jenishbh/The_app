@@ -28,6 +28,7 @@ import Dashboard from '../screens/Manager/dash/dashboard';
 
 import Sales from '../screens/Manager/dash/sales';
 import OrderSubmit from '../screens/Customer/OrderSubmit';
+import CartScreen from '../screens/Customer/CartScreen';
 
 
 const Stack= createStackNavigator();
@@ -69,8 +70,8 @@ const BottomNavigator =()=>{
             headerShown: false}}
               />
             <Tab.Screen 
-            name="Search" 
-            component={Login} 
+            name="Cart" 
+            component={CartScreen} 
             options={{tabBarIcon:(color)=>(
             <View style={{height: 50, width:60,
              justifyContent: 'center',
@@ -82,7 +83,7 @@ const BottomNavigator =()=>{
               top: -25,
               elevation: 5,
               }}>
-                 <Icon name="search" color={color} size={28} />
+                 <Icon name="shopping-cart" color={color} size={28} />
             </View>
             ),
              }}
@@ -121,6 +122,7 @@ const AuthNavigator = ()=>(
          
          
          <Stack.Screen name='Conf_res' component={Confirm_res} options={{headerShown: false}} />
+         <Stack.Screen name='CartScreen' component={CartScreen} options={{headerShown: false}} />
          <Stack.Screen name='Menu' component={Menucard} options={{headerShown: false}} />
          <Stack.Screen name='ReservationHome' component={ReservationHome} options={{headerShown: false}} />
          <Stack.Screen name='ReservationDetails' component={ReservationDetails} options={{headerShown: false}} />

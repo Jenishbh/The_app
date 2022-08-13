@@ -1,6 +1,6 @@
-import { Text, View, TouchableOpacity, Image, TextInput,SafeAreaView } from 'react-native'
-import React, { Component } from 'react'
-import AuthLayout from './AuthLayout'
+import { Text, View, TouchableOpacity, Image,SafeAreaView } from 'react-native'
+import React from 'react'
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import FormInput from '../../components/FormInput'
 import utils from '../../api/utils'

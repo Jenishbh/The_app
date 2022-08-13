@@ -14,16 +14,18 @@ export default function OrderSubmit({navigation, route}) {
   
  
   
-  db 
-  .collection('Reservation').doc(user.email).get().then(DocumentSnapshot => {
-    if (DocumentSnapshot.exists){
-      const udata = DocumentSnapshot.data()
-      return setudata(udata)
-    }
-    
-  })
+  React.useEffect(()=>{
   
-
+    db 
+    .collection('Reservation').doc(user.email).get().then(DocumentSnapshot => {
+      if (DocumentSnapshot.exists){
+        const udata = DocumentSnapshot.data()
+        return setudata(udata)
+      }
+      
+    })},[])
+  
+  
   
   
   

@@ -9,15 +9,18 @@ import { getAuth } from "firebase/auth";
 
 
 
-function Confirm_res ({navigation, route}){
+function Confirm_res ({navigation}){
 
   const [udata, setudata] = useState('')
+  const [rdata, setrdata] = useState('')
+const [FoodData, SetFoodData] = useState([])
   const auth = getAuth();
   const user = auth.currentUser;
   
   
  
-  
+  React.useEffect(()=>{
+    
   db 
   .collection('UserData').doc(user.email).get().then(DocumentSnapshot => {
     if (DocumentSnapshot.exists){
@@ -26,22 +29,70 @@ function Confirm_res ({navigation, route}){
     }
     
   })
+  db 
+  .collection('Reservation').doc(user.email).get().then(DocumentSnapshot => {
+    if (DocumentSnapshot.exists){
+      const rdata = DocumentSnapshot.data()
+      return setrdata(rdata)
+    }
+  })
+  const cm=[]
+   db 
+   .collection('Reservation').doc(user.email).collection('Food').get().then(DocumentSnapshot => {
+    if (!DocumentSnapshot.empty){DocumentSnapshot.forEach((DocumentSnapshot)=>{
+      
+      cm.push(DocumentSnapshot.data())
+      
 
+      
+      SetFoodData(cm)
+      
+    })}
+    
+  })
+
+  while(cm.length > 0) {
+    cm.pop();
+}
+  
+  
+    
+  },[])
+
+  const name ={
+      Email: user.email+" ", 
+      Name: udata.name+"  ",
+      }
+  const table ={
+    Table: rdata.Table_Type+" ",
+      People: rdata.Number_of_People,
+      
+  }
+  
+  
+ const food ={
+  food: FoodData
+ }
+ 
+console.log(food)
+ 
+
+  
   const CreateQR=()=>{
     let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
     return(
       <QRCode 
-           value={[{
-            email:user.email,
-            table:udata.Table_Type}]}
+           value={JSON.stringify(name)+" "+ JSON.stringify(table)+" " +JSON.stringify(food.food)}
             
             
-           logo={{uri: base64Logo}}
+           
            logoSize={30}
            logoBackgroundColor='transparent'
            />
     )
   }
+ 
+
   
     const Receipt = () => {
         
