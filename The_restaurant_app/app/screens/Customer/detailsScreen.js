@@ -5,8 +5,8 @@ import {SecondButton} from '../../components/Button'
 import {db} from '../../database/firebase'
 import { getAuth } from "firebase/auth";
 import Icona from 'react-native-vector-icons/MaterialCommunityIcons';
-import { endBefore } from 'firebase/database'
 
+import { foods } from '../Menu/food'
 
 const DetailsScreen = ({navigation, route})=>{
     const [count, setCount] = useState(0);
@@ -14,19 +14,27 @@ const DetailsScreen = ({navigation, route})=>{
     const auth = getAuth();
     const user = auth.currentUser;
 
-    const handlebook =() =>{
+    const handlebook =()=> {
 
-        db
-        .collection(user.email)
-        .doc('Reservastion')
-        .set({
-            'name of dish' : item.name ,
-          'number of dish' : count,
+        const dataref =db
+        .collection('Reservation')
+        .doc(user.email)
+
+        dataref.collection('Food')
+    
+        .add({
+            
+            
+            name_of_dish :  item.name ,
+            number_of_dish : count,
+        
           
         })
-        Alert.alert('Book!!')
+        
 
-        navigation.navigate('Customer_main')
+        navigation.navigate('CartScreen', {name: item.name, price: item.price, image: item.image, count: count})
+
+            console.log(item.name,count,item.price)
       }
 
     return(
