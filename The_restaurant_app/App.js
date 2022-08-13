@@ -1,7 +1,8 @@
 
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
-import AuthNavigator from "./app/route/homeStack";
+//import AuthNavigator from "./app/route/homeStack";
+import AuthNavigator from "./app/route/homeStack1";
 
 
 //function App() {
