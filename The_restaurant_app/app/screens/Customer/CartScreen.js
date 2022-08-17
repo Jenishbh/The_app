@@ -47,7 +47,15 @@ export default class CartScreen extends React.Component {
     
 	}
 	
-  
+  submitfood =()=>{
+    const item = [...this.state.cartItems]
+    const auth = getAuth();
+    const user = auth.currentUser;
+    db.collection('Reservation').doc(user.email).collection('Food').doc(user.email).set({
+      food:JSON.stringify(item)
+    })
+    navigation.navigate('Customer_home')
+  }
 
 	selectHandler = (index, value) => {
 		const newItems = [...this.state.cartItems]; // clone the array 
@@ -203,7 +211,7 @@ export default class CartScreen extends React.Component {
 							</View>
 						</View>
 						<View style={{flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center'}}>
-							<TouchableOpacity style={[styles.centerElement, {backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5}]} onPress={() => console.log('test')}>
+							<TouchableOpacity style={[styles.centerElement, {backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5}]} onPress={() => this.submitfood}>
 								<Text style={{color: '#ffffff'}}>Checkout</Text>
 							</TouchableOpacity>
 						</View>

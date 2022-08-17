@@ -26,7 +26,7 @@ import ReservationHome from '../screens/Customer/ReservationHome';
 import ReservationDetails from '../screens/Customer/ReservationDetails';
 import Confirm_res from '../screens/Customer/confirm_res';
 import Dashboard from '../screens/Manager/dash/dashboard';
-
+import CartScreen from '../screens/Customer/CartScreen';
 import Sales from '../screens/Manager/dash/sales';
 import OrderSubmit from '../screens/Customer/OrderSubmit';
 
@@ -70,8 +70,8 @@ const BottomNavigator =()=>{
             headerShown: false}}
               />
             <Tab.Screen 
-            name="Search" 
-            component={Login} 
+            name="Cart" 
+            component={CartScreen} 
             options={{tabBarIcon:(color)=>(
             <View style={{height: 50, width:60,
              justifyContent: 'center',
@@ -96,7 +96,7 @@ const BottomNavigator =()=>{
             color={color}
             size={28} />
             ),
-             }}
+            headerShown: false}}
               />
             <Tab.Screen 
             name="About" 
@@ -119,6 +119,7 @@ const AuthNavigator = ()=>(
           <Stack.Screen name='OrderSubmit' component={OrderSubmit} options={{headerShown: false}} />
          <Stack.Screen name='Man_Dash' component={Dashboard} options={{headerShown: false}} />
          <Stack.Screen name='Sales' component={Sales} options={{headerShown: false}} />
+         <Stack.Screen name='CartScreen' component={CartScreen} options={{headerShown: false}} />
          
          
          <Stack.Screen name='Conf_res' component={Confirm_res} options={{headerShown: false}} />
