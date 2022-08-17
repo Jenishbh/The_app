@@ -13,7 +13,7 @@ function Confirm_res ({navigation}){
 
   const [udata, setudata] = useState('')
   const [rdata, setrdata] = useState('')
-const [FoodData, SetFoodData] = useState([])
+  const [FoodData, SetFoodData] = useState([])
   const auth = getAuth();
   const user = auth.currentUser;
   

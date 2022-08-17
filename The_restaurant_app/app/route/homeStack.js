@@ -17,18 +17,18 @@ import Manager_home from '../screens/Manager/Manager_home';
 import DetailsScreen from '../screens/Customer/detailsScreen';
 import OnBording from '../screens/Customer/OnBording';
 import Signin from '../screens/Welcome/Signin';
+import Profile from '../screens/Customer/Profile'
 
 import Signup from '../screens/Welcome/Signup';
 import Otp from '../screens/Welcome/Otp';
 import Tabnavigator from '../screens/Manager/Tabnavigator';
 import ReservationHome from '../screens/Customer/ReservationHome';
 import ReservationDetails from '../screens/Customer/ReservationDetails';
-import Confirm_res from '../screens/Customer/Confirm_res';
+import Confirm_res from '../screens/Customer/confirm_res';
 import Dashboard from '../screens/Manager/dash/dashboard';
 
 import Sales from '../screens/Manager/dash/sales';
 import OrderSubmit from '../screens/Customer/OrderSubmit';
-import CartScreen from '../screens/Customer/CartScreen';
 
 
 const Stack= createStackNavigator();
@@ -70,8 +70,8 @@ const BottomNavigator =()=>{
             headerShown: false}}
               />
             <Tab.Screen 
-            name="Cart" 
-            component={CartScreen} 
+            name="Search" 
+            component={Login} 
             options={{tabBarIcon:(color)=>(
             <View style={{height: 50, width:60,
              justifyContent: 'center',
@@ -83,14 +83,14 @@ const BottomNavigator =()=>{
               top: -25,
               elevation: 5,
               }}>
-                 <Icon name="shopping-cart" color={color} size={28} />
+                 <Icon name="search" color={color} size={28} />
             </View>
             ),
             headerShown: false}}
               />
             <Tab.Screen 
             name="Profile" 
-            component={Login} 
+            component={Profile} 
             options={{tabBarIcon:(color)=>(
             <Icon name="face"
             color={color}
@@ -122,7 +122,6 @@ const AuthNavigator = ()=>(
          
          
          <Stack.Screen name='Conf_res' component={Confirm_res} options={{headerShown: false}} />
-         <Stack.Screen name='CartScreen' component={CartScreen} options={{headerShown: false}} />
          <Stack.Screen name='Menu' component={Menucard} options={{headerShown: false}} />
          <Stack.Screen name='ReservationHome' component={ReservationHome} options={{headerShown: false}} />
          <Stack.Screen name='ReservationDetails' component={ReservationDetails} options={{headerShown: false}} />
@@ -134,7 +133,8 @@ const AuthNavigator = ()=>(
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />
-        
+        <Stack.Screen name='Profile' component={Profile} options={{headerShown: false}} />
+
         <Stack.Screen name='Signupp'  component={Signup} options={{headerShown: false}}/>
         <Stack.Screen name='Customer_home' component={customer_home} options={{headerShown: false}} />        
         <Stack.Screen name='Login'  component={Login} options={{headerShown: false}}/>
