@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, Image,SafeAreaView } from 'react-native'
+import { Text, View, TouchableOpacity, Image,SafeAreaView, Alert } from 'react-native'
 import React from 'react'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -6,7 +6,9 @@ import FormInput from '../../components/FormInput'
 import utils from '../../api/utils'
 import Switch from '../../components/Switch'
 import { PrimaryButton, SecondButton } from '../../components/Button'
-import {getAuth,   signInWithEmailAndPassword,} from 'firebase/auth'
+import {auth} from '../../database/firebase'
+import {Manager_auth} from '../../database/ManagerFirebase'
+import {signInWithEmailAndPassword,} from 'firebase/auth'
 
 
 
@@ -19,17 +21,34 @@ const Signin =({navigation}) => {
   function isEnableSignIn(){ return email != '' && password != '' && emailError == ''}
   const [showPass, setShowPass] = React.useState(false)
   const handleLogin = () =>{    
-    const auth = getAuth();  //Handel Login by firebase
-    
-      
+     //Handel Login by firebase
+  
+
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
             const user = userCredentials.user;
             console.log('Log in with: ',user.email);
+            navigation.navigate('OnBording')
         })
+        
         .catch(error => alert(error.message))
 
-        navigation.navigate('OnBording')
+        
+   }
+  const handleEmployeeLogin = () =>{    
+     //Handel Login by firebase
+  
+
+       signInWithEmailAndPassword(Manager_auth, email, password)
+        .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Log in with: ',user.email);
+            navigation.navigate('Manager_home')
+        })
+        
+        .catch(error => alert(error.message))
+
+        
    }
 
 
@@ -227,7 +246,27 @@ const Signin =({navigation}) => {
                 onPress={()=> navigation.navigate('Signupp') }/>
                 </View>
 
+                {/* Employee Sign In */}
 
+                <View style={{alignSelf:'center', paddingTop:4}}>
+              <SecondButton
+              btnContainer={{
+                
+                backgroundColor: isEnableSignIn() ? 'orange' : 'rgba(227, 120, 75, 0.4)',
+                height: 45, width:100,
+                borderRadius:24,
+                marginTop: 24,
+                alignSelf:'center'
+                
+
+              }} 
+              title='Employee'
+              titlestyle={{color:'white', fontSize:12}}
+              
+              disabled={isEnableSignIn() ? false : true}
+              //check with firebase
+              onPress={handleEmployeeLogin}
+               /></View>
 
             </View>
             
