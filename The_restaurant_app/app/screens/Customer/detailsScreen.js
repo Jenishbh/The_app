@@ -6,7 +6,7 @@ import {db} from '../../database/firebase'
 import { getAuth } from "firebase/auth";
 import Icona from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { foods } from '../Menu/food'
+
 
 const DetailsScreen = ({navigation, route})=>{
     const [count, setCount] = useState(0);
@@ -24,17 +24,20 @@ const DetailsScreen = ({navigation, route})=>{
     
         .add({
             
-            
-            name_of_dish :  item.name ,
-            number_of_dish : count,
+            id: item.id,
+            name :  item.name ,
+            qty : count,
+            salePrice: item.price,
+            image: item.image,
+            chacked: 1
         
           
         })
         
+        
+        navigation.navigate('CartScreen')
 
-        navigation.navigate('CartScreen', {name: item.name, price: item.price, image: item.image, count: count})
-
-            console.log(item.name,count,item.price)
+            
       }
 
     return(

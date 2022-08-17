@@ -192,6 +192,7 @@ function Menucard({navigation}) {
         marginTop:40,
         flexDirection: 'row',
         paddingHorizontal: 20,
+        paddingBottom: 20
       }}>
 
 
@@ -217,7 +218,7 @@ function Menucard({navigation}) {
 
       <View>
 
-    <ListCategories />
+    
 
       </View>
       { Search &&

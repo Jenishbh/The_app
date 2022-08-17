@@ -86,7 +86,7 @@ const BottomNavigator =()=>{
                  <Icon name="shopping-cart" color={color} size={28} />
             </View>
             ),
-             }}
+            headerShown: false}}
               />
             <Tab.Screen 
             name="Profile" 

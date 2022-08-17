@@ -1,27 +1,50 @@
 import React,{useState} from 'react';
 import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, ActivityIndicator, TextInput, Alert, SafeAreaView } from 'react-native';
 import { MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-
+import {foods} from '../Menu/food'
+import {db} from '../../database/firebase'
+import { getAuth } from "firebase/auth";
 export default class CartScreen extends React.Component {
   
 	constructor(props){
 		super(props)
+
+    const {navigation}= this.props
     
-    const {navigation, route}= this.props
-    const {name, price,image, count} = route.params
-    let array=[]
+    
+    const auth = getAuth();
+    const user = auth.currentUser;
+    
+    
     
 		this.state = {
       
 			selectAll: false,
 			cartItemsIsLoading: false,
-			cartItems: [
-				/* Sample data from walmart */
+      
+			cartItems: []
 				
+     
 			
-			]
+			
 		}
-    this.state.cartItems.push({name:name, qty: count,salePrice: price, checked:1 })
+    
+    db.collection('Reservation').doc(user.email).collection('Food').get().then(DocumentSnapshot => {
+      const a=[]
+      if (!DocumentSnapshot.empty){DocumentSnapshot.forEach((DocumentSnapshot)=>{  
+        
+        a.push(DocumentSnapshot.data())
+        
+      });this.setState({cartItems: a})
+      console.log(a)}   
+      
+    })
+    
+    
+    //if (this.state.cartItems && !this.state.cartItems.length==0){a.push ({name:name, qty: count,salePrice: price, checked:1 })}
+    
+		
+    
 	}
 	
   
@@ -92,7 +115,7 @@ export default class CartScreen extends React.Component {
 			<View style={{flex: 1, backgroundColor: '#f6f6f6',marginVertical:40}}>
 				<View style={{flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10}}>
 					<View style={[styles.centerElement, {width: 50, height: 50}]}>
-						<Ionicons name="ios-cart" size={25} color="#000" />
+						<Ionicons name="ios-cart" size={25} color="#000" onPress={()=>this.props.navigation.navigate('Customer_main')}/>
 					</View>
 					<View style={[styles.centerElement, {height: 50}]}>
 						<Text style={{fontSize: 18, color: '#000'}}>Shopping Cart</Text>
