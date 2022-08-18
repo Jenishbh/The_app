@@ -30,7 +30,7 @@ const Signin =({navigation}) => {
         .catch(error => alert(error.message))
 
         navigation.navigate('OnBording')
-        //navigation.navigate('Profile')
+        //navigation.navigate('BarCodeScanPage')
    }
 
 
@@ -225,7 +225,7 @@ const Signin =({navigation}) => {
                 <SecondButton 
                 title=' Create an acoount'
                 titlestyle={{color:'orange'}}
-                onPress={()=> navigation.navigate('Signupp') }/>
+                onPress={()=> navigation.navigate('Signup') }/>
                 </View>
 
 
