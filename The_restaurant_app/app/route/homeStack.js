@@ -36,6 +36,9 @@ import Sales from '../screens/Manager/dash/sales';
 import OrderSubmit from '../screens/Customer/OrderSubmit';
 
 
+const Stack= createStackNavigator();
+const Tab = createBottomTabNavigator();
+
 const BottomNavigator = () => {
   return (
     <Tab.Navigator tabBarOption={{

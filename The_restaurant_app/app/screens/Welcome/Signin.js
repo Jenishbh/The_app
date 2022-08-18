@@ -8,7 +8,7 @@ import Switch from '../../components/Switch'
 import { PrimaryButton, SecondButton } from '../../components/Button'
 import { auth } from '../../database/firebase'
 import { Manager_auth } from '../../database/ManagerFirebase'
-import { signInWithEmailAndPassword, } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 
 
@@ -279,10 +279,6 @@ const Signin = ({ navigation }) => {
   )
 
 }
-
-
-
-
 
 
 export default Signin;
