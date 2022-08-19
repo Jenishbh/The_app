@@ -43,7 +43,11 @@ const Signin = ({ navigation }) => {
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Log in with: ', user.email);
-        navigation.navigate('Manager_home')
+        if (user.email==('test@email.com')){
+        navigation.navigate('Manager_home')}
+        else{
+          Alert.alert("Not Auth")
+        }
       })
 
       .catch(error => alert(error.message))
