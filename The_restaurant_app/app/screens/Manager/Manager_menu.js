@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
 
-import Dishes from '../components/Dish'
+import Dishes from '../../components/Dishes'
 import {Card} from 'react-native-paper'
 
 import {Button} from 'react-native-elements';
 
-import { getFoods } from '../database/foodAPI';
+//import { getFoods } from '../database/foodAPI';
 
 
 const WIDTH = Dimensions.get("window").width;
@@ -15,7 +15,7 @@ const numColumn = 2;
 export default function Manager_Menu({navigation}){
   
   //const [food, setFood] = useState([{foods}]);
-  const foodList = getFoods();
+//  const foodList = getFoods();
   const [foods, setFood] = useState([
     {
       id: 1,
@@ -23,7 +23,7 @@ export default function Manager_Menu({navigation}){
       ingredients: 'Indian Curry',
       price: '8.30',
       //catagories: [1],
-      image: require('../assets/butter-chicken-curry.jpg'),
+      image: require('../../assets/food/butter-chicken-curry.jpg'),
       details: 'Chicken is marinated in yogurt, spices, garlic and ginger, then later cooked in a tandoor, but it can also be pan fried, grilled or oven roasted. After that it is tossed with the simmered, richly seasoned tomato sauce.',
     },
     {
@@ -32,7 +32,7 @@ export default function Manager_Menu({navigation}){
       ingredients: 'Pepperoni Pizza',
       price: '7.10',
       //catagories: [3],
-      image: require('../assets/pepperoni-pizza.jpg'),
+      image: require('../../assets/food/pepperoni-pizza.jpg'),
       details: "Pepperoni pizza is an American pizza variety which includes one of the country's most beloved toppings. Pepperoni is actually a corrupted form of peperoni (one “p”), which denotes a large pepper in Italian, but nowadays it denotes a spicy salami, usually made with a mixture of beef, pork, and spices.",
     },
     {
@@ -41,7 +41,7 @@ export default function Manager_Menu({navigation}){
       ingredients: 'Fried Chicken',
       price: '5.10',
       //catagories: [2],
-      image: require('../assets/chickenBurger.png'),
+      image: require('../../assets/food/chickenBurger.png'),
       details: "A chicken sandwich is a sandwich that typically consists of boneless, skinless chicken breast or thigh served between slices of bread, on a bun, or on a roll. Variations on the chicken sandwich include the chicken burger, chicken on a bun, chickwich, hot chicken, or chicken salad sandwich.",
     },
     {
@@ -50,7 +50,7 @@ export default function Manager_Menu({navigation}){
       ingredients: 'Indian Bread',
       price: '9.55',
       //catagories: [1],
-      image: require('../assets/naan.png'),
+      image: require('../../assets/food/naan.png'),
     },
     {
       id: 5,
@@ -58,7 +58,7 @@ export default function Manager_Menu({navigation}){
       ingredients: 'Indian Veg.Curry',
       price: '9.55',
       //catagories: [1],
-      image: require('../assets/malai-kofta.jpg'),
+      image: require('../../assets/food/malai-kofta.jpg'),
       details: "Naan is a leavened, oven-baked flatbread native to India. It resembles pita bread but unlike pita, it has yogurt, milk, sometimes eggs or butter which makes it softer than the pita bread. Our bakers shape it into a ball and slap it on the walls of our tandoor (clay oven).",
     },
     {
@@ -67,7 +67,7 @@ export default function Manager_Menu({navigation}){
       ingredients: 'Starter',
       price: '9.55',
       //catagories: [1],
-      image: require('../assets/entrees.jpg'),
+      image: require('../../assets/food/entrees.jpg'),
       details: "A samosa is a fried or baked pastry with a savory filling, including ingredients such as spiced potatoes, onions, and peas. It may take different forms, including triangular, cone, or half-moon shapes, depending on the region.",
     },
   ]);
