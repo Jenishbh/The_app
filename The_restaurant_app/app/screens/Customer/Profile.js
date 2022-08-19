@@ -99,15 +99,16 @@ export default function Profile({navigation}){
                 require("../../assets/profile.png") : { uri: imgUrl }}
                 style={styles.avatar}
               />
+              
             </TouchableOpacity>
-
+            <Text style={{alignSelf:'center', top:190}}>Tap Image for Change</Text>
             <Text style={{fontSize: 28, fontWeight: 'bold', marginTop: 180, textAlign: 'center'}}> {username}</Text>
             
             <TextInput
                 style={{marginTop:20, width:'90%', alignSelf:'center'}}
                 mode="outlined"
                 label="Email"
-                value={email}
+                value={user.email}
                 //onChangeText={email =>setEmail(email)}
                 theme={{ colors: { primary: 'orange', placeholder: 'orange', underlineColor:'transparent', background:'white'}}}
                 disabled
