@@ -1,15 +1,15 @@
 import React from 'react'
 import 'react-native-gesture-handler'
-import { createStackNavigator } from "@react-navigation/stack";``
+import { createStackNavigator } from "@react-navigation/stack"; ``
 import Login from "../screens/Welcome/Login";
 import Forget_pass from "../screens/Welcome/Forget_pass";
 import Registration from "../screens/Welcome/Registration";
 import customer_home from '../screens/Customer/customer_home';
 import { SafeAreaView } from 'react-navigation';
-import { NavigationContainer} from '@react-navigation/native';
-import {tabBarOption, Image, View} from 'react-native'
-import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialIcons' ; 
+import { NavigationContainer } from '@react-navigation/native';
+import { tabBarOption, Image, View } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Con from 'react-native-vector-icons/Octicons';
 import Menucard from '../screens/Customer/Menucard';
 import Reservation from '../screens/Customer/Reservation'
@@ -31,6 +31,11 @@ import ReservationDetails from '../screens/Customer/ReservationDetails';
 import Confirm_res from '../screens/Customer/confirm_res';
 import Dashboard from '../screens/Manager/dash/dashboard';
 import CartScreen from '../screens/Customer/CartScreen';
+
+import Scanner from '../screens/Manager/BarCodeScanPage';
+import TakeOrder from '../screens/Manager/OrderTakenPage';
+import CheckOut from '../screens/Manager/CheckOutPage';
+
 import Sales from '../screens/Manager/dash/sales';
 import OrderSubmit from '../screens/Customer/OrderSubmit';
 
@@ -38,47 +43,53 @@ import OrderSubmit from '../screens/Customer/OrderSubmit';
 const Stack= createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const BottomNavigator =()=>{
-    return(
-        <Tab.Navigator tabBarOption={{
-            style:{
-                height:55,
-                borderTopWidth:0,
-                elevation:0,
-              },
-              showLabel:false,
-              activeTintColor:'orange',
-                
-            
-        }}>
-            <Tab.Screen name="Menu"
-            component={Menucard}
-            options={{tabBarIcon:()=>(
+const BottomNavigator = () => {
+  return (
+    <Tab.Navigator tabBarOption={{
+      style: {
+        height: 55,
+        borderTopWidth: 0,
+        elevation: 0,
+      },
+      showLabel: false,
+      activeTintColor: 'orange',
+
+
+    }}>
+      <Tab.Screen name="Menu"
+        component={Menucard}
+        options={{
+          tabBarIcon: () => (
             <Icon name='restaurant'
-            color='orange'
-            size={28}
-            
+              color='orange'
+              size={28}
+
             />
-            ),
-            headerShown: false}}
-              />
-            <Tab.Screen 
-            name="ReservationHome" 
-            component={ReservationHome} 
-            options={{tabBarIcon:(color)=>(
+          ),
+          headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name="ReservationHome"
+        component={ReservationHome}
+        options={{
+          tabBarIcon: (color) => (
             <Icon name="date-range"
-            color={color}
-            size={28} 
-             />
-            ),
-            headerShown: false}}
-              />
-            <Tab.Screen 
-            name="Cart" 
-            component={CartScreen} 
-            options={{tabBarIcon:(color)=>(
-            <View style={{height: 50, width:60,
-             justifyContent: 'center',
+              color={color}
+              size={28}
+            />
+          ),
+          headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          tabBarIcon: (color) => (
+            <View style={{
+              height: 50, width: 60,
+              justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: 'white',
               borderColor: 'orange',
@@ -89,31 +100,35 @@ const BottomNavigator =()=>{
               }}>
                  <Icon name="shopping-cart" color={color} size={28} />
             </View>
-            ),
-            headerShown: false}}
-              />
-            <Tab.Screen 
-            name="Profile" 
-            component={Profile} 
-            options={{tabBarIcon:(color)=>(
+          ),
+          headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: (color) => (
             <Icon name="face"
-            color={color}
-            size={28} />
-            ),
-            headerShown: false}}
-              />
-            <Tab.Screen 
-            name="About" 
-            component={Login} 
-            options={{tabBarIcon:(color)=>(
+              color={color}
+              size={28} />
+          ),
+          headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name="About"
+        component={Login}
+        options={{
+          tabBarIcon: (color) => (
             <Con name="question"
-            color={color}
-            size={28} />
-            ),
-             }}
-              />
-        </Tab.Navigator>
-    )
+              color={color}
+              size={28} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  )
 }
 const AuthNavigator = ()=>(
     
@@ -164,8 +179,9 @@ const AuthNavigator = ()=>(
         
         
 
-      
-</Stack.Navigator>
+    <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{ headerShown: false }} />
+
+  </Stack.Navigator>
 
 )
 

@@ -151,8 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 34
   },
 
-  switchBotton: {
-      flex: 2,
+  switchContainer: {
       alignItems: "center",
       justifyContent: "center",
       marginTop:20
