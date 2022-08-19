@@ -13,7 +13,7 @@ const DetailsScreen = ({navigation, route})=>{
     const item = route.params;
     const auth = getAuth();
     const user = auth.currentUser;
-
+    console.log(JSON.stringify(item.image))
     const handlebook =()=> {
 
         const dataref =db
@@ -29,7 +29,7 @@ const DetailsScreen = ({navigation, route})=>{
             qty : count,
             salePrice: item.price,
             image: item.image,
-            chacked: 1
+            checked: 1
         
           
         })
