@@ -18,7 +18,11 @@ import DetailsScreen from '../screens/Customer/detailsScreen';
 import OnBording from '../screens/Customer/OnBording';
 import Signin from '../screens/Welcome/Signin';
 import Profile from '../screens/Customer/Profile'
-
+import Manager_Menu from '../screens/Manager/Manager_menu';
+import Revenue from '../screens/Manager/Revenue';
+import Waitinglist from '../screens/Manager/Waiting_list';
+import Menu_edit from '../screens/Manager/Menu_edit';
+import Menu_input from '../screens/Manager/Menu_input';
 import Signup from '../screens/Welcome/Signup';
 import Otp from '../screens/Welcome/Otp';
 import Tabnavigator from '../screens/Manager/Tabnavigator';
@@ -83,7 +87,7 @@ const BottomNavigator =()=>{
               top: -25,
               elevation: 5,
               }}>
-                 <Icon name="search" color={color} size={28} />
+                 <Icon name="shopping-cart" color={color} size={28} />
             </View>
             ),
             headerShown: false}}
@@ -129,8 +133,12 @@ const AuthNavigator = ()=>(
          
          
          <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
-         <Stack.Screen name='Manger_menu'  component={Tabnavigator} options={{headerShown: false}}/>
-        
+         <Stack.Screen name='Manager_Menu'  component={Manager_Menu} options={{headerShown: false}}/>
+         <Stack.Screen name='Revenue'  component={Revenue} options={{headerShown: false}}/>
+         <Stack.Screen name='Waitinglist'  component={Waitinglist} options={{headerShown: false}}/>
+         <Stack.Screen name='Menu_edit'  component={Menu_edit} options={{headerShown: false}}/>
+         <Stack.Screen name='Menu_input'  component={Menu_input} options={{headerShown: false}}/>
+         <Stack.Screen name='Manager_tab' component={Tabnavigator} options={{headerShown: false}} />
         <Stack.Screen name='OnBording' component={OnBording} options={{headerShown: false}} />
         <Stack.Screen name='Otp' component={Otp} options={{headerShown: false}} />
         <Stack.Screen name='Customer_main' component={BottomNavigator} options={{headerShown: false}} />

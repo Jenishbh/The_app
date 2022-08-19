@@ -4,6 +4,7 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Menucard from '../Customer/Menucard';
 import Reservation from '../Customer/Reservation';
 import Icon from 'react-native-vector-icons/MaterialIcons' ; 
+import Dashboard from './dash/dashboard';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,8 +33,8 @@ const Tabnavigator =()=>{
             headerShown: false}}
               />
             <Tab.Screen 
-            name="Reservation" 
-            component={Reservation} 
+            name="Dashboard" 
+            component={Dashboard} 
             options={{tabBarIcon:(color)=>(
             <Icon name="date-range"
             color={color}
