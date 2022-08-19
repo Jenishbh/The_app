@@ -1,16 +1,17 @@
 import Header from '../../components/Header'
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { Text, TextInput, View, SafeAreaView, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import {Button} from 'react-native-elements'
 // import * as firebase from 'firebase';
 // import { addFood, uploadFood } from '../database/foodAPI';
+import { db } from '../../database/firebase';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 export default function Menu_input({navigation}){
- const {id,name,ingredients,price,image,details,} = navigation.getParam;
+ //const {name,ingredients,price,image,details,} = navigation.getParam;
   const pressConfirmHanderler=()=>{
     console.log("Confirm");
     //addFood();
@@ -61,7 +62,7 @@ export default function Menu_input({navigation}){
           style={styles.input}
           // placeholder=" eg: Homemade Burger"
           onChangeText={foods => setFood(foods)}
-          defaultValue={navigation.getParam('name')!=null?navigation.getParam('name'):" eg: Homemade Burger"}
+          defaultValue={'eg: name'}
           multiline={true}
         />
         {/*Price input*/}
@@ -70,7 +71,7 @@ export default function Menu_input({navigation}){
           style={styles.inputPrice}
           // placeholder=" eg: 9.99"
           onChangeText={foods => setFood(foods)}
-          defaultValue={navigation.getParam('price')!=null?navigation.getParam('price'):" eg: 9.99"}
+          defaultValue={" eg: 9.99"}
         />
          {/*Ingrediens input*/}
         <Text style={styles.lable}>Ingredients: </Text>
@@ -78,7 +79,7 @@ export default function Menu_input({navigation}){
           style={styles.input}
           //placeholder=" eg: Beef, Onion, Pepper..."
           onChangeText={foods => setFood(foods)}
-          defaultValue={navigation.getParam('ingredients')!=null?navigation.getParam('ingredients'):" eg: Beef, Onion, Pepper..."}
+          defaultValue={" eg: Beef, Onion, Pepper..."}
           multiline={true}
         />
          {/*details input*/}
@@ -87,7 +88,7 @@ export default function Menu_input({navigation}){
           style={styles.input}
           // placeholder=" eg: This is a home-style beef burger."
           onChangeText={foods => setFood(foods)}
-          defaultValue={navigation.getParam('details')!=null?navigation.getParam('details'):" eg: This is a home-style beef burger."}
+          defaultValue={" eg: This is a home-style beef burger."}
           multiline={true}
         />
         {/*Image input*/}
@@ -103,8 +104,8 @@ export default function Menu_input({navigation}){
         </View>
         <View style={styles.imageContainer}>
                 <Image
-                source={navigation.getParam('image')==null?
-                        { uri: selectedImage.localUri }:navigation.getParam('image')}
+                source={
+                        { uri: selectedImage.localUri }}
                 style={styles.image}
                 />
             </View>

@@ -91,7 +91,7 @@ const [data, setdata]=useState()
               width:130,
               left:40,
               borderRadius:20
-          }}/>
+          }} onPress={()=>navigation.navigate('Manager_tab')}/>
         </View>
 
       </SafeAreaView>
