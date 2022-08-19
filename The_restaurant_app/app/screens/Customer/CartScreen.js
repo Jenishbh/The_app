@@ -94,6 +94,7 @@ export default class CartScreen extends React.Component {
 		
 		if(action == 'more'){
 			newItems[index]['qty'] = currentQty + 1;
+      //db.collection('Reservation').doc(user.email).collection('Food').where(id==index).update({qty: currentQty})
 		} else if(action == 'less'){
 			newItems[index]['qty'] = currentQty > 1 ? currentQty - 1 : 1;
 		}
@@ -120,7 +121,7 @@ export default class CartScreen extends React.Component {
 		
 		return (
       
-			<View style={{flex: 1, backgroundColor: '#f6f6f6',marginVertical:40}}>
+			<View style={{flex: 1, backgroundColor: '#f6f6f6',marginTop:40}}>
 				<View style={{flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10}}>
 					<View style={[styles.centerElement, {width: 50, height: 50}]}>
 						<Ionicons name="ios-cart" size={25} color="#000" onPress={()=>this.props.navigation.navigate('Customer_main')}/>
@@ -138,20 +139,20 @@ export default class CartScreen extends React.Component {
 				) : (
 					<ScrollView>	
 						{cartItems && cartItems.map((item, i) => (
-							<View key={i} style={{flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120}}>
+							<View key={i} style={{flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 100}}>
 								<View style={[styles.centerElement, {width: 60}]}>
 									<TouchableOpacity style={[styles.centerElement, {width: 32, height: 32}]} onPress={() => this.selectHandler(i, item.checked)}>
 										<Ionicons name={item.checked == 1 ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={item.checked == 1 ? "#0faf9a" : "#aaaaaa"} />
 									</TouchableOpacity>
 								</View>
 								<View style={{flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center'}}>
-									<TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/}} style={{paddingRight: 10}}>
+									{/*<TouchableOpacity  style={{paddingRight: 10}}>
 										<Image source={{uri: item.thumbnailImage}} style={[styles.centerElement, {height: 60, width: 60, backgroundColor: '#eeeeee'}]} />
-									</TouchableOpacity>
+            </TouchableOpacity>*/}
 									<View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center'}}>
 										<Text numberOfLines={1} style={{fontSize: 15}}>{item.name}</Text>
-										<Text numberOfLines={1} style={{color: '#8f8f8f'}}>{item.color ? 'Variation: ' + item.color : ''}</Text>
-                    <Text numberOfLines={1} style={{color: '#333333', marginBottom: 10}}>${item.qty * item.salePrice}</Text>
+										
+                    <Text numberOfLines={1} style={{color: '#333333', marginVertical: 5}}>${item.qty * item.salePrice}</Text>
 										<View style={{flexDirection: 'row'}}>
 											<TouchableOpacity onPress={() => this.quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
 												<MaterialIcons name="remove" size={22} color="#cccccc" />
@@ -175,7 +176,7 @@ export default class CartScreen extends React.Component {
 				)}
 				
 				{!cartItemsIsLoading &&
-					<View style={{backgroundColor: '#fff', borderTopWidth: 2, borderColor: '#f6f6f6', paddingVertical: 5}}>
+					<View style={{backgroundColor: '#fff', borderTopWidth: 2, borderColor: '#f6f6f6', paddingVertical: 5, paddingBottom:30}}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[styles.centerElement, {width: 60}]}>
 								<View style={[styles.centerElement, {width: 32, height: 32}]}>
@@ -211,7 +212,7 @@ export default class CartScreen extends React.Component {
 							</View>
 						</View>
 						<View style={{flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center'}}>
-							<TouchableOpacity style={[styles.centerElement, {backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5}]} onPress={() => this.submitfood}>
+							<TouchableOpacity style={[styles.centerElement, {backgroundColor: '#0faf9a', width: 100, height: 33, borderRadius: 5}]} onPress={() => this.submitfood}>
 								<Text style={{color: '#ffffff'}}>Checkout</Text>
 							</TouchableOpacity>
 						</View>
