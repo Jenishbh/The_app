@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity, Dimensions, ScrollView, } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Dishes from '../../components/Dishes'
 import {Card} from 'react-native-paper'
@@ -9,7 +10,7 @@ import {Button} from 'react-native-elements';
 //import { getFoods } from '../database/foodAPI';
 
 
-const WIDTH = Dimensions.get("window").width;
+const WIDTH = Dimensions.get("window").width /2 -20;
 const numColumn = 2;
 
 export default function Manager_Menu({navigation}){
@@ -70,6 +71,15 @@ export default function Manager_Menu({navigation}){
       image: require('../../assets/food/entrees.jpg'),
       details: "A samosa is a fried or baked pastry with a savory filling, including ingredients such as spiced potatoes, onions, and peas. It may take different forms, including triangular, cone, or half-moon shapes, depending on the region.",
     },
+    {
+      id: 7,
+      name: 'Samosa',
+      ingredients: 'Starter',
+      price: '9.55',
+      //catagories: [1],
+      image: require('../../assets/food/entrees.jpg'),
+      details: "A samosa is a fried or baked pastry with a savory filling, including ingredients such as spiced potatoes, onions, and peas. It may take different forms, including triangular, cone, or half-moon shapes, depending on the region.",
+    },
   ]);
 
   const pressAddHanderler=()=>{
@@ -78,12 +88,24 @@ export default function Manager_Menu({navigation}){
   }
   
   return (
-    <SafeAreaView >
+    <SafeAreaView style={{backgroundColor:'white', flex:1, paddingTop:40
+      }} >
+        <View style={{ 
+                paddingTop:10,
+                marginHorizontal:20,
+                flexDirection: 'row'}}>
+
+              <Icon  name ='arrow-back-ios' size={28} onPress={navigation.goBack}/>
+              <Text style={{fontSize:18, alignSelf:'center',right:5}}onPress={navigation.goBack}>Home</Text>
+              
+        </View>
       {/*Display each dish in data file*/}
+      <ScrollView style={{paddingTop:30}}>
       <FlatList 
-        numColumns={numColumn}
+        numColumns={2}
         keyExtractor={(item) => item.id}
         data={foods}
+        
         renderItem={({item})=>(
           <TouchableOpacity
             onPress={()=> navigation.navigate('Menu_edit',{
@@ -95,16 +117,18 @@ export default function Manager_Menu({navigation}){
             details: item.details,
             }
           )}>
-            <Card>
+            <Card >
               <Dishes item={item}/>
             </Card>
           </TouchableOpacity>
         )
         }       
       />
+      </ScrollView>
 
       {/*Button for add more dish*/}
       {/* <TouchableOpacity style={styles.button}> */}
+      <View style={{paddingTop:10}}>
       <Button
           onPress={pressAddHanderler} 
           titleStyle={{
@@ -123,6 +147,7 @@ export default function Manager_Menu({navigation}){
           title="ADD MORE DISH"
         />
       {/* </TouchableOpacity> */}
+      </View>
     </SafeAreaView>
   );
 }

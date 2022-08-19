@@ -6,6 +6,7 @@ import {Button} from 'react-native-elements'
 // import * as firebase from 'firebase';
 // import { addFood, uploadFood } from '../database/foodAPI';
 import { db } from '../../database/firebase';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -54,6 +55,15 @@ export default function Menu_input({navigation}){
   
   return(
     <SafeAreaView style={styles.container}>
+              <View style={{ 
+                paddingTop:10,
+                marginHorizontal:20,
+                flexDirection: 'row'}}>
+
+              <Icon  name ='arrow-back-ios' size={28} onPress={navigation.goBack}/>
+              <Text style={{fontSize:18, alignSelf:'center',right:5}} onPress={navigation.goBack}>Back</Text>
+              
+        </View>
       {/*<Header/>*/}
       <ScrollView>
         {/*Dish name input*/}
@@ -62,7 +72,7 @@ export default function Menu_input({navigation}){
           style={styles.input}
           // placeholder=" eg: Homemade Burger"
           onChangeText={foods => setFood(foods)}
-          defaultValue={'eg: name'}
+          placeholder={'eg: name'}
           multiline={true}
         />
         {/*Price input*/}
@@ -71,7 +81,7 @@ export default function Menu_input({navigation}){
           style={styles.inputPrice}
           // placeholder=" eg: 9.99"
           onChangeText={foods => setFood(foods)}
-          defaultValue={" eg: 9.99"}
+          placeholder={" eg: 9.99"}
         />
          {/*Ingrediens input*/}
         <Text style={styles.lable}>Ingredients: </Text>
@@ -79,7 +89,7 @@ export default function Menu_input({navigation}){
           style={styles.input}
           //placeholder=" eg: Beef, Onion, Pepper..."
           onChangeText={foods => setFood(foods)}
-          defaultValue={" eg: Beef, Onion, Pepper..."}
+          placeholder={" eg: Beef, Onion, Pepper..."}
           multiline={true}
         />
          {/*details input*/}
@@ -88,7 +98,7 @@ export default function Menu_input({navigation}){
           style={styles.input}
           // placeholder=" eg: This is a home-style beef burger."
           onChangeText={foods => setFood(foods)}
-          defaultValue={" eg: This is a home-style beef burger."}
+          placeholder={" eg: This is a home-style beef burger."}
           multiline={true}
         />
         {/*Image input*/}

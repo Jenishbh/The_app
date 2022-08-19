@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   card:{
     marginTop:10,
     width: (WIDTH*0.94) / numColumn,
-    backgroundColor:'#ffdca3',
+    backgroundColor:'white',
     marginHorizontal:6,
     marginVertical: 6,
     borderRadius:5,

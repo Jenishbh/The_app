@@ -5,7 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import {Button} from 'react-native-elements'
 // import firebase from 'firebase';
 // import { addFood, uploadFood } from '../database/foodAPI';
-
+import Icon from 'react-native-vector-icons/MaterialIcons'
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
@@ -54,6 +54,15 @@ export default function Menu_edit({navigation, route}){
   
   return(
     <SafeAreaView style={styles.container}>
+                   <View style={{ 
+                paddingTop:10,
+                marginHorizontal:20,
+                flexDirection: 'row'}}>
+
+              <Icon  name ='arrow-back-ios' size={28} onPress={navigation.goBack}/>
+              <Text style={{fontSize:18, alignSelf:'center',right:5}} onPress={navigation.goBack}>Back</Text>
+              
+        </View>
       {/*<Header/>*/}
       <ScrollView>
         {/*Dish name input*/}
