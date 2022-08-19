@@ -14,6 +14,7 @@ import Con from 'react-native-vector-icons/Octicons';
 import Menucard from '../screens/Customer/Menucard';
 import Reservation from '../screens/Customer/Reservation'
 import Manager_home from '../screens/Manager/Manager_home';
+
 import DetailsScreen from '../screens/Customer/detailsScreen';
 import OnBording from '../screens/Customer/OnBording';
 import Signin from '../screens/Welcome/Signin';
@@ -146,6 +147,9 @@ const AuthNavigator = ()=>(
          <Stack.Screen name='ReservationHome' component={ReservationHome} options={{headerShown: false}} />
          <Stack.Screen name='ReservationDetails' component={ReservationDetails} options={{headerShown: false}} />
          
+         <Stack.Screen name='Scanner' component={Scanner} options={{headerShown: false}} />
+         <Stack.Screen name='TakeOrder' component={TakeOrder} options={{headerShown: false}} />
+         <Stack.Screen name='CheckOut' component={CheckOut} options={{headerShown: false}} />
          
          <Stack.Screen name='Manager_home' component={Manager_home} options={{headerShown: false}} />
          <Stack.Screen name='Manager_Menu'  component={Manager_Menu} options={{headerShown: false}}/>
@@ -179,7 +183,7 @@ const AuthNavigator = ()=>(
         
         
 
-    <Stack.Screen name='Forgot_pass' component={Forget_pass} options={{ headerShown: false }} />
+    
 
   </Stack.Navigator>
 

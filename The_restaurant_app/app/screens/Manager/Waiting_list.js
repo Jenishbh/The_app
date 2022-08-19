@@ -1,7 +1,19 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import {db} from '../../database/firebase'
+import { getAuth } from 'firebase/auth';
 
 
+
+
+
+
+
+
+  
+
+
+  
 const DATA = [
   {id: '1',title: 'Peter', subtitle: "8 people",},
   {id: '2',title: 'John Smith',subtitle: "8 people",},
@@ -21,15 +33,29 @@ const Item = ({ title, subtitle }) => (
   </View>
 );
 const renderItem = ({ item }) => (
-    <Item title={item.title} subtitle={item.subtitle} />
+    <Item title={item.Name} subtitle={'Table: '+item.Table_Type+'\nCount:'+ item.Number_of_People}  />
 );
   
 
 export default function Waitinglist(){
+  const auth = getAuth();
+const user = auth.currentUser;
+const [data, setdata]=useState()
+  useEffect(()=>{
+    const a =[]
+    db.collection('Reservation').get().then(Doc=>{
+      Doc.forEach((Doc)=>{
+        a.push(Doc.data())
+      })
+      setdata(a)
+    })
+
+  },[]);
+  
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

@@ -17,6 +17,7 @@ const ReservationDetails=({navigation, route})=>{
         const [count, setCount] = useState(0);
         const [currentDate, setCurrentDate] = useState('');
         const [selectedCategoryIndex, setselectedCategoryIndex] = useState(0);
+        const [udata, setudata] = useState()
         const auth = getAuth();
         const user = auth.currentUser;
         useEffect(() => {
@@ -26,6 +27,14 @@ const ReservationDetails=({navigation, route})=>{
           var hours = new Date().getHours(); //Current Hours
           var min = new Date().getMinutes(); //Current Minutes
           var sec = new Date().getSeconds(); //Current Seconds
+          db 
+          .collection('UserData').doc(user.email).get().then(DocumentSnapshot => {
+          if (DocumentSnapshot.exists){
+          const udata = DocumentSnapshot.data()
+          return setudata(udata)
+          }
+    
+          })
           setCurrentDate(
             date + '/' + month + '/' + year 
             + ' ' + hours + ':' + min + ':' + sec
@@ -71,7 +80,7 @@ const ReservationDetails=({navigation, route})=>{
             .doc(user.email)
             .set(
               {
-                
+                Name: udata.firstName+' '+udata.lastName,
                 Date : currentDate,
                 Table_Type: item.name,
                 Number_of_People: count

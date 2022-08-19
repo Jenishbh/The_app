@@ -1,11 +1,29 @@
-import React,{useState, setValue} from 'react';
-import {View, Switch, SafeAreaView, StyleSheet, Image,Text,TouchableOpacity, Flatlist} from 'react-native';
-import {Button} from 'react-native-elements';
+import React,{useState,useEffect, setValue} from 'react';
+import {View, Switch, SafeAreaView, StyleSheet, Image, ImageBackground,Text, TextInput,TouchableOpacity} from 'react-native';
+import {PrimaryButton} from '../../components/Button'
+import {db} from '../../database/firebase'
+import { getAuth } from "firebase/auth";
+
 
 export default function Manager_home({navigation}) {
+  const auth = getAuth();
+const user = auth.currentUser;
+const [data, setdata]=useState()
+  useEffect(()=>{
+    
+    db.collection('Reservation').get().then(Doc=>{
+      
+       const a=Doc.size
+      
+      setdata(a)
+    })
+
+  },[]);
+
+
   const buttonClickedHandler = () => {
       console.log('You have press the switch!');
-      navigation.push('Waitinglist');
+      navigation.navigate('Waitinglist')
   };
 
   const [value, setValue] = useState("ON");
@@ -14,102 +32,73 @@ export default function Manager_home({navigation}) {
       console.log('Switch pressed');
       setValue("OFF");
   };
+  
+  const CButton = ({ text }) => {
+      return (
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>{text}</Text>
+        </TouchableOpacity>
+      );
+  };
+
+  
+
+
 
   const [isEnabled, setIsEnabled] = useState(false);
-
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-  const pressMenuHandler = () =>{
-    navigation.navigate('Manager_Menu');
-    
-  }
-  const pressReportHandler = () =>{
-    navigation.navigate('Manager_tab');
-    
-  }
 
   return (
       <SafeAreaView style={styles.background}>
         <Image style={styles.logo} source={require('../../assets/table-management.png')} />
         <Text style={styles.check_in}> Checked-In </Text>
-          <TouchableOpacity
-              onPress={buttonClickedHandler}
-              style={styles.roundButton}>
+        <TouchableOpacity
+            onPress={buttonClickedHandler}
+            style={styles.roundButton1}>
 
-              <Text style={styles.number}>08</Text>  
-          </TouchableOpacity>
-          
-        <View style={styles.switchBotton}>
+            <Text style={styles.number}>{data}/12</Text>  
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{top:160}} onPress={() =>{navigation.navigate('Scanner')}}>
+          <Image source={require("../../assets/qr-code-scan-icon.png")} style={styles.scanIcon}/>
+        </TouchableOpacity>
+
+        <View style={styles.switchContainer}>
           <Text style={styles.onoff}>Slide to Turn On/Off Pre-check-In</Text>  
-            <Switch
-                marginTop = {10}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                activeText={'On'}
-                inActiveText={'Off'}
-                activeTextStyle={{fontSize:8, color:'black'}}
-                inactiveTextStyle={{}}
-                backgroundActive={'#767577'}
-                backgroundInactive={'red'}
-                value={isEnabled}
-                style={{ transform:[{ scaleX: 2 }, { scaleY: 2 }] }}
-                circleSize={5}
+          <Switch
+              trackColor={{ false: "#767577", true: "#767577" }}
+              thumbColor={isEnabled ? "#0BF10B" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              activeText={'On'}
+              inActiveText={'Off'}
+              value={isEnabled}
             />
         </View>
 
-          <View style={styles.buttonStyleContainer}>
-            <Button
-                onPress={()=> navigation.navigate('Manager_Menu')} 
-                titleStyle={{
-                color: "white",
-                fontSize: 16,
-                fontWeight:'bold'
-                }}
-                buttonStyle={{
-                    backgroundColor: "#ffaf51",
-                    height: 50,
-                    width: 150,  
-                    marginHorizontal:10,
-                }}
-
-                title="Menu"
+        <View style={styles.buttonContainer}>
+          <PrimaryButton title='Menu'
+            btnContainer={{
+              height:40,
+              width:130,
+              right:40,
+              borderRadius:20
+            }} onPress={()=>navigation.navigate('Manager_Menu')}
             />
-            <Button
-                onPress={pressReportHandler} 
-                titleStyle={{
-                color: "white",
-                fontSize: 16,
-                fontWeight:'bold'
-                }}
-                buttonStyle={{
-                    backgroundColor: "#ffaf51",
-                    height: 50,
-                    width: 150,  
-                    marginHorizontal:10,
-                }}
+          <PrimaryButton title='Report'
+            btnContainer={{
+              height:40,
+              width:130,
+              left:40,
+              borderRadius:20
+          }}/>
+        </View>
 
-                title="Report"
-            />
-           </View>
       </SafeAreaView>
   
     );
 }
-
-Manager_home.navigationOptions={
-  title:'Manager Home Page',
-  headerTitleAlign:'center',
-  headerStyle:{
-    backgroundColor: '#ffaf51',
-  },
-  headerTintColor: '#4b4f57',
-  headerTintStyle:{
-    fontWeight:'bold',
-  }
-
-}
-
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
   background:{
     backgroundColor: 'white',
     flex: 1,
@@ -117,35 +106,33 @@ const styles = StyleSheet.create({
   },
 
   logo:{
-    height: 250,
+    height: 220,
     width: 400,        
-    marginTop: 20
+    top: 70
   },
 
   check_in:{
-    color: '#ffaf51',
-    fontFamily:'sans-serif',
+    color: 'orange',
+    top: 100,
     fontSize: 32,
-    marginTop: 50,
-    alignSelf:'center',
+    alignContent: 'center',
+    alignItems: 'center',
     fontWeight:'bold',
+    
   },
 
-  roundButton:{
+  roundButton1:{
       width: 150,
       height: 150,
-      marginTop: 50,
+      top: 130,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 10,
       borderRadius: 100,
-      backgroundColor: '#ffaf51',
+      backgroundColor: 'orange',
   },
 
   number:{
-    margin: 1,
-    width: 300,
-    height: 60,
     color: 'black',
     textAlign: 'center',
     fontSize: 34
@@ -154,23 +141,52 @@ const styles = StyleSheet.create({
   switchContainer: {
       alignItems: "center",
       justifyContent: "center",
-      marginTop:20
+      top:190,
   },
 
   onoff:{
+    width: 300,
+    height: 30,
     color: 'grey',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 12
+  },
+  
+  switch:{
+      width: 300,
+      height: 60,
+      color: 'white',
+      textAlign: 'center',
+      fontSize: 34
+  },
+  
+  button: {
+      backgroundColor: "orange",
+      padding: 18,
+      width: "46%",
+      height: 60,
+      borderRadius:10
+  },
+  text: {
+      fontSize: 18,
+      color: "white",
+      textAlign: "center",
+      fontWeight:'bold'
   },
 
-  buttonStyleContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: "space-evenly",
-      marginTop: 10,
-      marginVertical:30,
-      padding:2,
-      height: 20,
+  buttonContainer: {
+    top: 220,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
-   
+  
+  parent1: {
+      flex: 1,
+
+      top: 60
+    },
+  scanIcon:{
+    height:40,
+    width: 40,
+  },
 });
