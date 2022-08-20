@@ -13,32 +13,36 @@ const DetailsScreen = ({navigation, route})=>{
     const item = route.params;
     const auth = getAuth();
     const user = auth.currentUser;
-    console.log(JSON.stringify(item.image))
-    const handlebook =()=> {
-
-        const dataref =db
-        .collection('Reservation')
-        .doc(user.email)
-
-        dataref.collection('Food')
     
-        .add({
-            
-            id: item.id,
-            name :  item.name ,
-            qty : count,
-            salePrice: item.price,
-            image: item.image,
-            checked: 1
-        
-          
-        })
-        
-        
-        navigation.navigate('CartScreen')
+    const handlebook = () => {
 
-            
-      }
+        const dataref = db.collection('Reservation').doc(user.email);
+        
+        dataref.collection('Food').get().then(DocumentSnapshot => {
+            let updated = false;
+            DocumentSnapshot.forEach(doc =>{
+                if (item.id == doc.data().id) {
+                    doc.ref.update({qty: doc.data().qty + 1});
+                    updated = true;
+                }
+            })
+            if (!updated){
+                console.log("not update")
+                dataref.collection('Food')
+                .add({
+                    id: item.id,
+                    name: item.name,
+                    qty: 1,
+                    salePrice: item.price,
+                    image: item.image,
+                    checked: 1
+                })
+            }
+        })
+
+        navigation.navigate('Customer_main');
+
+    }
 
     return(
     <SafeAreaView style={{backgroundColor: 'white'}}>
@@ -70,20 +74,9 @@ const DetailsScreen = ({navigation, route})=>{
                     <Text style={style.detailsText}>
                         {item.details}
                     </Text>
-                    <View style={{marginHorizontal: 10, marginVertical:20, paddingVertical: -20, flexDirection: 'row', justifyContent:'space-between'}}  >
 
-                    <Text style={{fontWeight: 'bold', color: 'white'}} > Number </Text>
-                    <View style={{alignSelf:'baseline'}}>
-                    <Icona name='minus-circle-outline' size={18} color='white'  onPress={()=> {setCount(count-1)}}/>
-                    </View>
-                    <Text style={{color: 'white'}} >{count}</Text>
-                    <View > 
-                    <Icona name='plus-circle-outline' size={18} color='white' onPress={()=> {setCount(count+1)}}/>
-
-                    </View>
-                 </View>
                     <View style={{marginTop: 80, marginBottom: 40 }}>
-                        <SecondButton title='Pre-Order'
+                        <SecondButton title='Add to Cart'
                         btnContainer={{
                             height:50,
                             width:250,

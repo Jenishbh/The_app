@@ -45,12 +45,10 @@ useEffect(()=>{
     
   }
 
+
   // Helper function for catagories
 
-  function mapfood (){
-    setSelectedMenuType=foods.categories.filter(a => a.id.includes(id))
 
-  }
   
   const ListCategories =()=>{
 
@@ -141,8 +139,8 @@ useEffect(()=>{
 
 
               <Text style={{fontSize: 18, fontWeight: 'bold'}}> ${food.price}</Text>
-              <View style={style.addtobtn}>
-                <Icon name='add' size={20} color='white'/>
+              <View style={style.addtobtn} >
+                <Icon name='add' size={20} color='white' />
               </View>
 
           </View>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import 'react-native-gesture-handler'
 import { createStackNavigator } from "@react-navigation/stack"; ``
 import Login from "../screens/Welcome/Login";
@@ -44,9 +44,9 @@ import OrderSubmit from '../screens/Customer/OrderSubmit';
 const Stack= createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const BottomNavigator = () => {
+const BottomNavigator = ({navigation}) => {
   return (
-    <Tab.Navigator tabBarOption={{
+    <Tab.Navigator  tabBarOption={{
       style: {
         height: 55,
         borderTopWidth: 0,
@@ -54,9 +54,9 @@ const BottomNavigator = () => {
       },
       showLabel: false,
       activeTintColor: 'orange',
+      
 
-
-    }}>
+    }} >
       <Tab.Screen name="Menu"
         component={Menucard}
         options={{
@@ -103,7 +103,7 @@ const BottomNavigator = () => {
             </View>
           ),
           headerShown: false
-        }}
+        }} 
       />
       <Tab.Screen
         name="Profile"
@@ -115,7 +115,7 @@ const BottomNavigator = () => {
               size={28} />
           ),
           headerShown: false
-        }}
+        }} 
       />
       <Tab.Screen
         name="About"
