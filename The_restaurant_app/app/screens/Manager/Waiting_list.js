@@ -5,27 +5,6 @@ import { getAuth } from 'firebase/auth';
 
 
 
-
-
-
-
-
-  
-
-
-  
-const DATA = [
-  {id: '1',title: 'Peter', subtitle: "8 people",},
-  {id: '2',title: 'John Smith',subtitle: "8 people",},
-  {id: '3',title: 'Sarah Huang',subtitle: "8 people",},
-  {id: '4',title: 'Tim Coook',subtitle: "8 people",},
-  {id: '5',title: 'Third Item',subtitle: "8 people",},
-  {id: '6',title: 'Third Item',subtitle: "8 people",},
-  {id: '7',title: 'Third Item',subtitle: "8 people",},
-  {id: '8',title: 'Third Item',subtitle: "8 people",},
-  {id: '9',title: 'Third Item',subtitle: "8 people",},
-  {id: '10',title: 'Third Item',subtitle: "8 people",},];
-
 const Item = ({ title, subtitle }) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>

@@ -46,9 +46,12 @@ function Dashboard ({navigation}){
                 <Text style={{alignSelf:'center',color:'orange'}} >Customers</Text>
             </View>
             <View style={{paddingHorizontal:5}}>
+            <TouchableHighlight onPress={()=>navigation.navigate('Orderpage')} underlayColor={'white'}  >
             <View style={{height:70,width:70,borderRadius:60,borderWidth:1,borderColor:'pink', justifyContent:'center',marginBottom:5}} >               
                     <Image style={{height:35,width:35,alignSelf:'center'}} source={require('../../../assets/data/note.png')} />                
+            
             </View>
+            </TouchableHighlight>
                 <Text style={{alignSelf:'center',color:'pink'}} >Orders</Text>
             </View>
             <View style={{paddingHorizontal:5}}>

@@ -49,14 +49,14 @@ export default class CartScreen extends React.Component {
 
 		  //Submit fod to firebase
 
-		  const submitfood =()=>{
-			const item = [...this.state.cartItems]
+		 // const submitfood =()=>{
+		//	const item = [...this.state.cartItems]
 
-			db.collection('Reservation').doc(user.email).collection('Food').doc(user.email).set({
-			  food:JSON.stringify(item)
-			})
-			navigation.navigate('Customer_home')
-		  }
+		//	db.collection('Reservation').doc(user.email).update({
+		//	  total: item[index]['subtotalPrice']
+		//	})
+		//	navigation.navigate('Customer_home')
+		 // }
 		
 
 
@@ -263,7 +263,7 @@ export default class CartScreen extends React.Component {
 							</View>
 						</View>
 						<View style={{flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center'}}>
-							<TouchableOpacity style={[styles.centerElement, {backgroundColor: '#0faf9a', width: 100, height: 33, borderRadius: 5}]} onPress={() => submitfood && this.props.navigation.navigate('ReservationHome')}>
+							<TouchableOpacity style={[styles.centerElement, {backgroundColor: '#0faf9a', width: 100, height: 33, borderRadius: 5}]} onPress={()=>this.props.navigation.navigate('ReservationHome')}>
 								<Text style={{color: '#ffffff'}}>Checkout</Text>
 							</TouchableOpacity>
 							
